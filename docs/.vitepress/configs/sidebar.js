@@ -7,13 +7,27 @@ export default {
 function getApiSidebar() {
   return [
     {
-      text: '功能',
+      text: '用户接口',
       collapsible: true,
       items: [
         {
-          text: '已实现',
-          link: '/api/'
-        },
+          items: [
+            { text: '登录', link: '/api/user/login' },
+            { text: '注册', link: '/api/user/register' },
+          ]
+        }
+      ]
+    },
+    {
+      text: '产品接口',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '产品列表', link: '/api/product/list' },
+            { text: '产品详情', link: '/api/product/detail' }
+          ]
+        }
       ]
     }
   ]

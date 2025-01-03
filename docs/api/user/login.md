@@ -1,7 +1,3 @@
-# MS-DOCS
-
-宠智灵接口文档
-
 # 用户登录接口
 
 ## 接口说明
@@ -29,19 +25,14 @@
 ```
 
 ## 接口调试
-
+---
 <script setup>
 import SwaggerUI from '../../../src/components/SwaggerUI.vue'
 </script>
 
 <ClientOnly>
   <SwaggerUI 
-    tag="用户管理" 
-    path="/user/login" 
+    tag="平安API" 
+    path="/insurance/session-start" 
   />
 </ClientOnly>
-
-
-
-
-

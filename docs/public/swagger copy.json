@@ -508,18 +508,8 @@
           "scheme": "basic",
           "type": "http",
           "x-basicInfoFunc": "app.lib.JWT.verify_basic_auth"
-        },
-        "jwt": {
-          "bearerFormat": "JWT",
-          "scheme": "bearer",
-          "type": "http",
-          "x-bearerInfoFunc": "app.lib.JWT.verify_token"
         }
       }
-    },
-    "info": {
-      "title": "Swagger MS-AI",
-      "version": "1.0.0"
     },
     "openapi": "3.0.0",
     "paths": {
@@ -565,13 +555,7 @@
               "description": "get successfully"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "检查是否为当月首检",
           "tags": [
             "ai-checkup"
@@ -614,13 +598,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果",
           "tags": [
             "ai-checkup"
@@ -658,13 +636,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题",
           "tags": [
             "ai-checkup"
@@ -717,13 +689,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题",
           "tags": [
             "ai-checkup"
@@ -761,13 +727,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "ai-checkup"
@@ -808,13 +768,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "ai-checkup"
@@ -851,13 +805,7 @@
               "description": "成功开始新的健康检测会话"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "开始一个新的会话",
           "tags": [
             "ai-checkup"
@@ -898,13 +846,7 @@
               "description": "成功获取总结"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "生成总结",
           "tags": [
             "ai-checkup"
@@ -960,13 +902,7 @@
               "description": "成功更新宠物档案的体检参数"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "更新宠物档案的体检参数",
           "tags": [
             "ai-checkup"
@@ -1007,13 +943,7 @@
               "description": "成功获取总结"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "AI聊天",
           "tags": [
             "ai-conv"
@@ -1047,13 +977,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取联想",
           "tags": [
             "ai-conv"
@@ -1087,13 +1011,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "AI聊天校验",
           "tags": [
             "ai-conv"
@@ -1165,13 +1083,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取用户历史表情包数据列表",
           "tags": [
             "ai_meme"
@@ -1220,13 +1132,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取表情包数据",
           "tags": [
             "ai_meme"
@@ -1283,13 +1189,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取AI表情包",
           "tags": [
             "ai_meme"
@@ -1675,13 +1575,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "判断是否需要继续提问",
           "tags": [
             "exotic-异宠"
@@ -1722,13 +1616,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "判断是否需要传图",
           "tags": [
             "exotic-异宠"
@@ -1793,13 +1681,7 @@
               "description": "成功获取科室"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取关键词,科室",
           "tags": [
             "exotic-异宠"
@@ -1844,13 +1726,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题选项",
           "tags": [
             "exotic-异宠"
@@ -1888,13 +1764,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果(流式)",
           "tags": [
             "exotic-异宠"
@@ -1935,13 +1805,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题(流式)",
           "tags": [
             "exotic-异宠"
@@ -1974,13 +1838,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "发布获取诊断报告任务",
           "tags": [
             "exotic-异宠"
@@ -2017,13 +1875,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "exotic-异宠"
@@ -2061,13 +1913,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取病情小结(流式)",
           "tags": [
             "exotic-异宠"
@@ -2108,13 +1954,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "判断是否需要继续提问",
           "tags": [
             "aidoc"
@@ -2155,13 +1995,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "判断是否需要传图",
           "tags": [
             "aidoc"
@@ -2226,13 +2060,7 @@
               "description": "成功获取科室"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取关键词,科室",
           "tags": [
             "aidoc"
@@ -2270,13 +2098,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题选项",
           "tags": [
             "aidoc"
@@ -2314,13 +2136,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果(流式)",
           "tags": [
             "aidoc"
@@ -2354,13 +2170,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题(流式)",
           "tags": [
             "aidoc"
@@ -2393,13 +2203,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "发布获取诊断报告任务",
           "tags": [
             "aidoc"
@@ -2436,13 +2240,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "aidoc"
@@ -2476,13 +2274,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取病情小结(流式)",
           "tags": [
             "aidoc"
@@ -2524,13 +2316,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "验证答案是否有效",
           "tags": [
             "aidoc"
@@ -2568,13 +2354,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题选项",
           "tags": [
             "aipic-exotic"
@@ -2616,13 +2396,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果(流式)",
           "tags": [
             "aipic-exotic"
@@ -2656,13 +2430,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题(流式)",
           "tags": [
             "aipic-exotic"
@@ -2707,13 +2475,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "aipic-exotic"
@@ -2754,13 +2516,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "aipic-exotic"
@@ -2802,13 +2558,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取小结(流式)",
           "tags": [
             "aipic-exotic"
@@ -2850,13 +2600,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "验证答案是否有效",
           "tags": [
             "aipic-exotic"
@@ -2894,13 +2638,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题选项",
           "tags": [
             "aipic"
@@ -2942,13 +2680,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果(流式)",
           "tags": [
             "aipic"
@@ -2982,13 +2714,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题(流式)",
           "tags": [
             "aipic"
@@ -3033,13 +2759,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "aipic"
@@ -3080,13 +2800,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "aipic"
@@ -3128,13 +2842,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取小结(流式)",
           "tags": [
             "aipic"
@@ -3176,13 +2884,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "验证答案是否有效",
           "tags": [
             "aipic"
@@ -3246,13 +2948,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "AI聊天",
           "tags": [
             "users"
@@ -3284,13 +2980,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "AI图片聊天",
           "tags": [
             "users"
@@ -3367,13 +3057,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "合作交流信息保存",
           "tags": [
             "users"
@@ -3416,13 +3100,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "修改评价",
           "tags": [
             "evaluation"
@@ -3462,13 +3140,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取保险数据",
           "tags": [
             "平安API"
@@ -3501,13 +3173,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "提交答案",
           "tags": [
             "平安API"
@@ -3541,13 +3207,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取问题列表",
           "tags": [
             "平安API"
@@ -3581,13 +3241,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取核保结果",
           "tags": [
             "平安API"
@@ -3602,13 +3256,6 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
           "summary": "会话开始",
           "tags": [
             "平安API"
@@ -3643,13 +3290,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "视频识别",
           "tags": [
             "平安API"
@@ -3667,13 +3308,7 @@
               "$ref": "#/components/responses/DefaultError"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "Logs out the user",
           "tags": [
             "users"
@@ -3703,13 +3338,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取key_usage_id",
           "tags": [
             "magnum_key"
@@ -3752,13 +3381,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片选项",
           "tags": [
             "magnum_key"
@@ -3801,13 +3424,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片问题",
           "tags": [
             "magnum_key"
@@ -3850,13 +3467,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取声音选项",
           "tags": [
             "magnum_key"
@@ -3903,13 +3514,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取声音问题",
           "tags": [
             "magnum_key"
@@ -3953,13 +3558,7 @@
               "description": "成功获取医疗报告"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取单个病例报告",
           "tags": [
             "medical-record"
@@ -4002,13 +3601,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "修改状态和记录对话进行阶段",
           "tags": [
             "medical-record"
@@ -4076,13 +3669,7 @@
               "description": "成功获取医疗报告列表"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取医疗报告列表",
           "tags": [
             "medical-record"
@@ -4119,13 +3706,7 @@
               "description": "成功获取医疗报告列表"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取进行中的医疗报告",
           "tags": [
             "medical-record"
@@ -4167,13 +3748,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取图片结果(流式)",
           "tags": [
             "medication_analysis"
@@ -4207,13 +3782,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取诊断报告",
           "tags": [
             "medication_analysis"
@@ -4247,13 +3816,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取病情小结(流式)",
           "tags": [
             "medication_analysis"
@@ -4328,13 +3891,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "删除宠物档案",
           "tags": [
             "pets"
@@ -4370,13 +3927,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取宠物档案",
           "tags": [
             "pets"
@@ -4419,13 +3970,7 @@
               "$ref": "#/components/responses/DefaultError"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "创建宠物档案",
           "tags": [
             "pets"
@@ -4473,13 +4018,7 @@
               "$ref": "#/components/responses/DefaultError"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "更新宠物档案",
           "tags": [
             "pets"
@@ -4508,13 +4047,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取宠物档案扩展信息",
           "tags": [
             "pets"
@@ -4551,13 +4084,7 @@
               "description": "成功获取"
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取宠物品种",
           "tags": [
             "pets"
@@ -4592,13 +4119,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取宠物档案列表",
           "tags": [
             "pets"
@@ -4639,13 +4160,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "宠物数据",
           "tags": [
             "pets"
@@ -4726,13 +4241,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取积分明细",
           "tags": [
             "用户币"
@@ -4781,13 +4290,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取积分价格",
           "tags": [
             "用户币"
@@ -4874,13 +4377,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取积分任务列表",
           "tags": [
             "用户币"
@@ -4910,13 +4407,7 @@
               "description": "post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "领取奖励",
           "tags": [
             "用户币"
@@ -4946,13 +4437,7 @@
               "description": "post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "确认积分任务",
           "tags": [
             "用户币"
@@ -4986,13 +4471,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "政策类型",
           "tags": [
             "policy"
@@ -5027,13 +4506,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "进食进水识别",
           "tags": [
             "recognition"
@@ -5068,13 +4541,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "鉴别鸟类",
           "tags": [
             "recognition"
@@ -5115,13 +4582,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "多宠物识别",
           "tags": [
             "recognition"
@@ -5174,13 +4635,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "相似度识别",
           "tags": [
             "recognition"
@@ -5215,13 +4670,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "余粮检测",
           "tags": [
             "recognition"
@@ -5295,13 +4744,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取聊天记录",
           "tags": [
             "session"
@@ -5357,13 +4800,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "保存聊天记录",
           "tags": [
             "session"
@@ -5408,13 +4845,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "流程开始",
           "tags": [
             "session"
@@ -5496,13 +4927,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取订阅信息",
           "tags": [
             "订阅"
@@ -5531,13 +4956,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "合作交流信息保存",
           "tags": [
             "users"
@@ -5583,13 +5002,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "上传图片"
         }
       },
@@ -5642,13 +5055,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "上传图片"
         }
       },
@@ -5702,13 +5109,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "上传图片"
         }
       },
@@ -5743,13 +5144,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取模块当月使用次数",
           "tags": [
             "订阅"
@@ -5794,13 +5189,7 @@
               "description": "post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "用户反馈",
           "tags": [
             "用户反馈"
@@ -5826,13 +5215,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取用户信息",
           "tags": [
             "users"
@@ -5847,13 +5230,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "签到",
           "tags": [
             "user-module-usage"
@@ -5905,13 +5282,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "领取添加企微的奖励",
           "tags": [
             "user-module-usage"
@@ -5948,13 +5319,7 @@
               "description": "The resource was post successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取微信小程序二维码",
           "tags": [
             "user-module-usage"
@@ -5991,13 +5356,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "是否领取过添加企微的奖励",
           "tags": [
             "user-module-usage"
@@ -6038,13 +5397,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "获取用户积分",
           "tags": [
             "用户币"
@@ -6078,13 +5431,7 @@
               "description": "get successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "报告积分消费核销",
           "tags": [
             "用户币"
@@ -6166,13 +5513,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "白名单数据过滤",
           "tags": [
             "whitelist"
@@ -6206,13 +5547,7 @@
               "description": "The resource was patched successfully."
             }
           },
-          "security": [
-            {
-              "jwt": [
-                "secret"
-              ]
-            }
-          ],
+          
           "summary": "白名单数据保存",
           "tags": [
             "whitelist"
