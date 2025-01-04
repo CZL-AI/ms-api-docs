@@ -15,12 +15,7 @@ import 'swagger-ui-dist/swagger-ui.css'
 
 const props = defineProps({
     tag: String,
-    path: String,
-    type: {
-        type: String,
-        default: 'get',
-        validator: value => ['get', 'post', 'put', 'delete'].includes(value.toLowerCase())
-    }
+    path: String
 })
 
 const loading = ref(true)
@@ -41,13 +36,11 @@ onMounted(async () => {
             info: swaggerConfig.info,
             servers: swaggerConfig.servers,
             paths: {
-                [props.path]: {
-                    [props.type]: swaggerConfig.paths[props.path][props.type]
-                }
+                [props.path]: swaggerConfig.paths[props.path]
             },
             components: swaggerConfig.components
         }
-
+        
         setTimeout(() => {
             SwaggerUIBundle({
                 dom_id: '#swagger-ui',
@@ -88,7 +81,6 @@ onMounted(async () => {
 .swagger-ui .wrapper {
     padding: 5px;
 }
-
 .responses-inner {
     padding: 5px;
 }

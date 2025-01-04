@@ -1071,6 +1071,18 @@
       },
       "post": {
         "operationId": "app.api.AiMemeAPI.get_context",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2636,6 +2648,18 @@
     "/aipic/report": {
       "post": {
         "operationId": "app.api.AiPicAPI.get_report_v2",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2720,6 +2744,18 @@
     "/aipic/summary": {
       "post": {
         "operationId": "app.api.AiPicAPI.get_summary_v2",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3158,9 +3194,9 @@
             "required": true,
             "schema": {
               "type": "string",
-              "default": "ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT25zaWRYTmxjbDlwWkNJNklqRXhNREF3TURRd0xURXhNUzB3TXpRelpHUTVOREl6WkRFeE1EQTFZamRsWVdVMk1USTBORGxqTm1ReU5TSjlMQ0psZUhBaU9qRTNNelkxTXpBeE1qZ3NJbXAwYVNJNkltTXlNREJtTm1RekxUWmlOMll0TkRjeU5pMDVOalF6TFRSaE1HWmxOek5rTVdZMU1TSjkudVZsOFBnVVNoa0t3U1JTLW9vOWttQnFoZVI0QU1tbl9NWElrb0NRaF9NOA=="
+              "default": ""
             },
-            "description": "默认的 token 参数"
+            "description": ""
           }
         ],
         "responses": {
@@ -3438,6 +3474,16 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -3763,6 +3809,16 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/pet_profile_id"
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -3831,6 +3887,18 @@
       },
       "post": {
         "operationId": "app.api.PetProfileAPI.create_profile",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4409,6 +4477,18 @@
     "/recognition/identifying_birds": {
       "post": {
         "operationId": "app.api.RecognitionAPI.identifying_birds",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4703,6 +4783,18 @@
     "/session-record/session-start": {
       "post": {
         "operationId": "app.api.SessionRecordAPI.session_start",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "description": ""
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
