@@ -1,7 +1,7 @@
 export default {
-  '/api/': getApiSidebar(),
-  '/components/': getComponentsSidebar(),
-  '/guide/': getGuideSidebar()
+  '/': getApiSidebar(),
+  // '/components/': getComponentsSidebar(),
+  // '/guide/': getGuideSidebar()
 }
 
 function getApiSidebar() {
