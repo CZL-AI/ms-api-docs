@@ -30,6 +30,9 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [vueJsx(), demoblockVitePlugin()]
+    plugins: [vueJsx(), demoblockVitePlugin()],
+    server: {
+      host: '0.0.0.0'
+    }
   }
 })
