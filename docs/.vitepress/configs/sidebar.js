@@ -14,6 +14,7 @@ function getApiSidebar() {
           items: [
             { text: '大模型简介', link: '/api/beginning/llm' },
             { text: '登录凭证', link: '/api/beginning/login-token' },
+            { text: '错误码', link: '/api/beginning/error-code' },
           ]
         }
       ]
