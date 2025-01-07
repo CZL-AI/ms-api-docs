@@ -1,0 +1,605 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "MS AI 服务",
+        "description": "MS AI 服务",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/ms-ai/pet/pet-profile": {
+            "post": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "创建宠物档案",
+                "description": "TODO：创建宠物档案🎁",
+                "operationId": "create_pet_profile_ms_ai_pet_pet_profile_post",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Access Token"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PetProfile"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "更新宠物档案",
+                "description": "TODO：更新宠物档案🎁",
+                "operationId": "update_pet_profile_ms_ai_pet_pet_profile_put",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Access Token"
+                        }
+                    },
+                    {
+                        "name": "pet_profile_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Pet Profile Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PetProfile"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "查询宠物档案",
+                "description": "TODO：查询宠物档案🏀",
+                "operationId": "get_pet_profile_ms_ai_pet_pet_profile_get",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Access Token"
+                        }
+                    },
+                    {
+                        "name": "pet_profile_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Pet Profile Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "删除宠物档案",
+                "description": "TODO：删除宠物档案🎁",
+                "operationId": "delete_pet_profile_ms_ai_pet_pet_profile_delete",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Access Token"
+                        }
+                    },
+                    {
+                        "name": "pet_profile_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Pet Profile Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ms-ai/pet/pet-profiles": {
+            "get": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "宠物档案列表",
+                "description": "TODO：宠物档案列表🎞",
+                "operationId": "pet_profile_list_ms_ai_pet_pet_profiles_get",
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Access Token"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ms-ai/pet/upload-image-oss": {
+            "post": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "Upload Image",
+                "operationId": "upload_image_ms_ai_pet_upload_image_oss_post",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Token"
+                        }
+                    },
+                    {
+                        "name": "upload_type",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "title": "Upload Type"
+                        }
+                    },
+                    {
+                        "name": "upload_to_local",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "title": "Upload To Local"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_upload_image_ms_ai_pet_upload_image_oss_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ms-ai/pet/upload-video-oss": {
+            "post": {
+                "tags": [
+                    "宠物档案管理"
+                ],
+                "summary": "Upload File",
+                "operationId": "upload_file_ms_ai_pet_upload_video_oss_post",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Token"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_upload_file_ms_ai_pet_upload_video_oss_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_upload_file_ms_ai_pet_upload_video_oss_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_upload_file_ms_ai_pet_upload_video_oss_post"
+            },
+            "Body_upload_image_ms_ai_pet_upload_image_oss_post": {
+                "properties": {
+                    "image": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "Image"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "image"
+                ],
+                "title": "Body_upload_image_ms_ai_pet_upload_image_oss_post"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "PetProfile": {
+                "properties": {
+                    "allergy_history": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "过敏史"
+                    },
+                    "avatar": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "过敏史"
+                    },
+                    "birthday": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "出生日期"
+                    },
+                    "disease_history": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "疾病史"
+                    },
+                    "family_history": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "家族史"
+                    },
+                    "gender": {
+                        "type": "integer",
+                        "title": "性别: 0-未知,1-公,2-母",
+                        "default": 0
+                    },
+                    "is_neutered": {
+                        "type": "integer",
+                        "title": "是否绝育",
+                        "default": 0
+                    },
+                    "is_vaccination": {
+                        "type": "integer",
+                        "title": "是否接种疫苗",
+                        "default": 0
+                    },
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "宠物名字"
+                    },
+                    "pet_type": {
+                        "type": "integer",
+                        "title": "宠物类型：1-猫,2-狗",
+                        "default": 1
+                    },
+                    "pet_variety": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "宠物品种"
+                    },
+                    "vaccination_date": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "object"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "疫苗接种时间"
+                    },
+                    "weight": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "体重(kg)"
+                    }
+                },
+                "type": "object",
+                "title": "PetProfile"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}

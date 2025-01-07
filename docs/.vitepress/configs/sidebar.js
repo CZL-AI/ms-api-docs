@@ -45,6 +45,18 @@ function getApiSidebar() {
       ]
     },
     {
+      text: '文件上传',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '图片', link: '/api/file/image' },
+            { text: '视频', link: '/api/file/video' },
+          ]
+        }
+      ]
+    },
+    {
       text: '宠物品种识别',
       collapsible: true,
       items: [

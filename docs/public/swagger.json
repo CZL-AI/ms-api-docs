@@ -501,6 +501,80 @@
             "type": "string"
           }
         }
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "Body_upload_image_ms_ai_pet_upload_image_oss_post": {
+        "properties": {
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "title": "Image"
+          }
+        },
+        "type": "object",
+        "required": [
+          "image"
+        ],
+        "title": "Body_upload_image_ms_ai_pet_upload_image_oss_post"
+      },
+      "Body_upload_file_ms_ai_pet_upload_video_oss_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_file_ms_ai_pet_upload_video_oss_post"
       }
     }
   },
@@ -5531,11 +5605,181 @@
           "whitelist"
         ]
       }
+    },
+    "/token/accessToken": {
+      "servers": [
+        {
+          "url": "https://ms-ai.chongzhiling.com"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Token 认证服务"
+        ],
+        "summary": "获取accessToken",
+        "description": "通过企业信息获取Token⛳",
+        "operationId": "get_access_token_token_accessToken_get",
+        "parameters": [
+          {
+            "name": "corp_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "通过企业编号"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "用户标识"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file/upload-image-oss": {
+      "servers": [
+        {
+          "url": "https://ms-ai.chongzhiling.com",
+          "description": ""
+        }
+      ],
+      "post": {
+        "tags": [
+          "File 服务"
+        ],
+        "summary": "Upload Image",
+        "operationId": "upload_image_ms_ai_pet_upload_image_oss_post",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_image_ms_ai_pet_upload_image_oss_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "https://ms-ai.chongzhiling.com",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "/file/upload-video-oss": {
+      "post": {
+        "tags": [
+          "File 服务"
+        ],
+        "summary": "Upload File",
+        "operationId": "upload_file_ms_ai_pet_upload_video_oss_post",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_ms_ai_pet_upload_video_oss_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "servers": [
     {
       "url": "https://ms-ai.chongzhiling.com/api/v1.0/ai-b"
+    },
+    {
+      "url": "https://ms-ai.chongzhiling.com"
     }
   ]
 }

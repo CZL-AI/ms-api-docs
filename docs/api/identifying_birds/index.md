@@ -4,12 +4,12 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 ```json
 {
-  "img_url": "https://angular00001.oss-cn-beijing.aliyuncs.com/applet.png"
+  "image_url": "https://angular00001.oss-cn-beijing.aliyuncs.com/2024-08-16/12025.png"
 }
 ```
 
@@ -18,25 +18,25 @@
 
 | 名称    | 类型   | 必填 | 说明                                           |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| img_url | string | 是   | 识别图片地址（需提供一张能正常访问的图片地址） |
+| image_url | string | 是   | 识别图片地址（需提供一张能正常访问的图片地址） |
 
 ## 返回结果：
 ```json
 {
     "data": {
-        "A_order": "雀形目",
-        "B_family": "椋鸟科",
-        "C_genus": "八哥属",
-        "D_species": "家八哥",
-        "E_common_name": "Common Myna",
-        "F_scientific_name": "Acridotheres tristis",
-        "G_distribution": "多分布于南亚地区，但也分布在东南亚、澳大利亚和南太平洋部分岛屿，已经引入到全球许多地区。",
-        "H_rarity": "2级：非常常见（数量稳定，但对环境变化敏感）。",
-        "I_description": "家八哥是一种中等体型的鸟类，具有光泽的黑色羽毛、黄色的眼圈和腿部。以杂食性为主，主要食用昆虫、果实和人类废弃物。通常在城市、农田和疏林地带栖息，并且适应能力强。",
-        "J_identification_reason": "其显著的黑色羽毛、黄色的眼圈和腿部，加上特有的冠状羽毛。",
-        "K_features": "黑色体羽，黄色眼圈和腿部，特有的冠状羽毛。",
-        "L_vocal_characteristics": "家八哥的叫声多变，包括哨声、模仿其它鸟类的声音，常用于通信、求偶和领地保护。",
-        "M_habitat": "主要栖息于城市、农田和疏林地带。",
+        "A_order": "鸻形目",
+        "B_family": "鸥科",
+        "C_genus": "须浮鸥属",
+        "D_species": "黑须浮鸥",
+        "E_common_name": "Black Tern",
+        "F_scientific_name": "Chlidonias niger",
+        "G_distribution": "分布于欧洲、亚洲和北美洲，冬季迁徙至非洲和南美洲。",
+        "H_rarity": "4级：较常见（数量尚可，但种群受到一定威胁）。",
+        "I_description": "黑须浮鸥是一种中小型水鸟，繁殖期成鸟头、颈、胸部呈黑色，背部和翅膀呈灰色，腹部白色，尾羽浅灰。嘴和腿呈黑色。非繁殖期黑色部分褪为灰白色。体长约23-26厘米，翼展约60-70厘米。它们主要以昆虫、小鱼和甲壳类动物为食，在空中捕食或从水面捕捉。通常栖息在湿地、湖泊和沼泽地区。",
+        "J_identification_reason": "繁殖期头颈胸部黑色，背部灰色，腹部白色，黑色的嘴和腿，以及飞行姿态。",
+        "K_features": "繁殖期头颈胸部黑色，背部灰色，腹部白色；非繁殖期黑色部分褪为灰白色；嘴和腿为黑色。",
+        "L_vocal_characteristics": "叫声为尖锐的“kik”或“keek”，常用于警戒和交流。",
+        "M_habitat": "主要栖息于淡水湿地、湖泊、沼泽和沿海地区。",
         "N_confidence": "95%"
     },
     "message": "Get successfully.",
