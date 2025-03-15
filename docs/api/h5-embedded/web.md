@@ -32,7 +32,7 @@
 
 1. 在web项目中新增一个页面，并在页面中使用如下代码：
 ```javascript
-const baseUrl = "https://platform.chongzhiling.com"; // 登录商家后台，获取服务嵌入链接地址。
+const baseUrl = "https://h5.chongzhiling.com"; // 登录商家后台，获取服务嵌入链接地址。
 const access_token = "access_token"; // 登录凭证
 const putId = "petId"; // 宠物Id
 

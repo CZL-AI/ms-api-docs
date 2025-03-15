@@ -42,8 +42,7 @@
 ## 请求参数：
 ```json
 {
-    "content": "HHH",
-    "cost_type": 1,
+    "content": "德文不吃饭了",
     "module_type": 5,
     "pet_profile_id": 3147,
     "sub_module_type": 1
@@ -55,7 +54,6 @@
 | 名称            | 类型   | 必填 | 说明                  |
 | --------------- | ------ | ---- | --------------------- |
 | content         | string | 是   | 初始问题内容          |
-| cost_type       | number | 是   | 费用类型，固定为1     |
 | module_type     | number | 是   | 识别模块类型，固定为5 |
 | pet_profile_id  | number | 是   | 宠物档案ID            |
 | sub_module_type | number | 是   | 子模块类型，固定为1   |
