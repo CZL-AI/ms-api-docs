@@ -4,7 +4,7 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`  
-**请求地址：** `https://auth.chongzhiling.com/token/accessToken?corp_id=[CORP_ID]&user_id=[USER_ID]`
+**请求地址：** `https://ms-ai.chongzhiling.com/auth/token/accessToken?corp_id=[CORP_ID]&user_id=[USER_ID]`
 
 **参数列表：**
 

@@ -4,15 +4,15 @@
 
 ## 调用接口
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/file/upload-image-oss?upload_type=[UPLOAD_TYPE]&upload_to_local=[UPLOAD_TO_LOCAL]token=[TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/file/upload-image-oss?upload_type=[UPLOAD_TYPE]&upload_to_local=[UPLOAD_TO_LOCAL]&token=[TOKEN]`
 
-## **请求参数：**[query]
+## **参数列表1：**[query]
 | 参数            | 类型   | 含义                                               |
 | --------------- | ------ | -------------------------------------------------- |
 | upload_type     | number | 图片上传类型 1-头像 2-图片识别模块 3-表情包 4-其他 |
 | upload_to_local | number | 是否上传到本地服务器                               |
 
-## **参数列表：**[multipart/form-data]
+## **参数列表2：**[multipart/form-data]
 
 | 参数  | 类型 | 含义                   |
 | ----- | ---- | ---------------------- |

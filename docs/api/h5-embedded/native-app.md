@@ -49,7 +49,7 @@ public class WebActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.baidu.com"); // 登录商家后台，获取服务嵌入链接地址。
+        webView.loadUrl("https://platform.chongzhiling.com"); // 登录商家后台，获取服务嵌入链接地址。
     }
 }
 ```
@@ -72,7 +72,7 @@ class WebViewController: UIViewController {
         webView = WKWebView(frame: self.view.frame)
         self.view.addSubview(webView)
 
-        if let url = URL(string: "https://www.baidu.com") {
+        if let url = URL(string: "https://platform.chongzhiling.com") {
             let request = URLRequest(url: url)
             webView.load(request) // 登录商家后台，获取服务嵌入链接地址。
         }

@@ -4548,9 +4548,9 @@
         ]
       }
     },
-    "/recognition/identifying_birds": {
+    "/recognition/identifying_birds_v2": {
       "post": {
-        "operationId": "app.api.RecognitionAPI.identifying_birds",
+        "operationId": "app.api.RecognitionAPI.identifying_birds_v2",
         "parameters": [
           {
             "name": "token",

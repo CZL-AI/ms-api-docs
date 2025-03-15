@@ -16,7 +16,7 @@
 
 1. 在web项目中新增一个页面，并在页面中使用如下代码：
 ```javascript
-const baseUrl = "https://www.baidu.com"; // 登录商家后台，获取服务嵌入链接地址。
+const baseUrl = "https://platform.chongzhiling.com"; // 登录商家后台，获取服务嵌入链接地址。
 const access_token = "access_token"; // 登录凭证
 const putId = "petId"; // 宠物Id
 
@@ -29,7 +29,7 @@ document.write(<iframe src="[urlWithParams]" title="H5 页面"></iframe>);
 
 1. 如果不做iframe嵌入，您还可以直接跳转到我们的H5页面。
 ```javascript
-window.location.href = 'https://www.baidu.com?access_token=[登录凭证]&petId=[宠物ID]' // 登录商家后台，获取服务嵌入链接地址。
+window.location.href = 'https://h5.chongzhiling.com?access_token=[登录凭证]&petId=[宠物ID]' // 登录商家后台，获取服务嵌入链接地址。
 ```
 
 **注意:**

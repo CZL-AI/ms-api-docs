@@ -39,7 +39,10 @@ function getApiSidebar() {
         {
           items: [
             { text: '新增档案', link: '/api/pet-profile/add' },
+            { text: '修改档案', link: '/api/pet-profile/update' },
             { text: '删除档案', link: '/api/pet-profile/delete' },
+            { text: '档案信息', link: '/api/pet-profile/get' },
+            { text: '档案列表', link: '/api/pet-profile/list' }
           ]
         }
       ]
@@ -186,7 +189,8 @@ function getApiSidebar() {
       items: [
         {
           items: [
-            { text: '品种识别', link: '/api/identifying_birds/index' },
+            { text: '品种识别-V2', link: '/api/identifying_birds/v2' },
+            { text: '品种识别-V3', link: '/api/identifying_birds/v3' }
           ]
         }
       ]
