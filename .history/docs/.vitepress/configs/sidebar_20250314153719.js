@@ -180,67 +180,59 @@ function getApiSidebar() {
       ]
     },
     {
-      text: '智能问诊',
-      link: '/api/smart-consultation/index',
-      collapsible: true,
-      items: [
-        {
-          text: '流程开始',
-          items: [
-            { text: 'SessionStart', link: '/api/smart-consultation/session-start' }
-          ]
-        },
-        {
-          text: '两轮问答',
-          items: [
-            { text: '获取问题 [流式]', link: '/api/smart-consultation/question' },
-            { text: '获取问题联想', link: '/api/smart-consultation/options' },
-            { text: '保存用户回答', link: '/api/smart-consultation/history' }
-          ]
-        },
-        {
-          text: '判断是否需要传图',
-          items: [
-            { text: '是否需要上传图片', link: '/api/smart-consultation/if-need-image' },
-            {
-              text: '需要传图',
-              items: [
-                { text: '上传文件', link: '/api/smart-consultation/upload-image-oss' },
-                { text: '获取图片结果', link: '/api/smart-consultation/pic-result' }
-              ]
-            }
-          ]
-        },
-        {
-          text: '判断是否需要继续提问',
-          items: [
-            { text: '是否继续问答【流式】', link: '/api/smart-consultation/if-continue-ask' },
-            {
-              text: '继续提问',
-              items: [
-                { text: '获取问题【流式】', link: '/api/smart-consultation/question' },
-                { text: '获取问题联想', link: '/api/smart-consultation/options' },
-                { text: '保存用户回答', link: '/api/smart-consultation/history' }
-              ]
-            }
-          ]
-        },
-        {
-          text: '发布生成报告',
-          collapsible: true,
-          items: [
-            { text: '生成小结', link: '/api/smart-consultation/summary' },
-            { text: '发布生成报告任务', link: '/api/smart-consultation/report' }
-          ]
-        },
-        {
-          text: '获取报告',
-          items: [
-            { text: '获取报告', link: '/api/smart-consultation/medical-record' }
-          ]
-        }
+  "text": "智能问诊",
+  "link": "/api/smart-consultation/index",
+  "collapsible": true,
+  "items": [
+    {
+      "text": "流程开始",
+      "items": [
+        { "text": "SessionStart", "link": "/api/smart-consultation/session-start.md", "method": "POST" }
       ]
     },
+    {
+      "text": "问答环节",
+      "items": [
+        { "text": "获取问题 [流式]", "link": "/api/smart-consultation/get-question-stream", "method": "POST" },
+        { "text": "获取问题联想", "link": "/api/smart-consultation/get-question-association", "method": "POST" },
+        { "text": "保存用户回答", "link": "/api/smart-consultation/save-user-answer", "method": "POST" }
+      ]
+    },
+    {
+      "text": "传图环节",
+      "items": [
+        { "text": "上传文件", "link": "/api/smart-consultation/upload-file", "method": "POST" },
+        { "text": "获取图片结果", "link": "/api/smart-consultation/get-image-result", "method": "POST" },
+        { "text": "是否需要上传图片", "link": "/api/smart-consultation/is-image-upload-needed", "method": "POST" }
+      ]
+    },
+    {
+      "text": "继续提问",
+      "collapsible": true,
+      "items": [
+        { "text": "获取问题 [流式]", "link": "/api/smart-consultation/get-question-stream", "method": "POST" },
+        { "text": "获取问题联想", "link": "/api/smart-consultation/get-question-association", "method": "POST" },
+        { "text": "保存用户回答", "link": "/api/smart-consultation/save-user-answer", "method": "POST" },
+        { "text": "是否继续问答 [流式]", "link": "/api/smart-consultation/is-continue-qa-stream", "method": "POST" }
+      ]
+    },
+    {
+      "text": "生成报告",
+      "collapsible": true,
+      "items": [
+        { "text": "生成小结", "link": "/api/smart-consultation/generate-summary", "method": "POST" },
+        { "text": "发布生成报告任务", "link": "/api/smart-consultation/publish-report-task", "method": "POST" },
+        { "text": "生成健康问答 [流式]", "link": "/api/smart-consultation/generate-health-report-stream", "method": "POST" }
+      ]
+    },
+    {
+      "text": "获取报告",
+      "items": [
+        { "text": "获取报告", "link": "/api/smart-consultation/get-report", "method": "GET" }
+      ]
+    }
+  ]
+},
   ]
 }
 

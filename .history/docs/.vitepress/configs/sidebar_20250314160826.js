@@ -218,25 +218,26 @@ function getApiSidebar() {
             {
               text: '继续提问',
               items: [
-                { text: '获取问题【流式】', link: '/api/smart-consultation/question' },
-                { text: '获取问题联想', link: '/api/smart-consultation/options' },
-                { text: '保存用户回答', link: '/api/smart-consultation/history' }
+                { text: '获取问题【流式】', link: '/api/smart-consultation/get-question-stream' },
+                { text: '获取问题联想', link: '/api/smart-consultation/get-question-association' },
+                { text: '保存用户回答', link: '/api/smart-consultation/save-user-answer' }
               ]
             }
           ]
         },
         {
-          text: '发布生成报告',
+          text: '生成报告',
           collapsible: true,
           items: [
-            { text: '生成小结', link: '/api/smart-consultation/summary' },
-            { text: '发布生成报告任务', link: '/api/smart-consultation/report' }
+            { text: '生成小结', link: '/api/smart-consultation/generate-summary' },
+            { text: '发布生成报告任务', link: '/api/smart-consultation/publish-report-task' },
+            { text: '生成健康问答 [流式]', link: '/api/smart-consultation/generate-health-report-stream' }
           ]
         },
         {
           text: '获取报告',
           items: [
-            { text: '获取报告', link: '/api/smart-consultation/medical-record' }
+            { text: '获取报告', link: '/api/smart-consultation/get-report' }
           ]
         }
       ]

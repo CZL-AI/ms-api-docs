@@ -236,7 +236,7 @@ function getApiSidebar() {
         {
           text: '获取报告',
           items: [
-            { text: '获取报告', link: '/api/smart-consultation/medical-record' }
+            { text: '获取报告', link: '/api/smart-consultation/get-report' }
           ]
         }
       ]

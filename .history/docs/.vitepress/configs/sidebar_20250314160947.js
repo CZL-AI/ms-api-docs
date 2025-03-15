@@ -230,13 +230,13 @@ function getApiSidebar() {
           collapsible: true,
           items: [
             { text: '生成小结', link: '/api/smart-consultation/summary' },
-            { text: '发布生成报告任务', link: '/api/smart-consultation/report' }
+            { text: '发布生成报告任务', link: '/api/smart-consultation/publish-report-task' }
           ]
         },
         {
           text: '获取报告',
           items: [
-            { text: '获取报告', link: '/api/smart-consultation/medical-record' }
+            { text: '获取报告', link: '/api/smart-consultation/get-report' }
           ]
         }
       ]
