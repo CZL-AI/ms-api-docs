@@ -22,7 +22,7 @@
 
 ## 调用接口：
 **请求方式：** `DELETE（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet/pet-profile?pet_profile_id=[宠物编号]&token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profile?pet_profile_id=[宠物编号]&token=[ACCESS_TOKEN]`
 
 ## 参数列表[query]：
 

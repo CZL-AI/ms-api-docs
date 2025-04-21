@@ -242,6 +242,18 @@ function getApiSidebar() {
         }
       ]
     },
+    {
+      text: '视频分析',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '发送任务', link: '/api/video-analysis/post-task.md' },
+            { text: '获取任务结果', link: '/api/video-analysis/get-status.md' },
+          ]
+        }
+      ]
+    },
   ]
 }
 

@@ -3,7 +3,7 @@
 
 ## 调用接口：
 **请求方式：** `GET（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet/pet-profiles?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profiles?token=[ACCESS_TOKEN]`
 
 ## 返回结果：
 ```json

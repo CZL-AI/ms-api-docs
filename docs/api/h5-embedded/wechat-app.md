@@ -55,7 +55,7 @@
 <template>
     <view>
         <!-- 商家后台获取的嵌入链接地址，示例： -->
-        <web-view src="https://baidu.com?access_token=[登录凭证]&putId=[宠物Id]" />
+        <web-view src="https://h5.chongzhiling.com?access_token=[登录凭证]&petId=[宠物Id]" />
     </view>
 </template>
 ```
