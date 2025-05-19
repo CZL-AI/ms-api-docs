@@ -45,7 +45,7 @@
 | is_paid         | number | 是否已支付（1：已支付，0：未支付）       |
 | module_type     | number | 模块类型，表示该数据属于哪个模块         |
 | pet_profile_id  | number | 宠物资料ID，当前为 0，表示没有关联宠物   |
-| report          | object | 报告内容，格式为 JSON 字符串，当前为空 JSON 对象 |
+| report          | object | 报告内容，格式为 JSON 字符串 |
 | report_time     | string | 报告时间，格式为 ISO 8601               |
 | session_id      | string | 会话ID，用于管理会话上下文               |
 | stage           | null   | 当前阶段，当前为 null                    |

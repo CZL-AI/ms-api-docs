@@ -34,7 +34,7 @@ AI宠物口腔检查服务是一款基于人工智能技术的专业宠物口腔
 ```json
 {
     "module_type": 5, 
-    "sub_module_type": 8, 
+    "sub_module_type": 3, 
     "pet_profile_id": 0
 }
 ```
@@ -45,7 +45,7 @@ AI宠物口腔检查服务是一款基于人工智能技术的专业宠物口腔
 | 名称            | 类型   | 必填 | 说明                  |
 | --------------- | ------ | ---- | --------------------- |
 | module_type     | number | 是   | 识别模块类型，固定为5 |
-| sub_module_type | number | 是   | 子模块类型，固定为8   |
+| sub_module_type | number | 是   | 子模块类型，固定为3   |
 | pet_profile_id  | number | 是   | 宠物档案ID            |
 
 ## 返回结果：
