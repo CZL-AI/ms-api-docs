@@ -15,13 +15,26 @@
 - **报告生成**：为用户提供可视化的宠物健康报告。
 
 ---
+## 子模块说明[sub_module_type]
+|   sub_module_type    | 说明                |
+| ---------------  | ----------------------- |
+| 1             | 品种识别                  |
+| 2             | 表情识别                  |
+| 3             | 口腔检测                  |
+| 4             | 排泄物                    |
+| 5             | 呕吐物                    |
+| 6             | 皮肤检测                  |
+| 7             | 耳道检查                  |
+| 8             | 眼睛检查                  |
+
+---
 开发者需要按照如下步骤完成：
 
 通过调用 `/pic` 接口，上传宠物相关图片和信息，系统将处理并返回报告结果。
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2/report/pic`
+**请求地址：** `https://ms-ai.chongzhiling.com/async/api/v2/report-service-v2/pic?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 

@@ -50,7 +50,7 @@
 ## 接口调试
 ---
 <script setup>
-import SwaggerUI from '../../../../../src/components/SwaggerUI.vue'
+import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
 </script>
 
 <ClientOnly>
