@@ -22,9 +22,9 @@
 3. 获取推理文案（reason-info接口）
 4. 获取病情分析（analysis接口）
 5. 获取关联症状（related-question接口）
+6. 提交病史（history接口）
 ```
 
-6. 提交病史（history接口）
 7. 判断是否需要上传图片（if-need-image接口）
 8. 上传图片到OSS（upload-image-oss接口）
 9. 获取图片识别结果（pic-result接口）
