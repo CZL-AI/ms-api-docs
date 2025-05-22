@@ -200,9 +200,10 @@ export default function getV1Sidebar() {
         {
           text: '两轮问答',
           items: [
-            { text: '获取问题 [流式]', link: '/v2/api/smart-consultation/question' },
-            { text: '获取问题联想', link: '/v2/api/smart-consultation/options' },
-            { text: '保存用户回答', link: '/v2/api/smart-consultation/history' }
+            { text: '获取关键字', link: '/v2/api/smart-consultation/keywords' },
+            { text: '获取推理文案', link: '/v2/api/smart-consultation/reason-info' },
+            { text: '获取病情分析', link: '/v2/api/smart-consultation/analysis' },
+            { text: '获取关联症状', link: '/v2/api/smart-consultation/related-question' }
           ]
         },
         {
@@ -226,9 +227,10 @@ export default function getV1Sidebar() {
             {
               text: '继续提问',
               items: [
-                { text: '获取问题【流式】', link: '/v2/api/smart-consultation/question' },
-                { text: '获取问题联想', link: '/v2/api/smart-consultation/options' },
-                { text: '保存用户回答', link: '/v2/api/smart-consultation/history' }
+                 { text: '获取关键字', link: '/v2/api/smart-consultation/keywords' },
+                 { text: '获取推理文案', link: '/v2/api/smart-consultation/reason-info' },
+                 { text: '获取病情分析', link: '/v2/api/smart-consultation/analysis' },
+                 { text: '获取关联症状', link: '/v2/api/smart-consultation/related-question' }
               ]
             }
           ]
