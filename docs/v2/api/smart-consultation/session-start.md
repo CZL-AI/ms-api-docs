@@ -15,15 +15,15 @@
 ## 接口调用流程
 ---
 1. 获取session_id
-2. 提交问题（question接口）
-3. 获取问题选项（options接口）
+2. 获取关键字（keywords接口）
+3. 获取推理文案（reason-info接口）
 4. 提交病史（history接口）
 5. 判断是否需要上传图片（if-need-image接口）
 6. 上传图片到OSS（upload-image-oss接口）
 7. 获取图片识别结果（pic-result接口）
 8. 判断是否继续提问（if-continue-ask接口）
 9. 获取问诊总结（summary接口）
-10. 生成问诊报告（report接口）
+10. 生成问诊报告（report-v2接口）
 11. 获取完整的问诊报告内容（medical-record接口）
 
 
@@ -37,7 +37,7 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/session-record/session-start?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/session-record/session-start?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 ```json
