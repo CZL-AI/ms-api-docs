@@ -17,10 +17,12 @@
 1. 获取session_id
 
 **下文两轮循环，用户与智能问诊模块进行会话。**
+```
 2. 获取关键字（keywords接口）
 3. 获取推理文案（reason-info接口）
 4. 获取病情分析（analysis接口）
 5. 获取关联症状（related-question接口）
+```
 
 6. 提交病史（history接口）
 7. 判断是否需要上传图片（if-need-image接口）
