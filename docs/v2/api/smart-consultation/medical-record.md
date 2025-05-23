@@ -1,5 +1,3 @@
-好的，这是根据您提供的 JSON 结构和之前的接口文档内容，生成的完整详细 Markdown 文件：
-
 # 13、获取完整的问诊报告内容 - 智能问诊模块
 
 ## 接口描述
@@ -150,6 +148,6 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI
     tag="medical-record"
     type="get"
-    path="/medical-record"
+    path="/medical-record-list"
   />
 </ClientOnly>
