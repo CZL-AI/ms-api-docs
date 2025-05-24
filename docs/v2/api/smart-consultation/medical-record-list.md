@@ -114,5 +114,6 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
     tag="medical-record-list"
     type="get"
     path="/medical-record-list"
+    version="v2"
   />
 </ClientOnly>

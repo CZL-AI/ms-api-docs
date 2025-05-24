@@ -62,7 +62,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="upload-image-oss"   
     type="post"   
-    path="/file/upload-image-oss"   
+    path="/file/upload-image-oss" 
+    version="v2"  
   />  
 </ClientOnly>
 

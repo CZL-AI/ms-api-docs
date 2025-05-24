@@ -67,7 +67,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="pic-result"   
     type="post"   
-    path="/aidoc/pic-result"   
+    path="/aidoc/pic-result"  
+    version="v2" 
   />  
 </ClientOnly>  
 

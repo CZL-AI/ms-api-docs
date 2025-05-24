@@ -67,7 +67,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="history"   
     type="post"   
-    path="/session-record/history"   
+    path="/session-record/history"
+    version="v2"   
   />  
 </ClientOnly>  
 

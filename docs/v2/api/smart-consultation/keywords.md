@@ -81,7 +81,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="keywords"   
     type="post"   
-    path="/aidoc/keywords"   
+    path="/aidoc/keywords" 
+    version="v2"  
   />  
 </ClientOnly>
 

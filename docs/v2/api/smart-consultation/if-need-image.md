@@ -80,7 +80,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="if-need-image"   
     type="post"   
-    path="/aidoc/if-need-image"   
+    path="/aidoc/if-need-image"
+    version="v2"   
   />  
 </ClientOnly>
 

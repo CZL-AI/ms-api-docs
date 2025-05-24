@@ -95,7 +95,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI 
     tag="session"
     type="post"
-    path="/session-record/session-start" 
+    path="/session-record/session-start"
+    version="v2" 
   />
 </ClientOnly>
 

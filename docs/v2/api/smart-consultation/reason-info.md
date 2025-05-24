@@ -57,7 +57,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="question"   
     type="post"   
-    path="/aidoc/reason-info"   
+    path="/aidoc/reason-info" 
+    version="v2"  
   />  
 </ClientOnly>  
 

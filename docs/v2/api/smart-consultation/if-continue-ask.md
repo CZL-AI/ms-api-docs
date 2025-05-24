@@ -99,7 +99,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="if-continue-ask"   
     type="post"   
-    path="/aidoc-exotic/if-continue-ask"   
+    path="/aidoc-exotic/if-continue-ask"
+    version="v2"   
   />  
 </ClientOnly>  
 

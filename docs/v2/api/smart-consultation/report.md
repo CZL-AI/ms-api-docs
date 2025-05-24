@@ -49,7 +49,8 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI   
     tag="report"   
     type="post"   
-    path="/aidoc/report"   
+    path="/aidoc/report" 
+    version="v2"  
   />  
 </ClientOnly>
 
