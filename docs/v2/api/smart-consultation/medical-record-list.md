@@ -5,7 +5,7 @@
 该接口用于获取完整的报告列表。用户可以通过此接口查询已生成的报告的详细信息，包括回顾、诊断、建议等。
 
 ## 调用接口
-**请求方式：** `GET（HTTPS）`
+**请求方式：** `POST（HTTPS）`
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record-list?token=[ACCESS_TOKEN]
 
 ## 请求参数
