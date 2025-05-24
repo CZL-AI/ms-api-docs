@@ -6,7 +6,7 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?token=[ACCESS_TOKEN]`
 
 ## 请求参数
 
@@ -69,8 +69,6 @@ report字段是一个 JSON 字符串，需要解析后才能获取详细内容�
 - **`chiefComplaint`**：主诉，用户描述的宠物最主要的异常表现或就诊原因。（例如：“德文最近经常流鼻涕，我担心它可能感冒了。”）
 - **`symptoms`**：症状描述，用户提供的关于宠物更详细的症状信息。（例如：“流鼻涕，食欲下降，嗜睡。”）
 
-#// ... existing code ...
-
 ### 2. 诊断结果（`result`）
 包含 AI 对宠物健康状况的初步判断和建议。
 - **`diagnosis`**：诊断信息
@@ -96,10 +94,6 @@ report字段是一个 JSON 字符串，需要解析后才能获取详细内容�
         - **`Info`**：详细信息，包含 `name`（名称）、`form`（剂型，如口服）、`dosage`（剂量）、`frequency`（频率）、`duration`（疗程）、`additional_info`（附加说明，通常用于药品）或 `detail`（详细描述，通常用于饮食、手术、打针）等。
 - **`Persistent_Aggravation`**：症状持续或加重时的治疗方案，结构与 `Initial_Treatment` 类似。
 - **`Intensive_Treatment`**：病情严重时的强化治疗方案，结构与 `Initial_Treatment` 类似。
-
-### 4. 兽医建议（`vet_order`）
-包含更通用的护理和预防建议，以及复诊提醒。
-// ... existing code ...
 
 ### 4. 兽医建议（`vet_order`）
 包含更通用的护理和预防建议，以及复诊提醒。
