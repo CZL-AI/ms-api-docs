@@ -32,5 +32,11 @@
   },
   "dependencies": {
     "ms-docs": "file:"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CZL-AI/ms-api-docs.git",
+    "directory": "docs"
+  },
+  "homepage": "https://docs.gjpet.com"
 }

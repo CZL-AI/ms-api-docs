@@ -1,0 +1,6656 @@
+{
+  "components": {
+    "parameters": {
+      "confirmation_token": {
+        "description": "confirmation_token  which include user's identity.",
+        "in": "query",
+        "name": "confirmation_token",
+        "schema": {
+          "pattern": "^[\\.a-zA-Z0-9_-]+$",
+          "type": "string"
+        }
+      },
+      "invitation_uuid": {
+        "in": "path",
+        "name": "invitation_uuid",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/UuidType"
+        }
+      },
+      "limit": {
+        "description": "\u6bcf\u9875\u6570\u91cf",
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "default": 10,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "mac_address": {
+        "in": "query",
+        "name": "mac_address",
+        "required": true,
+        "schema": {
+          "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+          "type": "string"
+        }
+      },
+      "page": {
+        "description": "\u9875\u6570",
+        "in": "query",
+        "name": "page",
+        "required": false,
+        "schema": {
+          "default": 1,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "pet_profile_id": {
+        "in": "query",
+        "name": "pet_profile_id",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "wechat_code": {
+        "description": "The code from wechat login API, be used to get unionid.",
+        "in": "query",
+        "name": "wechat_code",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "DefaultError": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultResponse"
+            }
+          }
+        },
+        "description": "An error occurred."
+      }
+    },
+    "schemas": {
+      "Account": {
+        "properties": {
+          "firstName": {
+            "format": "first_name_regex",
+            "type": "string"
+          },
+          "lastName": {
+            "format": "last_name_regex",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "integer"
+          }
+        }
+      },
+      "AiMeme": {
+        "properties": {
+          "context": {
+            "properties": {
+              "caption_list": {
+                "items": {
+                  "description": "\u6587\u6848\u5217\u8868",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "is_cat_or_dog": {
+                "description": "1\u8868\u793a\u662f\u732b\u6216\u72d7\uff0c2\u8868\u793a\u975e\u732b\u72d7\u7684\u52a8\u690d\u7269\uff0c0\u8868\u793a\u4e0d\u662f\u52a8\u690d\u7269\u3002",
+                "type": "integer"
+              },
+              "is_legal": {
+                "description": "1\u8868\u793a\u662f\u5408\u6cd5\u7684\uff0c0\u8868\u793a\u4e0d\u5408\u6cd5\u3002",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "meme_image": {
+            "description": "\u8868\u60c5\u5305url\u5217\u8868",
+            "type": "object"
+          },
+          "origin_image": {
+            "description": "\u539f\u59cb\u56fe\u7247\u5217\u8868",
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AuthTokens": {
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accessToken",
+          "refreshToken"
+        ],
+        "type": "object"
+      },
+      "Bindings": {
+        "properties": {
+          "confirmationCode": {
+            "$ref": "#/components/schemas/ConfirmationCode"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "identityType": {
+            "$ref": "#/components/schemas/IdentityType"
+          }
+        },
+        "required": [
+          "identityType",
+          "identifier",
+          "confirmationCode"
+        ]
+      },
+      "ConfirmationCode": {
+        "example": "123456",
+        "maxLength": 6,
+        "minLength": 6,
+        "pattern": "\\d{6}",
+        "type": "string"
+      },
+      "DefaultResponse": {
+        "properties": {
+          "code": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "EmailType": {
+        "example": "test@letscoze.com",
+        "format": "email_regex",
+        "type": "string"
+      },
+      "Identifier": {
+        "type": "string"
+      },
+      "IdentityType": {
+        "enum": [
+          "phone_number",
+          "email",
+          "mac_address",
+          "wechat"
+        ],
+        "type": "string"
+      },
+      "Invitation": {
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/EmailType",
+            "nullable": true
+          },
+          "hostName": {
+            "example": "ZhiChao",
+            "type": "string"
+          },
+          "invitationType": {
+            "enum": [
+              "BUSINESS",
+              "CONSUMER",
+              "REFERRAL_CODE"
+            ],
+            "type": "string"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/PhoneType",
+            "nullable": true
+          },
+          "sendInvitation": {
+            "type": "boolean"
+          },
+          "userName": {
+            "$ref": "#/components/schemas/NameType"
+          }
+        },
+        "required": [
+          "userName",
+          "sendInvitation",
+          "invitationType"
+        ]
+      },
+      "InvitationType": {
+        "enum": [
+          "BUSINESS",
+          "CONSUMER",
+          "REFERRAL_CODE"
+        ],
+        "type": "string"
+      },
+      "LoginResponse": {
+        "properties": {
+          "authTokens": {
+            "$ref": "#/components/schemas/AuthTokens"
+          },
+          "message": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MedicalRecord": {
+        "properties": {
+          "created_at": {
+            "description": "\u521b\u5efa\u65f6\u95f4",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "description": "\u4e3b\u952eID",
+            "type": "integer"
+          },
+          "module_type": {
+            "description": "\u6a21\u5757 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b",
+            "maximum": 2,
+            "minimum": 1,
+            "nullable": true,
+            "type": "integer"
+          },
+          "report": {
+            "description": "\u62a5\u544a",
+            "nullable": true,
+            "type": "string"
+          },
+          "session_id": {
+            "description": "\u5bf9\u5e94\u7684session_id",
+            "maxLength": 20,
+            "nullable": true,
+            "type": "string"
+          },
+          "summary": {
+            "description": "\u5c0f\u7ed3",
+            "nullable": true,
+            "type": "string"
+          },
+          "user_uuid": {
+            "description": "\u7528\u6237uuid",
+            "maxLength": 20,
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "NameType": {
+        "example": "Anna Lee",
+        "type": "string"
+      },
+      "Oauth2": {
+        "properties": {
+          "password": {
+            "$ref": "#/components/schemas/PasswordType"
+          },
+          "userName": {
+            "$ref": "#/components/schemas/EmailType"
+          }
+        }
+      },
+      "PasswordLogin": {
+        "properties": {
+          "identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "identityType": {
+            "$ref": "#/components/schemas/IdentityType"
+          },
+          "password": {
+            "$ref": "#/components/schemas/PasswordType"
+          }
+        },
+        "required": [
+          "identifier",
+          "identityType",
+          "password"
+        ]
+      },
+      "PasswordType": {
+        "example": "jZ2%Ro9mOX4",
+        "format": "password_regex",
+        "type": "string"
+      },
+      "PetProfile": {
+        "properties": {
+          "allergy_history": {
+            "description": "\u8fc7\u654f\u53f2",
+            "nullable": true,
+            "type": "string"
+          },
+          "avatar": {
+            "description": "\u5934\u50cf",
+            "nullable": true,
+            "type": "string"
+          },
+          "birthday": {
+            "description": "\u751f\u65e5",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          },
+          "disease_history": {
+            "description": "\u75be\u75c5\u53f2",
+            "nullable": true,
+            "type": "string"
+          },
+          "family_history": {
+            "description": "\u5bb6\u65cf\u53f2",
+            "nullable": true,
+            "type": "string"
+          },
+          "gender": {
+            "description": "\u6027\u522b 1-\u516c 2-\u6bcd",
+            "type": "integer"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "is_neutered": {
+            "description": "\u662f\u5426\u5df2\u7edd\u80b2 0-\u5426 1-\u662f",
+            "nullable": true,
+            "type": "integer"
+          },
+          "is_vaccination": {
+            "description": "\u662f\u5426\u5df2\u63a5\u79cd\u75ab\u82d7 0-\u5426 1-\u662f",
+            "type": "integer"
+          },
+          "name": {
+            "description": "\u5ba0\u7269\u540d\u5b57",
+            "type": "string"
+          },
+          "pet_type": {
+            "description": "\u5ba0\u7269\u7c7b\u578b",
+            "type": "integer"
+          },
+          "pet_variety": {
+            "description": "\u5ba0\u7269\u54c1\u79cd",
+            "nullable": true,
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "readOnly": true,
+            "type": "string"
+          },
+          "vaccination_date": {
+            "description": "\u75ab\u82d7\u65f6\u95f4",
+            "nullable": true,
+            "type": "string"
+          },
+          "weight": {
+            "description": "\u91cd\u91cf",
+            "nullable": true,
+            "type": "string"
+          }
+        }
+      },
+      "PhoneType": {
+        "pattern": "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(199)|(17[0-8])|(147))\\d{8}$",
+        "type": "string"
+      },
+      "Registration": {
+        "properties": {
+          "confirmationCode": {
+            "$ref": "#/components/schemas/ConfirmationCode"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "identityType": {
+            "$ref": "#/components/schemas/IdentityType"
+          },
+          "password": {
+            "$ref": "#/components/schemas/PasswordType"
+          },
+          "registrationType": {
+            "$ref": "#/components/schemas/RegistrationType"
+          },
+          "userName": {
+            "$ref": "#/components/schemas/NameType"
+          }
+        },
+        "required": [
+          "identityType",
+          "identifier",
+          "registrationType"
+        ]
+      },
+      "RegistrationType": {
+        "enum": [
+          "INTERNAL",
+          "INVITATION",
+          "REFERRAL_CODE",
+          "SELF"
+        ],
+        "type": "string"
+      },
+      "SMSLogin": {
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ConfirmationCode"
+          },
+          "login_from": {
+            "description": "1-\u5fae\u4fe1\u5c0f\u7a0b\u5e8f 2-\u5b89\u5353APP 3-IOS APP",
+            "type": "integer"
+          },
+          "phone": {
+            "$ref": "#/components/schemas/PhoneType"
+          }
+        },
+        "required": [
+          "phone",
+          "code"
+        ]
+      },
+      "UuidType": {
+        "example": "558e80a7-acdd-41a2-9539-d21acc83b63d",
+        "nullable": true,
+        "pattern": "^[0-9a-f]{8}\\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\\b[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "Versions": {
+        "properties": {
+          "codeVersion": {
+            "type": "string"
+          },
+          "dbVersion": {
+            "type": "string"
+          }
+        }
+      },
+      "WeChatLogin": {
+        "properties": {
+          "wechatCode": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "scheme": "basic",
+        "type": "http",
+        "x-basicInfoFunc": "app.lib.JWT.verify_basic_auth"
+      },
+      "jwt": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http",
+        "x-bearerInfoFunc": "app.lib.JWT.verify_token"
+      }
+    }
+  },
+  "info": {
+    "title": "Swagger MS-AI",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/ai-checkup/is-first": {
+      "get": {
+        "operationId": "app.api.MedicalReportAPI.is_first_on_month",
+        "parameters": [
+          {
+            "description": "\u5ba0\u7269\u6863\u6848ID",
+            "in": "query",
+            "name": "pet_profile_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "is_first": {
+                          "description": "\u662f\u5426\u4e3a\u5f53\u6708\u9996\u68c0",
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u68c0\u67e5\u662f\u5426\u4e3a\u5f53\u6708\u9996\u68c0",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/pic-result": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "pet_profile_id",
+                  "img_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/question": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.get_question_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "pet_profile_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/question-result": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.get_question_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "index": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question_id": {
+                    "description": "\u56de\u7b54id",
+                    "type": "string"
+                  },
+                  "round": {
+                    "description": "\u9898\u76ee\u8f6e\u6b21",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "index",
+                  "round",
+                  "question_id",
+                  "pet_profile_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/report": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.get_report_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "pet_profile_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/report-task": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.report_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "report_type": {
+                    "description": "\u62a5\u544a\u7c7b\u578b",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/session-start": {
+      "get": {
+        "operationId": "app.api.AiCheckupAPI.session_start",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "session_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u5f00\u59cb\u65b0\u7684\u5065\u5eb7\u68c0\u6d4b\u4f1a\u8bdd"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5f00\u59cb\u4e00\u4e2a\u65b0\u7684\u4f1a\u8bdd",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/summary": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.get_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u603b\u7ed3"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u751f\u6210\u603b\u7ed3",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-checkup/update-profile": {
+      "post": {
+        "operationId": "app.api.AiCheckupAPI.update_checkup_profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "update_type": {
+                    "description": "\u66f4\u65b0\u7c7b\u578b, \u53ef\u90091,2,3",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u66f4\u65b0\u5ba0\u7269\u6863\u6848\u7684\u4f53\u68c0\u53c2\u6570"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u66f4\u65b0\u5ba0\u7269\u6863\u6848\u7684\u4f53\u68c0\u53c2\u6570",
+        "tags": [
+          "ai-checkup"
+        ]
+      }
+    },
+    "/ai-conv/answer": {
+      "post": {
+        "operationId": "app.api.AiConvAPI.answer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "user_input": {
+                    "description": "\u7528\u6237\u8f93\u5165",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u603b\u7ed3"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "AI\u804a\u5929",
+        "tags": [
+          "ai-conv"
+        ]
+      }
+    },
+    "/ai-conv/relation": {
+      "post": {
+        "operationId": "app.api.AiConvAPI.relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "user_input": {
+                    "description": "\u7528\u6237\u8f93\u5165",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8054\u60f3",
+        "tags": [
+          "ai-conv"
+        ]
+      }
+    },
+    "/ai-conv/validate": {
+      "post": {
+        "operationId": "app.api.AiConvAPI.validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "user_input": {
+                    "description": "\u7528\u6237\u8f93\u5165",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "AI\u804a\u5929\u6821\u9a8c",
+        "tags": [
+          "ai-conv"
+        ]
+      }
+    },
+    "/ai-food": {
+      "post": {
+        "operationId": "app.api.AiFoodAPI.get_testing",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "image_url": {
+                    "description": "\u56fe\u7247\u5730\u5740",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "\u4f59\u7cae\u68c0\u6d4b",
+        "tags": [
+          "ai_food"
+        ]
+      }
+    },
+    "/ai-meme": {
+      "get": {
+        "operationId": "app.api.AiMemeAPI.get_meme_list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/AiMeme"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u7528\u6237\u5386\u53f2\u8868\u60c5\u5305\u6570\u636e\u5217\u8868",
+        "tags": [
+          "ai_meme"
+        ]
+      },
+      "post": {
+        "operationId": "app.api.AiMemeAPI.get_context",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "image_url": {
+                    "description": "\u56fe\u7247\u5730\u5740",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AiMeme"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8868\u60c5\u5305\u6570\u636e",
+        "tags": [
+          "ai_meme"
+        ]
+      }
+    },
+    "/ai-meme/generate": {
+      "post": {
+        "operationId": "app.api.AiMemeAPI.generate_meme",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "context_index": {
+                    "description": "\u6587\u6848\u5e8f\u53f7",
+                    "type": "integer"
+                  },
+                  "meme_id": {
+                    "description": "\u8868\u60c5\u5305id",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "meme_url": {
+                          "description": "\u8868\u60c5\u5305\u5730\u5740",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6AI\u8868\u60c5\u5305",
+        "tags": [
+          "ai_meme"
+        ]
+      }
+    },
+    "/ai-trial/answer": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.answer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "user_input": {
+                    "description": "\u7528\u6237\u8f93\u5165",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "AI\u804a\u5929",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/history": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.save_history",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u5185\u5bb9",
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "description": "1-\u6587\u5b57 2-\u56fe\u6587",
+                    "type": "integer"
+                  },
+                  "module_type": {
+                    "description": "1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                    "type": "integer"
+                  },
+                  "role": {
+                    "description": "\u89d2\u8272, \u53d6\u503c\u4e3a\u5176\u4e2d\u4e4b\u4e00 ==>[user, ai]",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "stage": {
+                    "description": "1-\u7528\u6237\u4e3b\u8bc9 2-\u7528\u6237\u56de\u7b54 3-AI\u63d0\u95ee 4-AI\u75c5\u60c5\u5c0f\u7ed3 5-AI\u75c5\u4f8b\u62a5\u544a 6-AI\u8f93\u51fa 7-\u7528\u6237\u8865\u5145",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "content",
+                  "role"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u4fdd\u5b58\u804a\u5929\u8bb0\u5f55",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/options": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.get_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u9009\u9879",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/question": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.get_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898(\u6d41\u5f0f)",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/relation": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.relation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "enum": [
+                      1,
+                      2
+                    ],
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u7b54\u8054\u60f3",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/report": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.get_report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "service_type"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u53d1\u5e03\u83b7\u53d6\u8bca\u65ad\u62a5\u544a\u4efb\u52a1",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/session-start": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.session_start",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u7528\u6237\u4e3b\u8bc9",
+                    "type": "string"
+                  },
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u6d41\u7a0b\u5f00\u59cb",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/ai-trial/summary": {
+      "post": {
+        "operationId": "app.api.AiTrialAPI.get_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "service_type": {
+                    "description": "1-\u732b\u72d7 2-\u5f02\u5ba0",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "\u83b7\u53d6\u75c5\u60c5\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "\u843d\u5730\u9875"
+        ]
+      }
+    },
+    "/aidoc-exotic/if-continue-ask": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.check_if_continue_ask",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5224\u65ad\u662f\u5426\u9700\u8981\u7ee7\u7eed\u63d0\u95ee",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/if-need-image": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.check_if_need_image",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5224\u65ad\u662f\u5426\u9700\u8981\u4f20\u56fe",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/keywords": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_keywords",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u7528\u6237\u4e3b\u8bc9",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "keywords": {
+                          "description": "\u5173\u952e\u8bcd",
+                          "type": "string"
+                        },
+                        "unit": {
+                          "description": "\u79d1\u5ba4",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u79d1\u5ba4"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5173\u952e\u8bcd,\u79d1\u5ba4",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/options": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u9009\u9879",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/pic-result": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c(\u6d41\u5f0f)",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/question": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898(\u6d41\u5f0f)",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/report": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_report_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u53d1\u5e03\u83b7\u53d6\u8bca\u65ad\u62a5\u544a\u4efb\u52a1",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/report-task": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.report_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "report_type": {
+                    "description": "\u62a5\u544a\u7c7b\u578b",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc-exotic/summary": {
+      "post": {
+        "operationId": "app.api.AiDocExoticAPI.get_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "image_url": {
+                    "description": "\u56fe\u7247\u5730\u5740",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u75c5\u60c5\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "exotic-\u5f02\u5ba0"
+        ]
+      }
+    },
+    "/aidoc/if-continue-ask": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.check_if_continue_ask",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5224\u65ad\u662f\u5426\u9700\u8981\u7ee7\u7eed\u63d0\u95ee",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/if-need-image": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.check_if_need_image",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5224\u65ad\u662f\u5426\u9700\u8981\u4f20\u56fe",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/keywords": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_keywords",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u7528\u6237\u4e3b\u8bc9",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "keywords": {
+                          "description": "\u5173\u952e\u8bcd",
+                          "type": "string"
+                        },
+                        "unit": {
+                          "description": "\u79d1\u5ba4",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u79d1\u5ba4"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5173\u952e\u8bcd,\u79d1\u5ba4",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/options": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u9009\u9879",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/pic-result": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c(\u6d41\u5f0f)",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/question": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898(\u6d41\u5f0f)",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/report": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_report_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u53d1\u5e03\u83b7\u53d6\u8bca\u65ad\u62a5\u544a\u4efb\u52a1",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/report-task": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.report_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "report_type": {
+                    "description": "\u62a5\u544a\u7c7b\u578b",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/summary": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.get_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u75c5\u60c5\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aidoc/validate": {
+      "post": {
+        "operationId": "app.api.AiDocAPI.validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "answer": {
+                    "description": "\u7528\u6237\u56de\u7b54",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9a8c\u8bc1\u7b54\u6848\u662f\u5426\u6709\u6548",
+        "tags": [
+          "aidoc"
+        ]
+      }
+    },
+    "/aipic-exotic/options": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.get_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u9009\u9879",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/pic-result": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_belong": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u54c1\u79cd\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790)",
+                    "type": "integer"
+                  },
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c(\u6d41\u5f0f)",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/question": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.get_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898(\u6d41\u5f0f)",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/report": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.get_report_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "sub_module_type": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790\u30013:\u7259\u9f7f\u5206\u6790)",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/report-task": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.report_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "report_type": {
+                    "description": "\u62a5\u544a\u7c7b\u578b",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/summary": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.get_summary_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "sub_module_type": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790)",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic-exotic/validate": {
+      "post": {
+        "operationId": "app.api.AiPicExoticAPI.validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "answer": {
+                    "description": "\u7528\u6237\u56de\u7b54",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9a8c\u8bc1\u7b54\u6848\u662f\u5426\u6709\u6548",
+        "tags": [
+          "aipic-exotic"
+        ]
+      }
+    },
+    "/aipic/options": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.get_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u9009\u9879",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/pic-result": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_belong": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790)",
+                    "type": "integer"
+                  },
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c(\u6d41\u5f0f)",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/question": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.get_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898(\u6d41\u5f0f)",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/report": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.get_report_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "sub_module_type": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790\u30013:\u7259\u9f7f\u5206\u6790)",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/report-task": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.report_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "report_type": {
+                    "description": "\u62a5\u544a\u7c7b\u578b",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/summary": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.get_summary_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "sub_module_type": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790)",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/aipic/validate": {
+      "post": {
+        "operationId": "app.api.AiPicAPI.validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "answer": {
+                    "description": "\u7528\u6237\u56de\u7b54",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "question": {
+                    "description": "\u95ee\u9898",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9a8c\u8bc1\u7b54\u6848\u662f\u5426\u6709\u6548",
+        "tags": [
+          "aipic"
+        ]
+      }
+    },
+    "/asr": {
+      "post": {
+        "operationId": "app.api.ChatAPI.asr",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "length": {
+                    "type": "integer"
+                  },
+                  "speech": {
+                    "default": "user",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "\u8bed\u97f3\u8bc6\u522b",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/chat": {
+      "post": {
+        "operationId": "app.api.ChatAPI.chat_v1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "AI\u804a\u5929",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/chat-v": {
+      "post": {
+        "operationId": "app.api.ChatAPI.chat_vision",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "AI\u56fe\u7247\u804a\u5929",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/check-point": {
+      "post": {
+        "operationId": "app.api.CheckPointAPI.create_check_point",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "action": {
+                    "description": "\u57cb\u70b9\u52a8\u4f5c",
+                    "type": "string"
+                  },
+                  "code": {
+                    "description": "\u5fae\u4fe1code",
+                    "type": "string"
+                  },
+                  "page_path": {
+                    "description": "\u9875\u9762\u8def\u5f84",
+                    "type": "string"
+                  },
+                  "related_id": {
+                    "description": "\u5173\u8054id",
+                    "example": "[{'id_type': 'report', 'id_value': 1}]",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "post successfully."
+          }
+        },
+        "summary": "\u57cb\u70b9",
+        "tags": [
+          "\u57cb\u70b9"
+        ]
+      }
+    },
+    "/contact": {
+      "post": {
+        "operationId": "app.api.ChatAPI.contact_info",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "company_name": {
+                    "type": "string"
+                  },
+                  "contact_name": {
+                    "type": "string"
+                  },
+                  "mobile": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5408\u4f5c\u4ea4\u6d41\u4fe1\u606f\u4fdd\u5b58",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/evaluation/put_evaluation": {
+      "post": {
+        "operationId": "app.api.EvaluationAPI.put_evaluation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u6587\u672c\u5185\u5bb9",
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "description": "\u8bc4\u4ef7id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "content",
+                  "evaluation"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4fee\u6539\u8bc4\u4ef7",
+        "tags": [
+          "evaluation"
+        ]
+      }
+    },
+    "/industry": {
+      "get": {
+        "operationId": "app.api.ChatAPI.get_industry",
+        "responses": {
+          "200": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "\u884c\u4e1a\u5217\u8868",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/insurance": {
+      "get": {
+        "operationId": "app.api.PingAnAPI.get_pingan_data",
+        "parameters": [
+          {
+            "description": "\u4f1a\u8bddID",
+            "in": "query",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u4fdd\u9669\u6570\u636e",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/answer": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.save_answer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "answer_list": {
+                    "type": "array"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddID",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u63d0\u4ea4\u7b54\u6848",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/pet": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.insurance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5ba0\u7269\u4fdd\u9669\u6838\u4fdd",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/question-list": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.gen_question_list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848ID",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddID",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u95ee\u9898\u5217\u8868",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/result": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.gen_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848ID",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddID",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u6838\u4fdd\u7ed3\u679c",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/session-start": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.session_start",
+        "responses": {
+          "201": {
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4f1a\u8bdd\u5f00\u59cb",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/insurance/video-result": {
+      "post": {
+        "operationId": "app.api.PingAnAPI.video_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "data_type": {
+                    "type": "integer"
+                  },
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "video_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u89c6\u9891\u8bc6\u522b",
+        "tags": [
+          "\u5e73\u5b89API"
+        ]
+      }
+    },
+    "/logout": {
+      "post": {
+        "operationId": "app.api.Logout.post",
+        "responses": {
+          "204": {
+            "description": "User logged out."
+          },
+          "default": {
+            "$ref": "#/components/responses/DefaultError"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "Logs out the user",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/magnumkey/get-key": {
+      "post": {
+        "operationId": "app.api.MagnumKeyAPI.get_key_usage_id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "context": {
+                    "description": "\u6587\u672c",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6key_usage_id",
+        "tags": [
+          "magnum_key"
+        ]
+      }
+    },
+    "/magnumkey/picture-choice": {
+      "post": {
+        "operationId": "app.api.MagnumKeyAPI.get_picture_choice_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "key_usage_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "user_uuid": {
+                    "description": "\u7528\u6237uuid",
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "img_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u9009\u9879",
+        "tags": [
+          "magnum_key"
+        ]
+      }
+    },
+    "/magnumkey/picture-question": {
+      "post": {
+        "operationId": "app.api.MagnumKeyAPI.get_picture_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "key_usage_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "user_uuid": {
+                    "description": "\u7528\u6237uuid",
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "img_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u95ee\u9898",
+        "tags": [
+          "magnum_key"
+        ]
+      }
+    },
+    "/magnumkey/voice-choice": {
+      "post": {
+        "operationId": "app.api.MagnumKeyAPI.get_voice_choice_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "key_usage_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "\u83b7\u53d6\u58f0\u97f3\u9009\u9879",
+                    "type": "string"
+                  },
+                  "user_uuid": {
+                    "description": "\u7528\u6237uuid",
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u58f0\u97f3\u9009\u9879",
+        "tags": [
+          "magnum_key"
+        ]
+      }
+    },
+    "/magnumkey/voice-question": {
+      "post": {
+        "operationId": "app.api.MagnumKeyAPI.get_voice_question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "key_usage_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "nullable": true,
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "\u8bed\u97f3\u6587\u672c",
+                    "type": "string"
+                  },
+                  "pet_id": {
+                    "description": "\u5ba0\u7269id",
+                    "type": "integer"
+                  },
+                  "user_uuid": {
+                    "description": "\u7528\u6237uuid",
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u58f0\u97f3\u95ee\u9898",
+        "tags": [
+          "magnum_key"
+        ]
+      }
+    },
+    "/medical-record": {
+      "get": {
+        "operationId": "app.api.MedicalReportAPI.get_report",
+        "parameters": [
+          {
+            "description": "\u62a5\u544aID",
+            "in": "query",
+            "name": "report_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/MedicalRecord",
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u533b\u7597\u62a5\u544a"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5355\u4e2a\u75c5\u4f8b\u62a5\u544a",
+        "tags": [
+          "medical-record"
+        ]
+      },
+      "put": {
+        "operationId": "app.api.MedicalReportAPI.update_record",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "is_read": {
+                    "type": "integer"
+                  },
+                  "report_id": {
+                    "description": "\u533b\u7597\u62a5\u544aID",
+                    "type": "integer"
+                  },
+                  "report_time": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "stage": {
+                    "description": "\u9636\u6bb5\u5b58\u6863",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "1-\u8fdb\u884c\u4e2d 2-\u5df2\u5b8c\u6210 3-\u624b\u52a8\u7ed3\u675f 4-\u81ea\u52a8\u7ed3\u675f",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4fee\u6539\u72b6\u6001\u548c\u8bb0\u5f55\u5bf9\u8bdd\u8fdb\u884c\u9636\u6bb5",
+        "tags": [
+          "medical-record"
+        ]
+      }
+    },
+    "/medical-record-list": {
+      "post": {
+        "operationId": "app.api.MedicalReportAPI.get_reports",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "limit": {
+                    "description": "\u6bcf\u9875\u6570\u91cf",
+                    "type": "integer"
+                  },
+                  "module_type": {
+                    "items": {
+                      "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "page": {
+                    "description": "\u9875\u7801",
+                    "type": "integer"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/MedicalRecord"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6\u533b\u7597\u62a5\u544a\u5217\u8868"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u533b\u7597\u62a5\u544a\u5217\u8868",
+        "tags": [
+          "medical-record"
+        ]
+      }
+    },
+    "/medical-record/ongoing-record": {
+      "get": {
+        "operationId": "app.api.MedicalReportAPI.get_ongoing_record",
+        "parameters": [
+          {
+            "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+            "in": "query",
+            "name": "module_type",
+            "required": true,
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "\u5ba0\u7269\u6863\u6848id",
+            "in": "query",
+            "name": "pet_profile_id",
+            "required": true,
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "\u6210\u529f\u83b7\u53d6\u533b\u7597\u62a5\u544a\u5217\u8868"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8fdb\u884c\u4e2d\u7684\u533b\u7597\u62a5\u544a",
+        "tags": [
+          "medical-record"
+        ]
+      }
+    },
+    "/medication_analysis/pic-result": {
+      "post": {
+        "operationId": "app.api.AiMedicationAnalysis.get_pic_result",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "img_belong": {
+                    "description": "\u56fe\u7247\u5f52\u5c5e(1:\u5ba0\u7269\u4f53\u6001\u5206\u6790\u30012:\u5ba0\u7269\u8868\u60c5\u5206\u6790\u30013:\u7259\u9f7f\u5206\u6790)",
+                    "type": "integer"
+                  },
+                  "img_url": {
+                    "description": "\u56fe\u7247url",
+                    "type": "string"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u56fe\u7247\u7ed3\u679c(\u6d41\u5f0f)",
+        "tags": [
+          "medication_analysis"
+        ]
+      }
+    },
+    "/medication_analysis/report": {
+      "post": {
+        "operationId": "app.api.AiMedicationAnalysis.get_report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8bca\u65ad\u62a5\u544a",
+        "tags": [
+          "medication_analysis"
+        ]
+      }
+    },
+    "/medication_analysis/summary": {
+      "post": {
+        "operationId": "app.api.AiMedicationAnalysis.get_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848id",
+                    "type": "integer"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u75c5\u60c5\u5c0f\u7ed3(\u6d41\u5f0f)",
+        "tags": [
+          "medication_analysis"
+        ]
+      }
+    },
+    "/page-buriedpoint": {
+      "post": {
+        "operationId": "app.api.PageBuriedPoint.save_info",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "code": {
+                    "description": "\u5fae\u4fe1code",
+                    "type": "string"
+                  },
+                  "point": {
+                    "description": "\u53c2\u6570",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "point"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "\u4fdd\u5b58\u9875\u57cb\u70b9",
+        "tags": [
+          "buriedpoint"
+        ]
+      }
+    },
+    "/pet-profile": {
+      "delete": {
+        "operationId": "app.api.PetProfileAPI.delete_profile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pet_profile_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "default": "\u5220\u9664\u6210\u529f",
+                      "type": "string"
+                    },
+                    "success": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5220\u9664\u5ba0\u7269\u6863\u6848",
+        "tags": [
+          "pets"
+        ]
+      },
+      "get": {
+        "operationId": "app.api.PetProfileAPI.get_profile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pet_profile_id"
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PetProfile",
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5ba0\u7269\u6863\u6848",
+        "tags": [
+          "pets"
+        ]
+      },
+      "post": {
+        "operationId": "app.api.PetProfileAPI.create_profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource failed to patch."
+          },
+          "default": {
+            "$ref": "#/components/responses/DefaultError"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u521b\u5efa\u5ba0\u7269\u6863\u6848",
+        "tags": [
+          "pets"
+        ]
+      },
+      "put": {
+        "operationId": "app.api.PetProfileAPI.update_profile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pet_profile_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PetProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource failed to patch."
+          },
+          "default": {
+            "$ref": "#/components/responses/DefaultError"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u66f4\u65b0\u5ba0\u7269\u6863\u6848",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/ex-info": {
+      "post": {
+        "operationId": "app.api.PetProfileAPI.update_ex_info",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5ba0\u7269\u6863\u6848\u6269\u5c55\u4fe1\u606f",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/variety": {
+      "post": {
+        "operationId": "app.api.PetProfileAPI.get_variety",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "user_input": {
+                    "example": "\u864e\u76ae\u9e66\u9e49",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "\u6210\u529f\u83b7\u53d6"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5ba0\u7269\u54c1\u79cd",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profiles": {
+      "get": {
+        "operationId": "app.api.PetProfileAPI.get_profiles",
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PetProfile"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5ba0\u7269\u6863\u6848\u5217\u8868",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pets/pet-info": {
+      "get": {
+        "operationId": "app.api.PetInfoAPI.get_get_info",
+        "parameters": [
+          {
+            "description": "dog cat",
+            "in": "query",
+            "name": "pets_type",
+            "required": true,
+            "schema": {
+              "default": "dog",
+              "enum": [
+                "dog",
+                "cat"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0-\u5206\u7ec4 1-\u4e0d\u5206\u7ec4",
+            "in": "query",
+            "name": "is_sort",
+            "schema": {
+              "default": 0,
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5ba0\u7269\u6570\u636e",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/point-detail": {
+      "get": {
+        "operationId": "app.api.UserPointAPI.get_point_detail",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "description": "0-\u652f\u51fa 1-\u6536\u5165 2-\u5168\u90e8",
+            "in": "query",
+            "name": "is_add",
+            "schema": {
+              "enum": [
+                0,
+                1,
+                2
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "description": "\u660e\u7ec6\u8bf4\u660e",
+                            "type": "string"
+                          },
+                          "detail_type": {
+                            "description": "\u660e\u7ec6\u7c7b\u578b 1-\u8d2d\u4e70\u589e\u52a0\u79ef\u5206 2-\u6d3b\u52a8\u589e\u52a0\u79ef\u5206 3-\u6a21\u5757\u6838\u9500\u79ef\u5206",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "id",
+                            "type": "integer"
+                          },
+                          "is_add": {
+                            "description": "0-\u51cf\u5c11 1-\u589e\u52a0",
+                            "enum": [
+                              0,
+                              1
+                            ],
+                            "type": "integer"
+                          },
+                          "is_purchase_point": {
+                            "description": "0-\u975e\u8d2d\u4e70\u79ef\u5206 1-\u8d2d\u4e70\u79ef\u5206",
+                            "type": "integer"
+                          },
+                          "point_num": {
+                            "description": "\u79ef\u5206\u6570\u91cf",
+                            "type": "string"
+                          },
+                          "session_id": {
+                            "description": "\u4f1a\u8bddid",
+                            "type": "string"
+                          },
+                          "user_uuid": {
+                            "description": "\u7528\u6237uuid",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u79ef\u5206\u660e\u7ec6",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/point-price": {
+      "get": {
+        "description": "\u83b7\u53d6\u79ef\u5206\u4ef7\u683c",
+        "operationId": "app.api.UserPointAPI.get_point_price",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "is_module_item": {
+                          "description": "\u662f\u5426\u4e3a\u6a21\u5757\u9879\u76ee",
+                          "type": "integer"
+                        },
+                        "item_key": {
+                          "description": "\u79ef\u5206\u7c7b\u578b",
+                          "type": "string"
+                        },
+                        "item_name": {
+                          "description": "\u9879\u76ee\u540d",
+                          "type": "string"
+                        },
+                        "price": {
+                          "description": "\u9879\u76eekey\u540d",
+                          "type": "string"
+                        },
+                        "related_module": {
+                          "description": "\u5173\u8054\u6a21\u5757",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u79ef\u5206\u4ef7\u683c",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/point-task": {
+      "get": {
+        "operationId": "app.api.PointTaskAPI.get_task_list",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "achieve_count": {
+                            "description": "\u53ef\u5b8c\u6210\u6b21\u6570",
+                            "type": "integer"
+                          },
+                          "bonus_point": {
+                            "description": "\u79ef\u5206\u5956\u52b1",
+                            "type": "string"
+                          },
+                          "condition_count": {
+                            "description": "\u5b8c\u6210\u6761\u4ef6\u6b21\u6570",
+                            "type": "integer"
+                          },
+                          "description": {
+                            "description": "\u4efb\u52a1\u8bf4\u660e",
+                            "type": "string"
+                          },
+                          "icon": {
+                            "description": "\u4efb\u52a1\u56fe\u6807",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "id",
+                            "type": "integer"
+                          },
+                          "is_open": {
+                            "description": "0-\u672a\u5f00\u542f 1-\u5f00\u542f",
+                            "type": "integer"
+                          },
+                          "related_module": {
+                            "description": "\u5173\u8054\u6a21\u5757",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "1-\u672a\u5b8c\u6210 2-\u672a\u9886\u53d6",
+                            "type": "integer"
+                          },
+                          "task_action": {
+                            "description": "\u4efb\u52a1\u52a8\u4f5c",
+                            "type": "string"
+                          },
+                          "task_name": {
+                            "description": "\u4efb\u52a1\u540d\u79f0",
+                            "type": "string"
+                          },
+                          "to_page": {
+                            "description": "\u8df3\u8f6c\u9875\u9762",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "description": "message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "description": "success",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u79ef\u5206\u4efb\u52a1\u5217\u8868",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/point-task/bonus": {
+      "post": {
+        "operationId": "app.api.PointTaskAPI.receive_task_bonus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "task_id": {
+                    "description": "\u4efb\u52a1id",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9886\u53d6\u5956\u52b1",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/point-task/confirm": {
+      "post": {
+        "operationId": "app.api.PointTaskAPI.confirm_task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "task_id": {
+                    "description": "\u4efb\u52a1id",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u786e\u8ba4\u79ef\u5206\u4efb\u52a1",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/policy/policy_info": {
+      "post": {
+        "operationId": "app.api.PolicyAPI.get_policy_info",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "keys": {
+                    "description": "\u5bc6\u94a5",
+                    "type": "string"
+                  },
+                  "policy_type": {
+                    "description": "1-\u7528\u6237\u534f\u8bae 2-\u514d\u8d23\u6761\u6b3e 3-\u9690\u79c1\u653f\u7b56",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u653f\u7b56\u7c7b\u578b",
+        "tags": [
+          "policy"
+        ]
+      }
+    },
+    "/recognition/eating": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.eating",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u8fdb\u98df\u8fdb\u6c34\u8bc6\u522b",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/identifying_birds": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.identifying_birds",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9274\u522b\u9e1f\u7c7b",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/identifying_birds_v2": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.identifying_birds_v2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9274\u522b\u9e1f\u7c7b-V2",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/identifying_birds_v3": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.identifying_birds_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "image": {
+                    "description": "\u8981\u4e0a\u4f20\u7684\u56fe\u7247\u6587\u4ef6",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9274\u522b\u9e1f\u7c7b-V3",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/mul_pet": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.mul_pet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url1": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  },
+                  "image_url2": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url1",
+                  "image_url2"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u591a\u5ba0\u7269\u8bc6\u522b",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/multi_pet/build_index": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.build_index",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "category_mapping": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "example": {
+                      "1": "juA",
+                      "2": "juB",
+                      "3": "juC"
+                    },
+                    "type": "object"
+                  },
+                  "color_feature_type": {
+                    "example": "mean_std",
+                    "type": "string"
+                  },
+                  "distance_threshold": {
+                    "example": 0.6,
+                    "format": "float",
+                    "type": "number"
+                  },
+                  "num_bins": {
+                    "example": 32,
+                    "type": "integer"
+                  },
+                  "video_url": {
+                    "example": [
+                      "https://zcl-b.oss-ap-northeast-2.aliyuncs.com/ms-ai-b/20250220/1740036935kUC8e2XA.mp4",
+                      "https://zcl-b.oss-ap-northeast-2.aliyuncs.com/ms-ai-b/20250220/1740036981Ybsjw7Rm.mp4",
+                      "https://zcl-b.oss-ap-northeast-2.aliyuncs.com/ms-ai-b/20250220/1740037018uYwiQHEK.mp4"
+                    ],
+                    "items": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "video_url",
+                  "category_mapping",
+                  "distance_threshold",
+                  "color_feature_type",
+                  "num_bins"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "Index built successfully",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Index built successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Invalid video URL",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid request"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u591a\u5ba0\u8bc6\u522b-\u6784\u5efa\u7d22\u5f15",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/multi_pet/match_features": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.match_features",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "color_feature_type": {
+                    "example": "mean_std",
+                    "type": "string"
+                  },
+                  "frame_rate": {
+                    "example": 5,
+                    "type": "integer"
+                  },
+                  "k_neighbors": {
+                    "example": 10,
+                    "type": "integer"
+                  },
+                  "num_bins": {
+                    "example": 64,
+                    "type": "integer"
+                  },
+                  "video_url": {
+                    "example": "https://zcl-b.oss-ap-northeast-2.aliyuncs.com/ms-ai-b/20250220/1740036935kUC8e2XA.mp4",
+                    "format": "uri",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "video_url",
+                  "frame_rate",
+                  "k_neighbors",
+                  "color_feature_type",
+                  "num_bins"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "example": "Features matched successfully",
+                      "type": "string"
+                    },
+                    "result": {
+                      "example": {
+                        "matches": [
+                          {
+                            "frame_id": 1,
+                            "similarity": 0.85
+                          },
+                          {
+                            "frame_id": 2,
+                            "similarity": 0.78
+                          }
+                        ]
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Features matched successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "example": "Invalid video URL",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid request"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u591a\u5ba0\u8bc6\u522b-\u7279\u5f81\u5339\u914d",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/similar": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.similar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "img1": {
+                    "description": "\u7b2c\u4e00\u5f20\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  },
+                  "img2": {
+                    "description": "\u7b2c\u4e00\u5f20\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  },
+                  "pet_type": {
+                    "default": 0,
+                    "description": "\u5ba0\u7269\u7c7b\u578b 0-\u72d7\uff0c1-\u732b",
+                    "enum": [
+                      0,
+                      1
+                    ],
+                    "type": "integer"
+                  },
+                  "recog_type": {
+                    "default": 0,
+                    "description": "\u8bc6\u522b\u7c7b\u578b 0-\u9f3b\u5b50\uff0c1-\u8138",
+                    "enum": [
+                      0,
+                      1
+                    ],
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "img1",
+                  "img2"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u76f8\u4f3c\u5ea6\u8bc6\u522b",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/surplus_grain": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.surplus_grain",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "image_url": {
+                    "description": "\u8bc6\u522b\u56fe\u7247",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4f59\u7cae\u68c0\u6d4b",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/task_status": {
+      "get": {
+        "operationId": "app.api.RecognitionAPI.task_status",
+        "parameters": [
+          {
+            "description": "task_uuid",
+            "in": "query",
+            "name": "task_uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4efb\u52a1\u72b6\u6001",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/recognition/video_recognition": {
+      "post": {
+        "operationId": "app.api.RecognitionAPI.video_recognition",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "video_url": {
+                    "description": "\u8bc6\u522b\u89c6\u9891",
+                    "nullable": false,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "video_url"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "\u89c6\u9891\u8bc6\u522b\u5206\u6790",
+        "tags": [
+          "recognition"
+        ]
+      }
+    },
+    "/send-sms": {
+      "post": {
+        "operationId": "app.api.Login.send_sms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "phone": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource failed to patch."
+          },
+          "default": {
+            "$ref": "#/components/responses/DefaultError"
+          }
+        },
+        "summary": "\u53d1\u9a8c\u8bc1\u77ed\u4fe1",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/session-record": {
+      "get": {
+        "operationId": "app.api.SessionRecordAPI.get_history",
+        "parameters": [
+          {
+            "description": "\u4f1a\u8bddID",
+            "in": "query",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u804a\u5929\u8bb0\u5f55",
+        "tags": [
+          "session"
+        ]
+      }
+    },
+    "/session-record/history": {
+      "post": {
+        "operationId": "app.api.SessionRecordAPI.save_history",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u5185\u5bb9",
+                    "type": "string"
+                  },
+                  "content_type": {
+                    "description": "1-\u6587\u5b57 2-\u56fe\u6587",
+                    "type": "integer"
+                  },
+                  "module_type": {
+                    "description": "1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                    "type": "integer"
+                  },
+                  "role": {
+                    "description": "\u89d2\u8272, \u53d6\u503c\u4e3a\u5176\u4e2d\u4e4b\u4e00 ==>[user, ai]",
+                    "type": "string"
+                  },
+                  "session_id": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  },
+                  "stage": {
+                    "description": "1-\u7528\u6237\u4e3b\u8bc9 2-\u7528\u6237\u56de\u7b54 3-AI\u63d0\u95ee 4-AI\u75c5\u60c5\u5c0f\u7ed3 5-AI\u75c5\u4f8b\u62a5\u544a 6-AI\u8f93\u51fa 7-\u7528\u6237\u8865\u5145",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "session_id",
+                  "content",
+                  "role",
+                  "module_type"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4fdd\u5b58\u804a\u5929\u8bb0\u5f55",
+        "tags": [
+          "session"
+        ]
+      }
+    },
+    "/session-record/session-start": {
+      "post": {
+        "operationId": "app.api.SessionRecordAPI.session_start",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "\u7528\u6237\u4e3b\u8bc9",
+                    "type": "string"
+                  },
+                  "module_type": {
+                    "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u7247\u8bc6\u522b 6-\u8868\u60c5\u5305 7-\u5f02\u5ba0\u95ee\u7b54 8-\u5f02\u5ba0\u95ee\u8bca",
+                    "type": "integer"
+                  },
+                  "pet_profile_id": {
+                    "description": "\u5ba0\u7269\u6863\u6848ID",
+                    "type": "integer"
+                  },
+                  "sub_module_type": {
+                    "description": "\u5b50\u6a21\u5757\u7c7b\u578b",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "module_type"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u6d41\u7a0b\u5f00\u59cb",
+        "tags": [
+          "session"
+        ]
+      }
+    },
+    "/sms-login": {
+      "post": {
+        "operationId": "app.api.Login.sms_login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SMSLogin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            },
+            "description": "User logged in"
+          },
+          "default": {
+            "$ref": "#/components/responses/DefaultError"
+          }
+        },
+        "summary": "\u77ed\u4fe1\u767b\u5f55",
+        "tags": [
+          "login"
+        ]
+      }
+    },
+    "/subscription": {
+      "get": {
+        "operationId": "app.api.UserModuleUsageAPI.get_subscription",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "created_at": {
+                          "description": "\u8ba2\u9605\u521b\u5efa\u65f6\u95f4",
+                          "type": "string"
+                        },
+                        "end_date": {
+                          "description": "\u8ba2\u9605\u7ed3\u675f\u65f6\u95f4",
+                          "type": "string"
+                        },
+                        "start_date": {
+                          "description": "\u8ba2\u9605\u5f00\u59cb\u65f6\u95f4",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "\u8ba2\u9605\u72b6\u6001 1-\u8fdb\u884c\u4e2d 2-\u5df2\u5931\u6548 3-\u5df2\u8fc7\u671f",
+                          "type": "integer"
+                        },
+                        "uuid": {
+                          "description": "\u8ba2\u9605\u552f\u4e00\u6807\u8bc6",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u8ba2\u9605\u4fe1\u606f",
+        "tags": [
+          "\u8ba2\u9605"
+        ]
+      }
+    },
+    "/summary": {
+      "post": {
+        "operationId": "app.api.ChatAPI.save_summary",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "session_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u5408\u4f5c\u4ea4\u6d41\u4fe1\u606f\u4fdd\u5b58",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/upload": {
+      "post": {
+        "description": "\u5141\u8bb8\u7528\u6237\u4e0a\u4f20\u4e00\u5f20\u56fe\u7247",
+        "operationId": "app.api.ChatAPI.upload_image",
+        "parameters": [
+          {
+            "description": "\u662f\u5426\u4e0a\u4f20\u5230\u56fe\u5e8a",
+            "in": "query",
+            "name": "is_to_cloud",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "image": {
+                    "description": "\u8981\u4e0a\u4f20\u7684\u56fe\u7247\u6587\u4ef6",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4e0a\u4f20\u56fe\u7247"
+      }
+    },
+    "/upload-image": {
+      "post": {
+        "description": "\u5141\u8bb8\u7528\u6237\u4e0a\u4f20\u4e00\u5f20\u56fe\u7247",
+        "operationId": "app.api.UploadAPI.upload_image",
+        "parameters": [
+          {
+            "description": "\u662f\u5426\u4e0a\u4f20\u5230\u56fe\u5e8a",
+            "in": "query",
+            "name": "is_to_cloud",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "\u56fe\u7247\u4e0a\u4f20\u7c7b\u578b 1-\u5934\u50cf 2-\u56fe\u7247\u8bc6\u522b\u6a21\u5757 3-\u8868\u60c5\u5305 4-\u5176\u4ed6",
+            "in": "query",
+            "name": "upload_type",
+            "schema": {
+              "default": 1,
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "image": {
+                    "description": "\u8981\u4e0a\u4f20\u7684\u56fe\u7247\u6587\u4ef6",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4e0a\u4f20\u56fe\u7247"
+      }
+    },
+    "/upload-image-oss": {
+      "post": {
+        "description": "\u5141\u8bb8\u7528\u6237\u4e0a\u4f20\u4e00\u5f20\u56fe\u7247",
+        "operationId": "app.api.UploadAPI.upload_image_to_oss",
+        "parameters": [
+          {
+            "description": "\u56fe\u7247\u4e0a\u4f20\u7c7b\u578b 1-\u5934\u50cf 2-\u56fe\u7247\u8bc6\u522b\u6a21\u5757 3-\u8868\u60c5\u5305 4-\u5176\u4ed6",
+            "in": "query",
+            "name": "upload_type",
+            "required": true,
+            "schema": {
+              "default": 1,
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "description": "\u662f\u5426\u4e0a\u4f20\u5230\u672c\u5730\u670d\u52a1\u5668",
+            "in": "query",
+            "name": "upload_to_local",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "image": {
+                    "description": "\u8981\u4e0a\u4f20\u7684\u56fe\u7247\u6587\u4ef6",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "image"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u4e0a\u4f20\u56fe\u7247"
+      }
+    },
+    "/usage-account": {
+      "get": {
+        "operationId": "app.api.UserModuleUsageAPI.get_rest_count",
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "rest_count": {
+                          "description": "\u5269\u4f59\u6b21\u6570",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u6a21\u5757\u5f53\u6708\u4f7f\u7528\u6b21\u6570",
+        "tags": [
+          "\u8ba2\u9605"
+        ]
+      }
+    },
+    "/user-advice": {
+      "post": {
+        "operationId": "app.api.UserAdviceAPI.create_advice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "advice_type": {
+                    "description": "\u53cd\u9988\u7c7b\u578b",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "\u53cd\u9988\u5185\u5bb9",
+                    "type": "string"
+                  },
+                  "image_list": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "advice_type",
+                  "description",
+                  "image_list"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u7528\u6237\u53cd\u9988",
+        "tags": [
+          "\u7528\u6237\u53cd\u9988"
+        ]
+      }
+    },
+    "/user-info": {
+      "get": {
+        "operationId": "app.api.UserAPI.get_user_info",
+        "parameters": [
+          {
+            "description": "\u7528\u6237UUID",
+            "in": "query",
+            "name": "uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u7528\u6237\u4fe1\u606f",
+        "tags": [
+          "users"
+        ]
+      }
+    },
+    "/user-module-usage/checkin": {
+      "post": {
+        "operationId": "app.api.UserModuleUsageAPI.checkin",
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u7b7e\u5230",
+        "tags": [
+          "user-module-usage"
+        ]
+      }
+    },
+    "/user-module-usage/get-add-wecome-bonus": {
+      "post": {
+        "operationId": "app.api.UserModuleUsageAPI.get_add_wecome_bonus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "module_type": {
+                    "description": "1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "is_add_wecome": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u9886\u53d6\u6dfb\u52a0\u4f01\u5fae\u7684\u5956\u52b1",
+        "tags": [
+          "user-module-usage"
+        ]
+      }
+    },
+    "/user-module-usage/get-wechat-mini-qrcode": {
+      "post": {
+        "operationId": "app.api.UserModuleUsageAPI.get_mini_code_data",
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "code_url": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "The resource was post successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u5fae\u4fe1\u5c0f\u7a0b\u5e8f\u4e8c\u7ef4\u7801",
+        "tags": [
+          "user-module-usage"
+        ]
+      }
+    },
+    "/user-module-usage/is-add-wecome": {
+      "get": {
+        "operationId": "app.api.UserModuleUsageAPI.check_is_add_wecome",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "is_add_wecome": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u662f\u5426\u9886\u53d6\u8fc7\u6dfb\u52a0\u4f01\u5fae\u7684\u5956\u52b1",
+        "tags": [
+          "user-module-usage"
+        ]
+      }
+    },
+    "/user-point": {
+      "get": {
+        "description": "\u83b7\u53d6\u7528\u6237\u79ef\u5206",
+        "operationId": "app.api.UserPointAPI.get_user_point",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "bonus_point": {
+                          "description": "\u8d60\u9001\u7684\u79ef\u5206\u4f59\u989d",
+                          "type": "string"
+                        },
+                        "purchase_point": {
+                          "description": "\u8d2d\u4e70\u7684\u79ef\u5206\u4f59\u989d",
+                          "type": "string"
+                        },
+                        "total_point": {
+                          "description": "\u603b\u79ef\u5206\u4f59\u989d",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u83b7\u53d6\u7528\u6237\u79ef\u5206",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/user-point/cost-report": {
+      "post": {
+        "description": "\u79ef\u5206\u6d88\u8017\u62a5\u8868",
+        "operationId": "app.api.UserPointAPI.cost_point_report",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "item_key": {
+                    "type": "string"
+                  },
+                  "medical_record_id": {
+                    "description": "\u75c5\u5386id",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "get successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u62a5\u544a\u79ef\u5206\u6d88\u8d39\u6838\u9500",
+        "tags": [
+          "\u7528\u6237\u5e01"
+        ]
+      }
+    },
+    "/wechat-login": {
+      "post": {
+        "operationId": "app.api.Login.wechat_login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "encryptedData": {
+                    "description": "\u52a0\u5bc6\u6570\u636e",
+                    "type": "string"
+                  },
+                  "iv": {
+                    "description": "\u52a0\u5bc6\u521d\u59cb\u5411\u91cf",
+                    "type": "string"
+                  },
+                  "module_type": {
+                    "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u7247\u8bc6\u522b",
+                    "type": "integer"
+                  },
+                  "phone_number": {
+                    "description": "\u624b\u673a\u53f7",
+                    "type": "string"
+                  },
+                  "spread_id": {
+                    "description": "\u63a8\u5e7f\u4ebasid",
+                    "type": "integer"
+                  },
+                  "wechat_code": {
+                    "description": "\u4f1a\u8bddid",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "wechat_code"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "summary": "Logs in the user by WeChat",
+        "tags": [
+          "login"
+        ]
+      }
+    },
+    "/whitelist/filtering_data": {
+      "post": {
+        "operationId": "app.api.WordWhitelistAPI.whitelist_filtering_data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "filtering_data": {
+                    "description": "\u8fc7\u6ee4\u6570\u636e",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u767d\u540d\u5355\u6570\u636e\u8fc7\u6ee4",
+        "tags": [
+          "whitelist"
+        ]
+      }
+    },
+    "/whitelist/save_data": {
+      "post": {
+        "operationId": "app.api.WordWhitelistAPI.saving_whitelist_data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "save_data": {
+                    "description": "\u4fdd\u5b58\u6570\u636e",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The resource was patched successfully."
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "\u767d\u540d\u5355\u6570\u636e\u4fdd\u5b58",
+        "tags": [
+          "whitelist"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/v1.0/ai-b"
+    }
+  ]
+}
