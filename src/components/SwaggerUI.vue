@@ -16,6 +16,10 @@ import 'swagger-ui-dist/swagger-ui.css'
 const props = defineProps({
     tag: String,
     path: String,
+    version: {
+        type: String,
+        default: 'v1'
+    },
     type: {
         type: String,
         default: 'get',
@@ -28,7 +32,7 @@ const error = ref(null)
 
 onMounted(async () => {
     try {
-        const response = await fetch('/swagger.json')
+        const response = await fetch(`/${props.version}/swagger.json`)
         const swaggerConfig = await response.json()
         console.log(swaggerConfig)
 

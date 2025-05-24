@@ -6650,7 +6650,7 @@
   },
   "servers": [
     {
-      "url": "/api/v1.0/ai-b"
+      "url": "/api/v2.0/ai-b"
     }
   ]
 }
