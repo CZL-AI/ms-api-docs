@@ -62,21 +62,6 @@
 | 400        | 请求参数缺失或格式错误            |
 | 500        | 系统内部错误                      |
 
----
-
-## 接口调试
-
-<script setup>
-import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
-</script>
-
-<ClientOnly>
-  <SwaggerUI 
-    tag="if-continue-ask" 
-    type="post" 
-    path="/aidoc-exotic/if-continue-ask" 
-  />
-</ClientOnly>
 
 ## 返回参数说明
 - 响应内容为流式文本，返回的是一个字符串。
