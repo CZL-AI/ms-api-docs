@@ -68,6 +68,7 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI 
     tag="ai-meme"
     type="post"
-    path="/ai-meme" 
+    path="/ai-meme"
+    version="v2"
   />
 </ClientOnly>
