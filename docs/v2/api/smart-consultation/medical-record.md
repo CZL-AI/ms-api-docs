@@ -9,7 +9,7 @@
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?token=[ACCESS_TOKEN]`
 
 ## 请求参数
-
+### Body 参数（`application/json`）
 | 名称      | 类型   | 必填 | 说明                                                                                  |
 | --------- | ------ | ---- | ------------------------------------------------------------------------------------- |
 | token     | string | 是   | 登录凭证，用于身份验证                                                                |

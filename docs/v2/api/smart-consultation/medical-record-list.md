@@ -9,7 +9,7 @@
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record-list?token=[ACCESS_TOKEN]
 
 ## 请求参数
-
+### Body 参数（`application/json`）
 | 名称      | 类型    | 必填 | 说明     |
 | --------- |-------|----|--------|
 | pet_profile_id     | array | 否  | 宠物档案id |
