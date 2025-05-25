@@ -34,7 +34,7 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/async/api/v2/report-service-v2/pic?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/async/api/v2/report-service/pic?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 
