@@ -165,12 +165,12 @@ export default function getV1Sidebar() {
       ]
     },
     {
-      text: '鸟类鉴别',
+      text: '鸟类识别',
       collapsible: true,
       items: [
         {
           items: [
-            { text: '品种识别', link: '/v1/api/identifying_birds/index' },
+            { text: '品种识别', link: '/v1/api/recog/bird' },
           ]
         }
       ]
