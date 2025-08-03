@@ -36,6 +36,9 @@ export default function getV1Sidebar() {
           items: [
             { text: '新增档案', link: '/v1/api/pet-profile/add' },
             { text: '删除档案', link: '/v1/api/pet-profile/delete' },
+            { text: '获取档案', link: '/v1/api/pet-profile/get' },
+            { text: '更新档案', link: '/v1/api/pet-profile/update' },
+            { text: '档案列表', link: '/v1/api/pet-profile/list' },
           ]
         }
       ]

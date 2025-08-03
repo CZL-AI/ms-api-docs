@@ -29,10 +29,17 @@ AI鸟类识别服务是一款基于宠智灵模型开发的专业鸟类识别工
 | image_url | string | 图片URL |
 | image | `file` | 上传的文件【jpg, png】 |
 | conf | float | 置信度 |
+| lang | string | 语言[zh en ja ko]
 
-> `image_url`，`image` 参数选择一个即可，优先使用`image_url`
+> `image` 参数选择一个即可，优先使用`image_url`
 
-
+> `lang` 语言
+```
+zh 简体中文
+en 英文
+ja 日文
+ko 韩文
+```
 
 ## 返回结果
 
