@@ -43,7 +43,7 @@
 | ----------- | ------ | ---- | ------------------------ |
 | avatar      | string | 否   | 宠物图片                 |
 | birthday    | string | 否   | 出生日期                 |
-| gender      | number | 是   | 性别: 1-公, 2-母         |
+| gender      | number | 是   | 性别: 1-公, 2-母, NULL[非1，2] 表示未知性别|
 | name        | string | 是   | 宠物名称                 |
 | pet_type    | number | 是   | 宠物类型：1-猫, 2-狗     |
 | pet_variety | string | 否   | 宠物品种: 如: 中华田园犬 |
@@ -91,7 +91,7 @@
 | birthday        | string | 出生日期                       |
 | disease_history | null   | 疾病史                         |
 | family_history  | null   | 家族史                         |
-| gender          | number | 性别: 1-公, 2-母               |
+| gender          | number | 性别: 1-公, 2-母, NULL[非1，2] 表示未知性别               |
 | is_neutered     | number | 是否绝育：0：未绝育，1：已绝育 |
 | is_vaccination  | null   | 是否接种疫苗：是否接种疫苗    |
 | name            | string | 宠物名称                       |

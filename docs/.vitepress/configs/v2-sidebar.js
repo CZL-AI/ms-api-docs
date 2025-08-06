@@ -34,11 +34,11 @@ export default function getV1Sidebar() {
       items: [
         {
           items: [
-            { text: '新增档案', link: '/v1/api/pet-profile/add' },
-            { text: '删除档案', link: '/v1/api/pet-profile/delete' },
-            { text: '获取档案', link: '/v1/api/pet-profile/get' },
-            { text: '更新档案', link: '/v1/api/pet-profile/update' },
-            { text: '档案列表', link: '/v1/api/pet-profile/list' },
+            { text: '新增档案', link: '/v2/api/pet-profile/add' },
+            { text: '删除档案', link: '/v2/api/pet-profile/delete' },
+            { text: '获取档案', link: '/v2/api/pet-profile/get' },
+            { text: '更新档案', link: '/v2/api/pet-profile/update' },
+            { text: '档案列表', link: '/v2/api/pet-profile/list' },
           ]
         }
       ]
@@ -195,9 +195,15 @@ export default function getV1Sidebar() {
       collapsible: true,
       items: [
         {
+          text: '获取预设问题',
+          items: [
+            { text: '获取预设问题', link: '/v2/api/smart-consultation/pre-question' },
+          ]
+        },
+        {
           text: '流程开始',
           items: [
-            { text: 'SessionStart', link: '/v2/api/smart-consultation/session-start' }
+            { text: 'SessionStart', link: '/v2/api/smart-consultation/session-start' },
           ]
         },
         {
@@ -211,20 +217,6 @@ export default function getV1Sidebar() {
           ]
         },
         {
-          text: '判断是否需要传图',
-          
-          items: [
-            { text: '是否需要上传图片', link: '/v2/api/smart-consultation/if-need-image' },
-            {
-              text: '需要传图',
-              items: [
-                { text: '上传文件', link: '/v2/api/smart-consultation/upload-image-oss' },
-                { text: '获取图片结果', link: '/v2/api/smart-consultation/pic-result' }
-              ]
-            }
-          ]
-        },
-        {
           text: '判断是否需要继续提问',
           items: [
             { text: '是否继续问答【流式】', link: '/v2/api/smart-consultation/if-continue-ask' },
@@ -235,6 +227,19 @@ export default function getV1Sidebar() {
                  { text: '获取推理文案', link: '/v2/api/smart-consultation/reason-info' },
                  { text: '获取病情分析', link: '/v2/api/smart-consultation/analysis' },
                  { text: '获取关联症状', link: '/v2/api/smart-consultation/related-question' }
+              ]
+            }
+          ]
+        },
+        {
+          text: '判断是否需要传图',
+          items: [
+            { text: '是否需要上传图片', link: '/v2/api/smart-consultation/if-need-image' },
+            {
+              text: '需要传图',
+              items: [
+                { text: '上传文件', link: '/v2/api/smart-consultation/upload-image-oss' },
+                { text: '获取图片结果', link: '/v2/api/smart-consultation/pic-result' }
               ]
             }
           ]

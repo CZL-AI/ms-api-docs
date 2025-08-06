@@ -16,7 +16,10 @@
     "care_advice": null,
     "diet_standard": null,
     "disease_history": "无",
-    "ex_info": {},
+    "ex_info": {
+      "bcs": "5",
+      "posture": "正常",
+    },
     "family_history": "无",
     "gender": "未知",
     "health_advice": null,
@@ -45,6 +48,9 @@
 | avatar           | string | 宠物图片                       |
 | birthday         | string | 出生日期                       |
 | disease_history  | null   | 疾病史                         |
+| ex_info      | object   | 宠物档案拓展信息                  |
+| ex_info.bcs      | string   | 宠物BCS指数，更新/创建宠物档案信息后台自动更新该值                |
+| ex_info.posture      | string   | 宠物体态，更新/创建宠物档案信息后台自动更新该值                |
 | family_history   | null   | 家族史                         |
 | gender           | number | 性别: 1-公, 2-母               |
 | is_neutered      | number | 是否绝育：0：未绝育，1：已绝育 |

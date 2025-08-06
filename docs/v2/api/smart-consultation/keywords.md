@@ -9,18 +9,13 @@
 **请求方式：** `POST（HTTPS）`  
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/aidoc/keywords?token=[ACCESS_TOKEN]`
 
-> ⚠️ 注意：本接口需携带有效的 `token` 进行身份验证，未授权访问将被拒绝。
-
 ## 请求参数
 ### Body 参数（`application/json`）
 ```json
 {
   "content": "猫咪呕吐两天",
-  //用户主诉
   "pet_profile_id": 3147,
-  //宠物档案id
   "session_id": "7cc8c7e0-266f-4fb5-8bf9-cac62905a23d"
-  //会话id
 }
 ```
 
@@ -38,9 +33,7 @@
 {
   "data": {
     "keyword": "猫咪腹痛",
-    //关键词
     "unit": "消化内科"
-    //科室
   },
   "error_code": 0,
   "message": "Get successfully.",

@@ -14,9 +14,7 @@
 ```json
 {
   "pet_profile_id": 0,
-  //宠物档案id
   "session_id": "string"
-  //会话id
 }
 ```
 
@@ -41,9 +39,7 @@
     "questions": [
       {
         "content": "腹痛持续多久了？",
-        //问题
         "id": "ques1",
-        //问题标识
         "options": [
           {
             "choice": "一天内",

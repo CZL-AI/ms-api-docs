@@ -8,7 +8,6 @@
 **请求方式：** `POST（HTTPS）`  
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/aidoc/if-need-image?token=[ACCESS_TOKEN]`
 
-> ⚠️ 注意：所有请求必须携带有效的 `token` 进行身份认证。
 > 
 ## 请求参数
 ```json

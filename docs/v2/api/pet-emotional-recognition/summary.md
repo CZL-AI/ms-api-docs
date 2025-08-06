@@ -5,7 +5,9 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/aipic/summary?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/aipic/summary?token=[ACCESS_TOKEN][&is_sse=true]`
+
+> ⚠️ 注意：当 `is_sse=true` 时，接口使用标准的SSE事件类型返回；否则使用传统的 `$` 结尾格式返回。
 
 ## 请求参数：
 ```json
@@ -17,17 +19,72 @@
 }
 ```
 
-
 ## 参数列表：
+### Query 参数
+| 名称            | 类型    | 必填 | 说明                                    |
+| --------------- | ------- | ---- | --------------------------------------- |
+| token           | string  | 是   | 登录凭证，用于身份验证                  |
+| is_sse          | boolean | 否   | 是否使用SSE格式返回，默认false          |
 
+### Body 参数（`application/json`）
 | 名称            | 类型   | 必填 | 说明                                               |
 | --------------- | ------ | ---- | -------------------------------------------------- |
-| img_urlimg_url  | string | 是   | 识别宠物图片地址（需提供一张能正常访问的图片地址） |
+| img_url         | string | 是   | 识别宠物图片地址（需提供一张能正常访问的图片地址） |
 | sub_module_type | number | 是   | 子模块类型，固定为2                                |
 | pet_profile_id  | number | 是   | 宠物档案ID                                         |
 | session_id      | string | 是   | 会话ID                                             |
 
-## 返回结果：
+## 返回结果
+
+### SSE格式返回（当 is_sse=true 时）
+
+SSE事件类型说明：
+
+```
+event: start_stream
+data: {"type":"content","data": None}
+
+event: stream
+data: {"type":"content","data": "经过分析，该宠物当前情绪状态为开心。识别依据：尾巴上翘摆动，耳朵向前，眼神明亮，嘴角微微上扬。"}
+
+event: end_stream
+data: {"type":"content","data": None}
+
+event: error
+data: {"type":"content","data": None}
+
+event: signal_stop
+data: {"type":"content","data": "图片不符合规范, 请重新上传"}
+```
+
+| 事件类型     | 说明           | 数据格式 |
+|--------------|----------------|----------|
+| start_stream | 流开始事件     | `{"type":"content","data": None}` |
+| metadata     | 元数据事件     | `{"type":"reference","data": "引用内容"}` 或 `{"type":"thinking","data": "思考内容"}` |
+| stream       | 数据流事件     | `{"type":"content","data": "实际内容"}` |
+| end_stream   | 流结束事件     | `{"type":"content","data": None}` |
+| error        | 错误事件       | `{"type":"content","data": 错误信息}` |
+| signal_stop   | 流程终止事件【图片不符合规范错误，会中断流程】     | `{"type":"content","data": "图片不符合规范, 请重新上传"}` |
+
+#### 图片无法分析的SSE返回示例：
+```
+event: start_stream
+data: {"type":"content","data": None}
+
+event: signal_stop
+data: {"type":"content","data": "图片"}
+
+event: signal_stop
+data: {"type":"content","data": "里面"}
+
+event: signal_stop
+data: {"type":"content","data": "没有猫狗"}
+
+event: end_stream
+data: {"type":"content","data": None}
+```
+
+### 传统格式返回（当 is_sse=false 或不传时）
 正常情况下，接口会返回以流式文本形式返回给到开发者：
 ```
 Content-Type: text/event-stream
@@ -50,6 +107,13 @@ AI生成的最后一个图片分析结果片段$
 - 最后一个数据块以$符号结尾，表示流式传输结束。
 
 - 客户端应该持续读取数据流，直到接收到以$结尾的数据块。
+
+## 注意事项：
+1. **连接管理**：客户端应正确处理连接建立、数据接收和连接关闭流程
+2. **错误处理**：需要监听error事件并适当处理错误情况
+3. **字符编码**：确保正确处理UTF-8编码的中文内容
+4. **超时设置**：设置合理的超时时间，避免长时间等待无响应
+5. **重试机制**：网络中断时应实现自动重连机制
 
 ## 接口调试：
 ---

@@ -2,20 +2,24 @@
 
 ## 接口描述
 ---
-该接口用于获取完整的问诊报告内容。用户可以通过此接口查询已生成的问诊报告的详细信息，包括回顾、诊断、建议等，以便更好地管理和回顾宠物的健康状况。
+该接口用于获取完整的问诊报告内容。默认情况下返回JSON格式的详细报告数据，用户也可以通过参数指定返回HTML格式的报告内容或报告链接。
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?token=[ACCESS_TOKEN]`
 
 ## 请求参数
-### Body 参数（`application/json`）
+### Query 参数
 | 名称      | 类型   | 必填 | 说明                                                                                  |
 | --------- | ------ | ---- | ------------------------------------------------------------------------------------- |
 | token     | string | 是   | 登录凭证，用于身份验证                                                                |
-| report_id | number | 是   | 问诊报告ID，通过 `/aidoc/report` 接口生成的报告ID                                      |
+| report_id | number | 是   | 问诊报告ID，通过 `/session-record/session-start` 接口生成的`data.medical_record_id`                                      |
+| format    | string | 否   | 返回格式，可选值：`json`（默认值，返回详细JSON数据）、`html`（返回HTML内容或链接）     |
+| html_type | string | 否   | 当format=html时生效，可选值：`content`（返回HTML字符串）或`link`（返回HTML报告链接）   |
 
 ## 返回结果
+
+### 默认或format=json时（返回详细JSON数据）
 ```json
 {
     "data": {
@@ -25,6 +29,55 @@
         "module_type": 5,
         "pet_profile_id": 3211,
         "report": "{\"review\": {\"chiefComplaint\": \"牙周疾病\", \"symptoms\": \"牙齿发黄，牙龈红肿出血，口臭，食欲下降，啃咬困难\"}, \"vet_order\": {\"vet_advise\": \"#### 【护理建议】\\n- 🦷 使用宠物专用牙膏和软毛牙刷，每天刷牙1-2次，重点清洁牙龈线附近，帮助清除牙菌斑和牙垢，减缓牙周炎的进展。\\n- 🍖 提供专业的口腔护理处方粮或洁牙零食，这些食物的特殊质地可以帮助摩擦牙齿表面，减少牙垢的形成，每天喂食20-30克。\\n- 💧 确保猫咪饮用足够的水，保持口腔湿润，有助于减少细菌滋生。每天更换新鲜饮用水，并鼓励猫咪多喝水，每日饮水量应达到每公斤体重50ml。\\n#### 【预防措施】\\n- 📅 每年带猫咪进行1-2次专业的口腔检查和洗牙，及早发现并处理牙齿问题，预防牙周炎的发生。\\n- 🦴 避免喂食过硬的食物，以免损伤牙龈和牙齿。可以选择质地适中的猫粮或软罐头，保护猫咪的口腔健康。\\n- 🧪 定期使用宠物专用漱口水或口腔清洁凝胶，帮助抑制口腔细菌生长，减少牙菌斑的形成。每周使用2-3次。\", \"follow_up\": \"【复诊建议】：建议1个月后复诊，检查牙龈红肿和出血情况，评估治疗效果。\"}, \"supplements\": [{\"Info\": {\"name\": \"犬猫专用漱口水（氯己定）\", \"form\": \"外用\", \"dosage\": \"根据产品说明\", \"frequency\": \"每天一次\", \"duration\": \"长期使用\"}, \"cause\": \"氯己定漱口水有助于减少口腔内的细菌，控制牙菌斑和牙垢的形成，从而缓解牙龈炎症和口臭，是牙周炎辅助治疗的重要手段。\"}, {\"Info\": {\"name\": \"犬猫专用牙膏（酶制剂）\", \"form\": \"外用\", \"dosage\": \"根据产品说明\", \"frequency\": \"每天一次\", \"duration\": \"长期使用\"}, \"cause\": \"酶制剂牙膏可以帮助分解牙菌斑，减少牙垢的形成，并清新口气。每天刷牙可以有效预防牙周疾病的进展。\"}, {\"Info\": {\"name\": \"Omega-3 脂肪酸补充剂\", \"form\": \"口服\", \"dosage\": \"根据产品说明\", \"frequency\": \"每天一次\", \"duration\": \"长期使用\"}, \"cause\": \"Omega-3 脂肪酸具有抗炎作用，可以帮助减轻牙龈炎症，促进牙周组织的修复。同时，可以改善整体健康状况。\"}], \"result\": {\"diagnosis\": {\"suspected\": \"牙周炎\", \"description\": \"根据病史，猫咪出现牙齿发黄、牙龈红线、口臭、牙龈出血、食欲下降、啃咬硬物困难以及牙龈明显红肿等症状，高度怀疑为牙周炎。\", \"basis\": \"牙齿发黄、牙龈红线和口臭是牙周疾病的典型症状。持续时间超过一周，大部分牙龈受影响，牙龈出血和食欲下降表明牙周炎可能比较严重。未洗过牙也增加了牙周炎的风险。牙齿发黄程度为大部分牙齿，牙龈红肿明显，啃咬硬物困难，这些都支持牙周炎的诊断。\", \"severity_of_the_illness\": \"Medium_high\"}, \"probability_level\": \"high\", \"externalImage\": [\"五官\"], \"internalImage\": [], \"skeletalImage\": [\"颅骨\"], \"EssentialCheckItems\": \"1. 口腔检查：详细检查牙齿、牙龈和口腔黏膜，评估牙周炎的严重程度，包括牙结石、牙龈红肿、出血、牙周袋深度等。\\n2. 全身检查：评估猫咪的整体健康状况，排除其他可能导致食欲下降的疾病。\\n3. 血常规检查：评估是否存在炎症或其他全身性疾病。\\n4. 生化检查：评估肝肾功能，排除全身性疾病。\", \"RecommendCheckItems\": \"1. 定期洗牙：预防牙结石形成，维护口腔卫生。\\n2. 软粮或湿粮：减少啃咬硬物带来的不适，促进食欲。\\n3. 定期口腔检查：监测牙周炎的进展情况，及时调整治疗方案。\\n4. 营养评估：评估猫咪膳食结构是否合理，促进健康。\", \"other_suspected_diagnosis\": [{\"suspected\": \"牙龈炎\", \"description\": \"牙龈炎是牙周炎的早期阶段，主要表现为牙龈红肿和出血。虽然猫咪的症状更符合牙周炎，但也不能完全排除牙龈炎的可能性。\", \"basis\": \"牙龈红线和牙龈出血是牙龈炎的常见症状。\", \"severity_of_the_illness\": \"Medium\"}, {\"suspected\": \"口腔溃疡\", \"description\": \"口腔溃疡可能导致食欲下降和啃咬困难，但通常不会引起牙齿发黄和广泛的牙龈红肿。\", \"basis\": \"食欲下降和啃咬困难可能是口腔溃疡的表现。\", \"severity_of_the_illness\": \"Slight\"}]}, \"advice\": {\"Initial_Treatment\": {\"KeyPoint\": \"牙周炎的初步治疗目标是控制炎症和减轻疼痛。由于猫咪未洗过牙，牙结石和牙菌斑堆积严重，导致牙龈红肿、出血和口臭。初步治疗的重点是改善口腔卫生，减缓牙周炎的进展。\", \"CheckPoint\": \"密切观察猫咪的食欲和精神状态。如果食欲持续下降或精神状态不佳，应尽快就医。同时，注意观察牙龈出血情况，如果出血量增加或出现其他异常，也应及时就医。建议一周后复诊，评估治疗效果。\", \"medications\": [{\"type\": \"药品\", \"Info\": {\"name\": \"宠物专用漱口水（Chlorhexidine Gluconate）\", \"form\": \"漱口水\", \"dosage\": \"按照产品说明书稀释\", \"frequency\": \"每天一次\", \"duration\": \"长期使用\", \"additional_info\": \"药品分类：【兽用非处方药】。使用时，用棉签或纱布蘸取稀释后的漱口水，轻轻擦拭猫咪的牙龈和牙齿。注意不要让猫咪吞咽大量漱口水。\"}}, {\"type\": \"饮食\", \"Info\": {\"name\": \"处方牙科粮\", \"detail\": \"选择专门的处方牙科粮，其特殊设计的颗粒有助于在咀嚼过程中清除牙菌斑和牙结石。可以作为日常主粮喂食。\"}}]}, \"Persistent_Aggravation\": {\"KeyPoint\": \"如果初步治疗效果不佳，牙龈红肿、出血和口臭情况没有明显改善，甚至出现加重，则需要考虑进行更深入的治疗。这可能意味着牙周炎已经发展到更严重的阶段，需要专业的兽医干预。\", \"CheckPoint\": \"如果一周后复诊，牙周炎症状没有改善，反而加重，例如牙龈出血增多、牙齿松动等，需要尽快带猫咪去宠物医院进行专业的口腔检查和治疗。可能需要进行洗牙，甚至拔牙。\", \"medications\": [{\"type\": \"手术\", \"Info\": {\"name\": \"专业洗牙\", \"detail\": \"在全身麻醉下，由兽医使用专业的洗牙设备清除牙结石和牙菌斑。洗牙后，还需要进行牙齿抛光，以减缓牙菌斑的再次形成。如果存在严重的牙齿松动或感染，可能需要拔牙。\"}}, {\"type\": \"药品\", \"Info\": {\"name\": \"盐酸克林霉素（Clindamycin Hydrochloride）\", \"form\": \"口服\", \"dosage\": \"5.5 mg/kg\", \"frequency\": \"每天两次\", \"duration\": \"7天\", \"additional_info\": \"药品分类：【兽用处方药】。本品为处方药，请务必在兽医指导下使用。用于控制洗牙后或拔牙后的继发感染。注意观察猫咪是否有食欲不振、呕吐或腹泻等副作用。\"}}]}, \"Intensive_Treatment\": {\"KeyPoint\": \"如果牙周炎发展到重度阶段，出现严重的牙龈萎缩、牙齿松动、牙槽骨吸收，甚至出现颌骨骨髓炎等并发症，则需要进行重度治疗。这通常需要住院治疗，并进行积极的抗感染和支持治疗。\", \"CheckPoint\": \"如果猫咪出现剧烈疼痛、无法进食、精神沉郁等症状，应立即就医。重度牙周炎可能导致严重的全身性感染，甚至危及生命。\", \"medications\": [{\"type\": \"药品\", \"Info\": {\"name\": \"注射用头孢唑林钠（Cefazolin Sodium for Injection）\", \"form\": \"注射\", \"dosage\": \"22 mg/kg\", \"frequency\": \"每天三次\", \"duration\": \"7天\", \"additional_info\": \"药品分类：【兽用处方药】。本品为处方药，必须在兽医的监督下使用。用于控制严重的牙周感染。注意观察猫咪是否有过敏反应。\"}}, {\"type\": \"手术\", \"Info\": {\"name\": \"拔牙及牙槽骨修整\", \"detail\": \"对于无法保留的牙齿，需要进行拔牙。同时，还需要对牙槽骨进行修整，以促进伤口愈合。如果出现颌骨骨髓炎，可能需要进行手术清创。\"}}, {\"type\": \"打针\", \"Info\": {\"name\": \"止痛针\", \"detail\": \"根据猫咪的疼痛程度，使用适当的止痛药物，如美洛昔康（Meloxicam）或布托啡诺（Butorphanol），以缓解疼痛，提高生活质量。\"}]}}",
+        "report_status": 2,
+        "report_time": "2025-03-15T07:35:50",
+        "session_id": "c139a49a-ca34-472d-9749-6cd976cbb937",
+        "stage": null,
+        "status": 2,
+        "sub_module_type": "1",
+        "summary": "【病情小结】\n\n**宠物情况:**\n- 主诉: 德文最近经常流鼻涕，我担心它可能感冒了。\n- 症状: 流鼻涕，食欲下降，嗜睡。\n\n**初步诊断:**\n德文可能患有胃肠炎，表现为食欲下降、嗜睡、稀便症状。\n\n**重要建议:**\n建议进行粪便分析和血液检查以确定病因。\n\n**护理建议:**\n- 提供温暖的室内环境，避免受凉。\n- 确保摄取足够的水分。\n- 提供易消化的高品质猫粮。\n\n**复诊建议:**\n建议一周后复诊，观察鼻涕和食欲变化。\n",
+        "updated_at": "2025-03-15T07:35:50"
+    },
+    "message": "Get successfully.",
+    "success": true
+}
+```
+
+### 当format=html且html_type=content时（返回HTML字符串）
+```json
+{
+    "data": {
+        "created_at": "2024-11-19T05:49:17",
+        "id": 62429,
+        "is_paid": 1,
+        "module_type": 5,
+        "pet_profile_id": 3211,
+        "report": "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>宠物问诊报告</title><style>body{font-family: Arial, sans-serif; margin: 20px;} .header{background-color: #f0f8ff; padding: 20px; border-radius: 5px; margin-bottom: 20px;} .section{margin-bottom: 30px; padding: 15px; border-left: 4px solid #4CAF50;} h1, h2, h3{color: #333;} ul{line-height: 1.6;}</style></head><body><div class=\"header\"><h1>宠物问诊报告</h1><p>报告ID: 62429</p><p>生成时间: 2024-11-19 05:49:17</p></div><div class=\"section\"><h2>病情小结</h2><h3>宠物情况</h3><ul><li>主诉: 德文最近经常流鼻涕，我担心它可能感冒了。</li><li>症状: 流鼻涕，食欲下降，嗜睡。</li></ul><h3>初步诊断</h3><p>德文可能患有胃肠炎，表现为食欲下降、嗜睡、稀便症状。</p><h3>重要建议</h3><p>建议进行粪便分析和血液检查以确定病因。</p></div><div class=\"section\"><h2>护理建议</h2><ul><li>提供温暖的室内环境，避免受凉。</li><li>确保摄取足够的水分。</li><li>提供易消化的高品质猫粮。</li></ul></div><div class=\"section\"><h2>复诊建议</h2><p>建议一周后复诊，观察鼻涕和食欲变化。</p></div></body></html>",
+        "report_status": 2,
+        "report_time": "2025-03-15T07:35:50",
+        "session_id": "c139a49a-ca34-472d-9749-6cd976cbb937",
+        "stage": null,
+        "status": 2,
+        "sub_module_type": "1",
+        "summary": "【病情小结】\n\n**宠物情况:**\n- 主诉: 德文最近经常流鼻涕，我担心它可能感冒了。\n- 症状: 流鼻涕，食欲下降，嗜睡。\n\n**初步诊断:**\n德文可能患有胃肠炎，表现为食欲下降、嗜睡、稀便症状。\n\n**重要建议:**\n建议进行粪便分析和血液检查以确定病因。\n\n**护理建议:**\n- 提供温暖的室内环境，避免受凉。\n- 确保摄取足够的水分。\n- 提供易消化的高品质猫粮。\n\n**复诊建议:**\n建议一周后复诊，观察鼻涕和食欲变化。\n",
+        "updated_at": "2025-03-15T07:35:50"
+    },
+    "message": "Get successfully.",
+    "success": true
+}
+```
+
+### 当format=html且html_type=link时（返回HTML报告链接）
+```json
+{
+    "data": {
+        "created_at": "2024-11-19T05:49:17",
+        "id": 62429,
+        "is_paid": 1,
+        "module_type": 5,
+        "pet_profile_id": 3211,
+        "report": "https://ms-ai.chongzhiling.com/report/view/62429.html?token=abc123",
+        "report_status": 2,
         "report_time": "2025-03-15T07:35:50",
         "session_id": "c139a49a-ca34-472d-9749-6cd976cbb937",
         "stage": null,
@@ -46,15 +99,16 @@
 | is_paid           | number | 是否已支付，1表示已支付，0表示未支付           |
 | module_type       | number | 模块类型，5表示智能问诊模块                   |
 | pet_profile_id    | number | 宠物档案ID                                   |
-| report            | string | 报告详细内容（JSON字符串），包含以下主要部分：  |
+| report            | string | 报告内容，根据format参数返回不同格式的数据     |
 | - review          | object | 问诊回顾，包含主诉和症状                      |
 | - result          | object | 诊断结果，包含诊断信息、检查项目、建议和疑似诊断         |
 | - advice          | object | 治疗建议，包含初步、持续和强化治疗方案         |
 | - vet_order       | object | 兽医建议，包含护理和预防措施以及复诊建议       |
 | - supplements     | array  | 营养品补充及其他补充治疗措施，包含推荐的营养品、补充治疗方案及其医学原因 |
+| report_status       | string | 报告状态 0-未生成 1-生成中 2-已完成 3-生成失败                 |
 | report_time       | string | 报告生成时间，格式为 ISO 8601                 |
 | session_id        | string | 会话ID                                       |
-| status            | number | 报告状态，2表示已完成                         |
+| status            | number | 流程状态，2表示已完成                         |
 | sub_module_type   | string | 子模块类型，1表示常规问诊                     |
 | summary           | string | 问诊总结，包含宠物情况、初步诊断、重要建议、护理建议和复诊建议 |
 | updated_at        | string | 报告更新时间，格式为 ISO 8601                 |
@@ -126,11 +180,24 @@ report字段是一个 JSON 字符串，需要解析后才能获取详细内容�
 ]
 ```
 
+## 使用说明
+
+### 返回详细JSON数据（默认方式）
+当`format`参数未指定或设置为`json`时，接口将返回完整的JSON格式报告数据，包含所有详细信息。
+
+### 返回HTML字符串
+当`format`参数设置为`html`且`html_type`参数设置为`content`时，接口将直接返回完整的HTML格式报告内容。客户端可以直接将该内容渲染到网页中展示。
+
+### 返回报告链接
+当`format`参数设置为`html`且`html_type`参数设置为`link`时，接口将返回一个可访问的HTML报告链接。客户端可以引导用户在浏览器中打开该链接查看报告。
+
 ## 注意事项
-1. **报告解析**：`report` 字段是 JSON 字符串，需要解析后才能获取详细内容。
-2. **报告内容**：完整的问诊报告内容包括问诊回顾、诊断结果和治疗建议，供用户参考。
-3. **报告保存**：用户可以保存或分享报告，以便后续查阅。
-4. **专业建议**：报告仅供参考，最终诊断和治疗建议请咨询专业兽医。
+1. **默认行为**：接口默认返回详细JSON数据，保持与原有接口的兼容性。
+2. **格式选择**：通过`format`和`html_type`参数组合可以灵活选择返回格式。
+3. **安全性**：通过链接方式访问报告时，链接中包含了访问令牌以确保安全性。
+4. **报告内容**：完整的问诊报告内容包括问诊回顾、诊断结果和治疗建议，供用户参考。
+5. **报告保存**：用户可以保存或分享报告，以便后续查阅。
+6. **专业建议**：报告仅供参考，最终诊断和治疗建议请咨询专业兽医。
 
 ## 接口调试
 ---
@@ -142,7 +209,7 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI
     tag="medical-record"
     type="get"
-    path="/medical-record-list"
+    path="/medical-record"
     version="v2"
   />
 </ClientOnly>

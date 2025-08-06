@@ -10,8 +10,6 @@
 **请求方式：** `POST（HTTPS）`  
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/session-record/history?token=[ACCESS_TOKEN]`
 
-> ⚠️ 注意：本接口需携带有效的 `token` 进行身份验证，未授权访问将被拒绝。
-
 ## 请求参数
 ```json
 {
@@ -33,14 +31,14 @@
 | module_type     | number | 是   | 模块类型，当前固定为 `1`       |
 | role            | string | 是   | 角色标识，当前支持 `"user"`（用户） 或 `"system"`（系统自动回复）|
 | session_id      | string | 是   | 当前会话 ID，用于管理上下文信息 |
-| stage           | number | 是   | 当前问诊阶段编号，用于控制问诊流程阶段逻辑           |
+| stage           | number | 是   | 当前问诊阶段编号，用于控制问诊流程阶段逻辑【A：  一轮问诊流程，B：  二轮问诊流程，C：三轮问诊流程，D ：上传图片(上传了照片)，E：  上传图片(没有上传照片)，F：  上传病历史，G：  出小结，H：  出报告】           |
 
 ## 返回结果
 ```json
 {
     "data": null,
     "message": "Save successfully.",
-    "success": true // 成功返回true，失败返回false
+    "success": true
 }
 ```
 

@@ -9,15 +9,11 @@
 **请求方式：** `POST（HTTPS）`  
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/aidoc/related-question?token=[ACCESS_TOKEN]`
 
-> ⚠️ 注意：本接口需携带有效的 `token` 进行身份验证，未授权访问将被拒绝。
-
 ## 请求参数
 ```json
 {
   "pet_profile_id": 3147,
-  //宠物档案id
   "session_id": "26494514-5f81-468f-94c7-539706282337"
-  //会话id
 }
 ```
 
@@ -40,8 +36,6 @@
       "精神沉郁，不爱活动。",
       "是否有咳嗽、呼吸困难等症状？",
       "触摸腹部时，是否有明显的抗拒？"
-    
-      
   },
   "error_code": 0,
   "message": "Get successfully.",

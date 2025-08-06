@@ -33,7 +33,7 @@
 | ----------- | ------ | ---- | ------------------------ |
 | avatar      | string | 否   | 宠物图片                 |
 | birthday    | string | 否   | 出生日期                 |
-| gender      | number | 是   | 性别: 1-公, 2-母         |
+| gender      | number | 是   | 性别: 1-公, 2-母, NULL[非1，2] 表示未知性别          |
 | name        | string | 是   | 宠物名称                 |
 | pet_type    | number | 是   | 宠物类型：1-猫, 2-狗     |
 | pet_variety | string | 否   | 宠物品种: 如: 中华田园犬 |
