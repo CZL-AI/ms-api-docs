@@ -3,7 +3,7 @@
 根据宠物档案获取问诊预设问题列表。
 
 ## 调用接口：
-**请求方式：** `POST（HTTPS）`  
+**请求方式：** `GET（HTTPS）`  
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pre-question?token=[ACCESS_TOKEN]&pet_profile_id=[宠物ID]`
 
 ## 请求参数 [Query]：

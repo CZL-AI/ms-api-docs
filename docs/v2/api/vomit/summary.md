@@ -5,7 +5,7 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/aipic/summary?token=[ACCESS_TOKEN][&is_sse=true]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/aipic/summary?token=[ACCESS_TOKEN]&is_sse=true&is_simple=true`
 
 > ⚠️ 注意：当 `is_sse=true` 时，接口使用标准的SSE事件类型返回；否则使用传统的 `$` 结尾格式返回。
 
@@ -25,6 +25,7 @@
 | --------------- | ------- | ---- | --------------------------------------- |
 | token           | string  | 是   | 登录凭证，用于身份验证                  |
 | is_sse          | boolean | 否   | 是否使用SSE格式返回，默认false          |
+| is_simple          | boolean | 否   | 是否是精简模式，默认false          |
 
 ### Body 参数（`application/json`）
 | 名称            | 类型   | 必填 | 说明                                               |
