@@ -23,7 +23,7 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profile?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profile?token=[ACCESS_TOKEN]
 
 ## 请求参数：
 ```json
@@ -33,14 +33,15 @@
     "name": "德文",
     "pet_type": 2,
     "pet_variety": "中华田园犬",
-    "weight": "2"
+    "weight": "2",
+    "is_neutered": 0
 }
 ```
 
 ## 参数列表：
 
 | 名称        | 类型   | 必填 | 说明                     |
-| ----------- | ------ | ---- | ------------------------ |
+| ----------- | ------ | ---- | ------------------------|
 | avatar      | string | 否   | 宠物图片                 |
 | birthday    | string | 否   | 出生日期                 |
 | gender      | number | 是   | 性别: 1-公, 2-母, NULL[非1，2] 表示未知性别|
@@ -48,6 +49,7 @@
 | pet_type    | number | 是   | 宠物类型：1-猫, 2-狗     |
 | pet_variety | string | 否   | 宠物品种: 如: 中华田园犬 |
 | weight      | string | 否   | 体重(kg)                 |
+| is_neutered | number | 否   | 是否绝育：0：未绝育，1：已绝育 |
 
 
 ## 返回结果：

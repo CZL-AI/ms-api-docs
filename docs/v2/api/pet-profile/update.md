@@ -6,7 +6,13 @@
 
 ## 调用接口：
 **请求方式：** `PUT（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profile?pet_profile_id=[PET_PROFILE_ID]&token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/pet-profile?pet_profile_id=[PET_PROFILE_ID]&token=[ACCESS_TOKEN]&tmp_avatar=[AVATAR_URL]`
+
+## Query参数：
+| 名称        | 类型   | 必填 | 说明                     |
+| ----------- | ------ | ---- | ------------------------|
+| token      | string | 是   | 调用接口凭证                 |
+| tmp_avatar      | string | 否   | 宠物头像地址[不填默认为空]，如果tmp_avatar不会空，会优先保存使用tmp_avatar，覆盖body'avatar                 |`
 
 ## 请求参数：
 ```json
@@ -38,6 +44,7 @@
 | pet_type    | number | 是   | 宠物类型：1-猫, 2-狗     |
 | pet_variety | string | 否   | 宠物品种: 如: 中华田园犬 |
 | weight      | string | 否   | 体重(kg)                 |
+|is_neutered | number | 否   | 是否绝育：0：未绝育，1：已绝育 |
 
 
 ## 返回结果：

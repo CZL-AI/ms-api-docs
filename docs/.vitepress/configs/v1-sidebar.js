@@ -247,8 +247,7 @@ export default function getV1Sidebar() {
       items: [
         {
           items: [
-            { text: '发送任务', link: '/v1/api/video-analysis/post-task.md' },
-            { text: '获取任务结果', link: '/v1/api/video-analysis/get-status.md' },
+            { text: '进食进水识别', link: '/v2/api/video-analysis/feeder.md' },
           ]
         }
       ]

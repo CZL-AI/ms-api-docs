@@ -44,6 +44,19 @@ export default function getV1Sidebar() {
       ]
     },
     {
+      text: '文件管理',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '图片', link: '/v2/api/file/image' },
+            { text: '视频', link: '/v2/api/file/video' },
+            { text: 'OSS临时凭证-客户端直连', link: '/v2/api/file/policy' },
+          ]
+        }
+      ]
+    },
+    {
       text: '图片识别',
       collapsible: true,
       items: [
@@ -262,13 +275,23 @@ export default function getV1Sidebar() {
       ]
     },
     {
+      text: '声音识别',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
+          ]
+        }
+      ]
+    },
+    {
       text: '视频分析',
       collapsible: true,
       items: [
         {
           items: [
-            { text: '发送任务', link: '/v2/api/video-analysis/post-task.md' },
-            { text: '获取任务结果', link: '/v2/api/video-analysis/get-status.md' },
+            { text: '进食进水识别', link: '/v2/api/video-analysis/feeder.md' },
           ]
         }
       ]
