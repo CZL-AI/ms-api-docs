@@ -14,11 +14,11 @@ AI宠物健康检查服务是一款基于人工智能技术的专业宠物健康
 
 ## 接口调用流程
 ---
-1. 获取健康检查问题集（/ai-health-check/questions 接口）
-2. 获取单个健康检查问题（/ai-health-check/question 接口，可选）
-3. 提交健康检查答案（/ai-health-check/answer 接口）
-4. 获取健康检查进度（/ai-health-check/progress 接口，可选）
-5. 重复步骤2-4，直到完成所有问题
+1. 开始会话流程（/session-record/session-start 接口，获取 session_id 和 medical_record_id）
+2. 获取健康检查问题集（/ai-health-check/questions 接口）
+3. 获取单个健康检查问题（/ai-health-check/question 接口，可选）
+4. 提交健康检查答案（/ai-health-check/answer 接口）
+5. 重复步骤3-4，直到完成所有问题
 6. 生成健康检查报告（/ai-health-check/report 接口）
 7. **轮询获取报告状态**（/medical-record 接口）
    - 调用 /medical-record 接口查询报告生成状态

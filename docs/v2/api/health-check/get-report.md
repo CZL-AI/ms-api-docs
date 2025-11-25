@@ -12,7 +12,8 @@
 1. **调用间隔**：建议每隔 3-5 秒调用一次
 2. **超时设置**：建议设置 2 分钟超时时间
 3. **状态判断**：检查返回的 `report_status` 字段
-   - `report_status = 0`：报告生成中，继续轮询
+   - `report_status = 0`：报告任务已创建，等待处理
+   - `report_status = 1`：报告正在生成中，继续轮询
    - `report_status = 2`：报告生成完成，可以使用报告数据
 4. **错误处理**：如果超过超时时间仍未完成，提示用户稍后重试
 
@@ -40,6 +41,8 @@ curl -X 'GET' \
 ```
 
 ## 返回结果
+
+### 报告生成完成（report_status = 2）
 ```json
 {
     "data": {
@@ -55,7 +58,7 @@ curl -X 'GET' \
             "name": "德文"
         },
         "pet_profile_id": 36327,
-        "report": "{\"report_6\": [{\"id\": 1, \"category\": \"diet\", \"question\": \"零食主要是用来做什么的？\", \"options\": [{\"option_id\": 1, \"text\": \"作为训练奖励或益智玩具填充，目的明确\"}, {\"option_id\": 2, \"text\": \"作为日常互动的小奖励，增进感情\"}, {\"option_id\": 3, \"text\": \"只要TA乞食就给，作为安抚手段\"}, {\"option_id\": 4, \"text\": \"随时随地都给，没有节制\"}], \"answer\": {\"option_id\": 1, \"text\": \"作为训练奖励或益智玩具填充，目的明确\"}}, {\"id\": 2, \"category\": \"diet\", \"question\": \"当您靠近TA正在进食的饭碗时，TA会作何反应？\", \"options\": [{\"option_id\": 1, \"text\": \"毫无反应，或友好地抬头看您一眼\"}, {\"option_id\": 2, \"text\": \"会暂时停下进食，观察您的动作\"}, {\"option_id\": 3, \"text\": \"进食速度加快，表现出护食的倾向\"}, {\"option_id\": 4, \"text\": \"发出低吼、龇牙等明显的护食攻击行为\"}]}], \"scores\": {\"diet_management\": \"100\", \"daily_activity\": \"75\", \"living_habits\": \"88\", \"cleaning_care\": \"92\", \"health_status\": \"85\"}, \"review_conclusion\": {\"conclusion\": \"您的宠物整体健康状况良好，在饮食管理、清洁护理等方面表现优秀，但在日常活动方面还有提升空间。\", \"maintenance_advice\": \"建议保持当前的饮食管理和清洁护理习惯，适当增加日常运动量，定期进行健康检查。\", \"health_alert\": \"0\", \"intelligent_diagnosis_push\": false}, \"comprehensive_score\": 88, \"health_percentage\": 88.0, \"improvement_suggestions\": {\"diet_nutrition\": \"建议每日定时定点喂食2-3餐，零食控制在每日总热量的10%以内，避免过度投喂导致体重异常。\", \"living_environment\": \"建议每日安排15分钟嗅闻游戏，丰富环境刺激，促进精神活跃，减少因单调导致的行为问题。\", \"daily_care\": \"建议每日梳毛5分钟，保持皮毛清洁，预防皮肤问题，每1-2周修剪一次指甲，避免抓伤和行走不适。\", \"exercise_advice\": \"建议每日额外增加20分钟散步，促进体重管理和心肺功能，避免因运动不足导致的肥胖风险。\", \"health_advice\": \"建议每周刷牙3-4次，预防牙菌斑和牙周病，每年进行1次全面体检，及时发现潜在健康问题。\"}}",
+        "report": "{\"report_6\": [...], \"scores\": {\"diet_management\": \"100\", \"daily_activity\": \"75\", \"living_habits\": \"88\", \"cleaning_care\": \"92\", \"health_status\": \"85\"}, \"review_conclusion\": {\"conclusion\": \"您的宠物整体健康状况良好...\", \"maintenance_advice\": \"建议保持当前的饮食管理...\", \"health_alert\": \"0\", \"intelligent_diagnosis_push\": false}, \"comprehensive_score\": 88, \"health_percentage\": 88.0, \"improvement_suggestions\": {...}}",
         "report_info": {
             "content": "综合评分88分",
             "img_url": null,
@@ -71,6 +74,41 @@ curl -X 'GET' \
         "sub_module_type": null,
         "summary": null,
         "updated_at": "2025-11-24T16:18:22"
+    },
+    "message": "Get successfully.",
+    "success": true
+}
+```
+
+### 报告生成中（report_status = 1）
+当报告正在生成时，返回的数据中 `report` 字段只包含问题和答案记录，不包含评分和建议：
+```json
+{
+    "data": {
+        "created_at": "2025-11-25T06:00:10",
+        "id": 122659,
+        "image_recognition_status": 0,
+        "is_paid": 1,
+        "lang": "zh",
+        "module_type": 18,
+        "pet_info": {},
+        "pet_profile_id": 0,
+        "report": "{\"report_6\": [{\"id\": 1, \"category\": \"diet\", \"question\": \"TA的饮食中会搭配湿粮（罐头、湿粮包等）吗？\", \"options\": [...], \"answer\": {\"option_id\": 1, \"text\": \"每天都有，科学搭配，水分营养双补充\"}}, ...]}",
+        "report_info": {
+            "content": "无",
+            "img_url": null,
+            "report_url": null,
+            "title": "无"
+        },
+        "report_status": 1,
+        "report_time": "2025-11-25T06:19:15",
+        "report_type": "v2",
+        "session_id": "0156bcde-ff28-4097-9da9-42773f79b2ed",
+        "stage": null,
+        "status": 2,
+        "sub_module_type": null,
+        "summary": null,
+        "updated_at": "2025-11-25T09:26:56"
     },
     "message": "Get successfully.",
     "success": true
@@ -103,7 +141,7 @@ curl -X 'GET' \
 | - img_url               | string  | 报告图片URL（可能为null）                    |
 | - report_url            | string  | 报告URL（可能为null）                        |
 | - title                 | string  | 报告标题                                     |
-| report_status           | number  | 报告状态，2表示已完成                         |
+| report_status           | number  | 报告状态：0=等待处理，1=生成中，2=已完成  |
 | report_time             | string  | 报告生成时间，格式为 ISO 8601                 |
 | report_type             | string  | 报告类型，`v2` 表示V2版本                    |
 | session_id              | string  | 会话ID，用于标识本次健康检查                  |

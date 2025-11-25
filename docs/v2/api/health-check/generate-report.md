@@ -92,7 +92,7 @@ try {
 3. **保存medical_record_id**：调用 `/ai-health-check/questions` 接口时会返回 `medical_record_id`，需要保存此ID用于后续轮询报告状态
 4. **轮询查询**：调用本接口后，必须通过轮询 `/medical-record` 接口来查询报告生成状态
 5. **状态判断**：只有当 `report_status = 2` 时，报告才真正生成完成
-6. **进度确认**：可通过get-progress接口确认所有问题已回答完毕（is_completed=true）
+6. **进度确认**：建议在所有问题回答完毕后再调用此接口
 7. **报告获取**：报告生成后，通过 `/medical-record?report_id={medical_record_id}` 接口获取报告内容
 8. **重复调用**：重复调用此接口会触发重新生成报告，会覆盖之前的报告
 
