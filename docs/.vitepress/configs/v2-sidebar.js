@@ -286,6 +286,23 @@ export default function getV1Sidebar() {
       ]
     },
     {
+      text: '健康检查',
+      link: '/v2/api/health-check/index',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '获取问题集', link: '/v2/api/health-check/get-questions' },
+            { text: '获取单个问题', link: '/v2/api/health-check/get-single-question' },
+            { text: '提交答案', link: '/v2/api/health-check/submit-answer' },
+            { text: '获取进度', link: '/v2/api/health-check/get-progress' },
+            { text: '生成报告', link: '/v2/api/health-check/generate-report' },
+            { text: '获取报告详情', link: '/v2/api/health-check/get-report' }
+          ]
+        }
+      ]
+    },
+    {
       text: '视频分析',
       collapsible: true,
       items: [
