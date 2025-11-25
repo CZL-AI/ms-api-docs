@@ -46,34 +46,34 @@ curl -X 'GET' \
 ```json
 {
     "data": {
-        "created_at": "2025-11-24T08:17:04",
-        "id": 122472,
+        "created_at": "2025-11-25T09:11:08",
+        "id": 122729,
         "image_recognition_status": 0,
         "is_paid": 1,
         "lang": "zh",
         "module_type": 18,
         "pet_info": {
             "avatar": null,
-            "id": 36327,
-            "name": "德文"
+            "id": 3810,
+            "name": "汤圆"
         },
-        "pet_profile_id": 36327,
-        "report": "{\"report_6\": [...], \"scores\": {\"diet_management\": \"100\", \"daily_activity\": \"75\", \"living_habits\": \"88\", \"cleaning_care\": \"92\", \"health_status\": \"85\"}, \"review_conclusion\": {\"conclusion\": \"您的宠物整体健康状况良好...\", \"maintenance_advice\": \"建议保持当前的饮食管理...\", \"health_alert\": \"0\", \"intelligent_diagnosis_push\": false}, \"comprehensive_score\": 88, \"health_percentage\": 88.0, \"improvement_suggestions\": {...}}",
+        "pet_profile_id": 3810,
+        "report": "{\"report_6\": [{\"id\": 1, \"category\": \"diet\", \"question\": \"吃完饭后，TA会经常打嗝或排气（放屁）吗？\", \"options\": [{\"option_id\": 1, \"text\": \"几乎不会，消化系统很棒\"}, ...], \"answer\": {\"option_id\": 1, \"text\": \"几乎不会，消化系统很棒\"}}, ...], \"scores\": {\"diet_management\": 87.5, \"daily_activity\": 81.25, \"living_habits\": 81.25, \"cleaning_care\": 81.25, \"health_status\": 81.25}, \"review_conclusion\": {\"conclusion\": \"汤圆整体状态良好，体重偏高是主要问题。日常运动得分较低，运动不足导致能量消耗减少，进而引发体重增加。\", \"maintenance_advice\": \"您的宠物体重偏高，请考虑减少每日饮食量或增加适当运动。这与【日常运动】得分较低密切相关，当前的运动量不足以消耗饮食摄入的能量...\", \"health_alert\": \"1\", \"intelligent_diagnosis_push\": false}, \"comprehensive_score\": 82, \"health_percentage\": 74.0, \"improvement_suggestions\": {\"diet_nutrition\": \"汤圆体重9公斤，饮食以主粮为主，建议每日干粮摄入量控制在60-80克...\", \"living_environment\": \"汤圆为室内猫，建议每日安排15分钟窗台观景时间...\", \"daily_care\": \"为预防毛发打结和皮肤问题，建议每日梳理毛发5分钟...\", \"exercise_advice\": \"汤圆活动较单一，建议每周带户外散步2次，每次30分钟...\", \"health_advice\": \"为预防牙周病，建议建立每周刷牙3-4次习惯；每6个月进行一次体内外驱虫...\"}}",
         "report_info": {
-            "content": "综合评分88分",
+            "content": "无",
             "img_url": null,
             "report_url": null,
-            "title": "健康检查报告"
+            "title": "无"
         },
         "report_status": 2,
-        "report_time": "2025-11-24T08:18:59",
+        "report_time": "2025-11-25T09:11:12",
         "report_type": "v2",
-        "session_id": "b40e4434-0046-445f-8495-8f8d3379240d",
+        "session_id": "df123cd1-d743-4318-8059-2f34c5f563e4",
         "stage": null,
         "status": 2,
         "sub_module_type": null,
         "summary": null,
-        "updated_at": "2025-11-24T16:18:22"
+        "updated_at": "2025-11-25T09:26:56"
     },
     "message": "Get successfully.",
     "success": true
@@ -186,20 +186,20 @@ curl -X 'GET' \
 
 ### 2. 各维度评分（`scores`）
 包含五个维度的评分情况。
-- **`diet_management`**：饮食管理评分（0-100分，字符串格式）
-- **`daily_activity`**：日常活动评分（0-100分，字符串格式）
-- **`living_habits`**：生活习惯评分（0-100分，字符串格式）
-- **`cleaning_care`**：清洁护理评分（0-100分，字符串格式）
-- **`health_status`**：健康状态评分（0-100分，字符串格式）
+- **`diet_management`**：饮食管理评分（0-100分，number类型）
+- **`daily_activity`**：日常活动评分（0-100分，number类型）
+- **`living_habits`**：生活习惯评分（0-100分，number类型）
+- **`cleaning_care`**：清洁护理评分（0-100分，number类型）
+- **`health_status`**：健康状态评分（0-100分，number类型）
 
 示例：
 ```json
 {
-  "diet_management": "100",
-  "daily_activity": "75",
-  "living_habits": "88",
-  "cleaning_care": "92",
-  "health_status": "85"
+  "diet_management": 87.5,
+  "daily_activity": 81.25,
+  "living_habits": 81.25,
+  "cleaning_care": 81.25,
+  "health_status": 81.25
 }
 ```
 
@@ -213,9 +213,9 @@ curl -X 'GET' \
 示例：
 ```json
 {
-  "conclusion": "您的宠物整体健康状况良好，在饮食管理、清洁护理等方面表现优秀，但在日常活动方面还有提升空间。",
-  "maintenance_advice": "建议保持当前的饮食管理和清洁护理习惯，适当增加日常运动量，定期进行健康检查。",
-  "health_alert": "0",
+  "conclusion": "汤圆整体状态良好，体重偏高是主要问题。日常运动得分稍低，运动量不足导致能量消耗不够，进而引发体重增加。",
+  "maintenance_advice": "您的宠物体重偏高，请考虑减少每日饮食量或增加适当运动。这与【日常运动】得分较低密切相关，当前的运动量不足以消耗饮食摄入的能量，是导致体重问题的核心原因。因此，建议您每周增加户外活动次数和时长，至少每次30分钟以上，并在室内增加互动游戏时间。其次，饮食管理得分较高，但仍需严格控制零食摄入，避免额外热量积累。建议保持饮食结构稳定，避免分享人类食物，确保饮食均衡。",
+  "health_alert": "1",
   "intelligent_diagnosis_push": false
 }
 ```
@@ -237,11 +237,11 @@ curl -X 'GET' \
 示例：
 ```json
 {
-  "diet_nutrition": "建议每日定时定点喂食2-3餐，零食控制在每日总热量的10%以内，避免过度投喂导致体重异常。",
-  "living_environment": "建议每日安排15分钟嗅闻游戏，丰富环境刺激，促进精神活跃，减少因单调导致的行为问题。",
-  "daily_care": "建议每日梳毛5分钟，保持皮毛清洁，预防皮肤问题，每1-2周修剪一次指甲，避免抓伤和行走不适。",
-  "exercise_advice": "建议每日额外增加20分钟散步，促进体重管理和心肺功能，避免因运动不足导致的肥胖风险。",
-  "health_advice": "建议每周刷牙3-4次，预防牙菌斑和牙周病，每年进行1次全面体检，及时发现潜在健康问题。"
+  "diet_nutrition": "汤圆体重9公斤，食欲极佳，建议每日干粮摄入量控制在60-80克，零食不超过总热量的10%，分3-4次投喂，保障营养均衡。",
+  "living_environment": "为满足英短银渐层的好奇心，建议每日安排15分钟嗅闻垫寻宝游戏，保持环境清洁，每周清洗窝垫至少1次，提升生活趣味与舒适度。",
+  "daily_care": "汤圆毛发浓密，建议每日梳理毛发5分钟，防止毛球形成；每1-2周修剪一次指甲，保持爪部健康，避免抓伤和不适。",
+  "exercise_advice": "汤圆活动时间不足，建议每周至少带户外散步2次，每次30分钟，室内每日用逗猫棒互动游戏30分钟，促进身心健康发展。",
+  "health_advice": "为预防寄生虫和保持健康，建议每6个月进行一次体内外驱虫，每年安排1次全面体检，按时更新疫苗，保障汤圆健康成长。"
 }
 ```
 
@@ -262,9 +262,8 @@ curl -X 'GET' \
 6. **报告完整性**：确保 `report_status=2` 且 `status=2` 再使用报告数据
 7. **健康警示**：注意检查 `review_conclusion.health_alert` 字段，如果为"1"表示存在健康风险，建议及时就医
 8. **智能诊断推送**：如果 `intelligent_diagnosis_push` 为 true，建议引导用户使用智能问诊功能进一步诊断
-9. **评分格式**：`scores` 对象中的各项评分是字符串格式，需要转换为数字后再进行计算或展示
-10. **专业建议**：报告仅供参考，不能替代专业兽医的诊断和治疗
-11. **数据安全**：报告包含宠物的敏感健康信息，请妥善保管
+9. **专业建议**：报告仅供参考，不能替代专业兽医的诊断和治疗
+10. **数据安全**：报告包含宠物的敏感健康信息，请妥善保管
 
 ## 接口调试
 ---
