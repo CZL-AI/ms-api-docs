@@ -70,7 +70,7 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI
     tag="health-check"
     type="post"
-    path="/health-check/submit-answer"
+    path="/ai-health-check/answer"
     version="v2"
   />
 </ClientOnly>

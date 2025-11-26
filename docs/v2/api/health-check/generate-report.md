@@ -111,7 +111,7 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI
     tag="health-check"
     type="post"
-    path="/health-check/generate-report"
+    path="/ai-health-check/report"
     version="v2"
   />
 </ClientOnly>

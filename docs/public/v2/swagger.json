@@ -1644,7 +1644,7 @@
         ]
       }
     },
-    "/health-check/generate-report": {
+    "/ai-health-check/report": {
       "post": {
         "operationId": "app.api.HealthCheckAPI.generate_report",
         "requestBody": {
@@ -1704,7 +1704,7 @@
         ]
       }
     },
-    "/health-check/get-progress": {
+    "/ai-health-check/progress": {
       "get": {
         "operationId": "app.api.HealthCheckAPI.get_progress",
         "parameters": [
@@ -1771,7 +1771,7 @@
         ]
       }
     },
-    "/health-check/get-questions": {
+    "/ai-health-check/questions": {
       "get": {
         "operationId": "app.api.HealthCheckAPI.get_questions",
         "parameters": [
@@ -1843,7 +1843,7 @@
         ]
       }
     },
-    "/health-check/submit-answer": {
+    "/ai-health-check/answer": {
       "post": {
         "operationId": "app.api.HealthCheckAPI.submit_answer",
         "requestBody": {
