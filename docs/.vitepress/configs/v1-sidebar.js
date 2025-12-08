@@ -58,6 +58,20 @@ export default function getV1Sidebar() {
       ]
     },
     {
+      text: '异宠品种识别',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '开始会话流程', link: '/v1/api/exotic-pet-identification/session-start' },
+            { text: '获取识别结果', link: '/v1/api/exotic-pet-identification/summary' },
+            { text: '生成识别报告', link: '/v1/api/exotic-pet-identification/report' },
+            { text: '获取识别报告', link: '/v1/api/exotic-pet-identification/medical-record' },
+          ]
+        }
+      ]
+    },
+    {
       text: '宠物情绪识别',
       collapsible: true,
       items: [
