@@ -30,3 +30,50 @@ html.dark {
 .vp-doc th {
   color: unset !important;
 }
+
+/* 认证组件样式 */
+.vp-nav {
+  position: relative;
+  z-index: 100;
+}
+
+/* 登录页面 */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* 用户信息组件 */
+.user-profile {
+  margin-left: 16px;
+}
+
+/* 过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.slide-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}

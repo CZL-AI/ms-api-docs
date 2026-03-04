@@ -31,6 +31,7 @@
     }
   },
   "dependencies": {
+    "jwt-decode": "^4.0.0",
     "ms-docs": "file:"
   },
   "repository": {

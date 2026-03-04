@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      jwt-decode:
+        specifier: ^4.0.0
+        version: 4.0.0
       ms-docs:
         specifier: 'file:'
         version: 'file:'
@@ -32,10 +35,10 @@ importers:
         version: 5.0.1(express@4.21.2)
       vitepress:
         specifier: ^1.0.1
-        version: 1.0.1(@algolia/client-search@4.23.1)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
+        version: 1.0.1(@algolia/client-search@4.23.1)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
       vitepress-theme-demoblock:
         specifier: ^3.0.5
-        version: 3.0.5(@algolia/client-search@4.23.1)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
+        version: 3.0.5(@algolia/client-search@4.23.1)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
 
 packages:
 
@@ -1158,6 +1161,10 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  jwt-decode@4.0.0:
+    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
+    engines: {node: '>=18'}
 
   less@4.2.0:
     resolution: {integrity: sha512-P3b3HJDBtSzsXUl0im2L7gTO5Ubg8mEN6G8qoTS77iXxXX4Hvu4Qj540PZDvQ8V6DmX6iXo98k7Md0Cm1PrLaA==}
@@ -2446,13 +2453,14 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.21)':
+  '@vueuse/integrations@10.9.0(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.21)':
     dependencies:
       '@vueuse/core': 10.9.0(vue@3.4.21)
       '@vueuse/shared': 10.9.0(vue@3.4.21)
       vue-demi: 0.14.7(vue@3.4.21)
     optionalDependencies:
       focus-trap: 7.5.4
+      jwt-decode: 4.0.0
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -2912,6 +2920,8 @@ snapshots:
   jsesc@2.5.2: {}
 
   json5@2.2.3: {}
+
+  jwt-decode@4.0.0: {}
 
   less@4.2.0:
     dependencies:
@@ -3594,7 +3604,7 @@ snapshots:
       fsevents: 2.3.3
       less: 4.2.0
 
-  vitepress-theme-demoblock@3.0.5(@algolia/client-search@4.23.1)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0):
+  vitepress-theme-demoblock@3.0.5(@algolia/client-search@4.23.1)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0):
     dependencies:
       '@floating-ui/vue': 1.0.6(vue@3.4.21)
       '@mdit-vue/plugin-sfc': 2.0.0
@@ -3616,7 +3626,7 @@ snapshots:
       shiki: 1.2.1
       unified: 11.0.4
       unist-util-visit: 5.0.0
-      vitepress: 1.0.1(@algolia/client-search@4.23.1)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
+      vitepress: 1.0.1(@algolia/client-search@4.23.1)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0)
       vue: 3.4.21
       yaml: 2.4.1
     transitivePeerDependencies:
@@ -3649,7 +3659,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  vitepress@1.0.1(@algolia/client-search@4.23.1)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0):
+  vitepress@1.0.1(@algolia/client-search@4.23.1)(jwt-decode@4.0.0)(less@4.2.0)(postcss@8.4.38)(search-insights@2.6.0):
     dependencies:
       '@docsearch/css': 3.6.0
       '@docsearch/js': 3.6.0(@algolia/client-search@4.23.1)(search-insights@2.6.0)
@@ -3659,7 +3669,7 @@ snapshots:
       '@vitejs/plugin-vue': 5.0.4(vite@5.2.6(less@4.2.0))(vue@3.4.21)
       '@vue/devtools-api': 7.0.24(vue@3.4.21)
       '@vueuse/core': 10.9.0(vue@3.4.21)
-      '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(vue@3.4.21)
+      '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(jwt-decode@4.0.0)(vue@3.4.21)
       focus-trap: 7.5.4
       mark.js: 8.11.1
       minisearch: 6.3.0

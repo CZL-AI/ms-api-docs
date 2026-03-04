@@ -266,5 +266,18 @@ export default function getV1Sidebar() {
         }
       ]
     },
+    {
+      text: '养宠百科',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '开始会话流程', link: '/v2/api/encyclopedia/session-start' },
+            { text: 'AI问答', link: '/v2/api/encyclopedia/answer' },
+            { text: '问题推荐', link: '/v2/api/encyclopedia/relation' },
+          ]
+        }
+      ]
+    }
   ]
 }
