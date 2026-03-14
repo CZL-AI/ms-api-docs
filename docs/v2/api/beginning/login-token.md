@@ -6,7 +6,7 @@
 
 ## 使用方法
 ---
-开发者需要通过HTTP GET请求获取access_token，请求时需要提供企业ID（corp_id）和用户ID（user_id）两个参数。获取到的access_token有效期为两天（172800秒），开发者需要在过期前重新获取，以确保API调用的连续性。建议实现access_token的缓存和自动刷新机制，避免频繁请求影响性能。
+开发者需要通过HTTP GET请求获取access_token，提供API Key（api_key）或企业ID（corp_id），以及用户ID（user_id）。两种认证方式至少传一个，若同时传入则优先使用api_key。获取到的access_token有效期为两天（172800秒），开发者需要在过期前重新获取，以确保API调用的连续性。建议实现access_token的缓存和自动刷新机制，避免频繁请求影响性能。
 
 ## 适用场景
 ---
@@ -20,14 +20,19 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/auth/token/accessToken?corp_id=[CORP_ID]&user_id=[USER_ID]`
+**用api_key和user_id请求access_token地址：** `https://ms-ai.chongzhiling.com/token/accessToken?api_key=[API_KEY]&user_id=[USER_ID]` 
+
+**用corp_id和user_id请求access_token地址：** `https://ms-ai.chongzhiling.com/token/accessToken?corp_id=[corp_id]&user_id=[USER_ID]`
+
 
 **参数列表：**
 
 | 参数    | 含义                                                                                                                                                                                 |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| corp_id | 企业ID: 每个企业都拥有唯一的corpid，获取此信息可在管理后台查看                                                                                                                       |
+| corp_id | 企业ID（兼容旧版）: 每个企业都拥有唯一的corp_id，获取此信息可在管理后台查看。与api_key二选一。                                                     |
 | user_id | 用户ID: 接入方系统的用户唯一标识，用于在SaaS平台中唯一标识和关联用户数据。该ID由接入方系统提供，作为用户数据在SaaS平台中的主键标识。若不考虑多用户场景，接入方可使用任意唯一标识符。 |
+| api_key | 在API KEY管理生成自己的apikey。 |
+
 
 **返回结果：**
 ```json
