@@ -1,9 +1,10 @@
 
 
+
 export default function getV1Sidebar() {
   return [
     {
-      text: '起步',
+      text: '开始',
       collapsible: true,
       items: [
         {
@@ -52,152 +53,6 @@ export default function getV1Sidebar() {
             { text: '图片', link: '/v2/api/file/image' },
             { text: '视频', link: '/v2/api/file/video' },
             { text: 'OSS临时凭证-客户端直连', link: '/v2/api/file/policy' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '图片识别',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '生成报告', link: '/v2/api/pic-result/index' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '宠物品种识别',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/pet-identification/session-start' },
-            { text: '获取识别结果', link: '/v2/api/pet-identification/summary' },
-            { text: '生成识别报告', link: '/v2/api/pet-identification/report' },
-            { text: '获取识别报告', link: '/v2/api/pet-identification/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '宠物情绪识别',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/pet-emotional-recognition/session-start' },
-            { text: '获取识别结果', link: '/v2/api/pet-emotional-recognition/summary' },
-            { text: '生成识别报告', link: '/v2/api/pet-emotional-recognition/report' },
-            { text: '获取识别报告', link: '/v2/api/pet-emotional-recognition/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '皮肤检测',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/skin-detection/session-start' },
-            { text: '获取识别结果', link: '/v2/api/skin-detection/summary' },
-            { text: '生成识别报告', link: '/v2/api/skin-detection/report' },
-            { text: '获取识别报告', link: '/v2/api/skin-detection/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '耳道检测',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/ear-canal-detection/session-start' },
-            { text: '获取识别结果', link: '/v2/api/ear-canal-detection/summary' },
-            { text: '生成识别报告', link: '/v2/api/ear-canal-detection/report' },
-            { text: '获取识别报告', link: '/v2/api/ear-canal-detection/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '眼睛检查',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/eye-examination/session-start' },
-            { text: '获取识别结果', link: '/v2/api/eye-examination/summary' },
-            { text: '生成识别报告', link: '/v2/api/eye-examination/report' },
-            { text: '获取识别报告', link: '/v2/api/eye-examination/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '口腔检查',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/oral-examination/session-start' },
-            { text: '获取识别结果', link: '/v2/api/oral-examination/summary' },
-            { text: '生成识别报告', link: '/v2/api/oral-examination/report' },
-            { text: '获取识别报告', link: '/v2/api/oral-examination/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '排泄物',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/excrement/session-start' },
-            { text: '获取识别结果', link: '/v2/api/excrement/summary' },
-            { text: '生成识别报告', link: '/v2/api/excrement/report' },
-            { text: '获取识别报告', link: '/v2/api/excrement/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '呕吐物',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '开始会话流程', link: '/v2/api/vomit/session-start' },
-            { text: '获取识别结果', link: '/v2/api/vomit/summary' },
-            { text: '生成识别报告', link: '/v2/api/vomit/report' },
-            { text: '获取识别报告', link: '/v2/api/vomit/medical-record' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '表情包生成',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '流程开始', link: '/v2/api/ai-meme/session-start' },
-            { text: '生成表情包', link: '/v2/api/ai-meme/ai-meme' },
-          ]
-        }
-      ]
-    },
-    {
-      text: '鸟类鉴别',
-      collapsible: true,
-      items: [
-        {
-          items: [
-            { text: '品种识别', link: '/v2/api/identifying_birds/index' },
           ]
         }
       ]
@@ -275,22 +130,117 @@ export default function getV1Sidebar() {
       ]
     },
     {
-      text: '声音识别',
+      text: '宠物识别AI',
       collapsible: true,
       items: [
         {
+          text: '多宠识别',
           items: [
-            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
+            { text: '多宠识别', link: '/v2/api/multi-pet-recognition/index' },
+          ]
+        },
+        {
+          text: '鸟类识别',
+          items: [
+            { text: '品种识别', link: '/v2/api/identifying_birds/index' },
           ]
         }
       ]
     },
     {
-      text: '健康评测',
-      link: '/v2/api/health-check/index',
+      text: '宠物医疗AI',
       collapsible: true,
       items: [
         {
+          text: '犬/猫皮肤病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/skin-detection/session-start' },
+            { text: '获取识别结果', link: '/v2/api/skin-detection/summary' },
+            { text: '生成识别报告', link: '/v2/api/skin-detection/report' },
+            { text: '获取识别报告', link: '/v2/api/skin-detection/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫耳道病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/ear-canal-detection/session-start' },
+            { text: '获取识别结果', link: '/v2/api/ear-canal-detection/summary' },
+            { text: '生成识别报告', link: '/v2/api/ear-canal-detection/report' },
+            { text: '获取识别报告', link: '/v2/api/ear-canal-detection/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫眼睛病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/eye-examination/session-start' },
+            { text: '获取识别结果', link: '/v2/api/eye-examination/summary' },
+            { text: '生成识别报告', link: '/v2/api/eye-examination/report' },
+            { text: '获取识别报告', link: '/v2/api/eye-examination/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫口腔病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/oral-examination/session-start' },
+            { text: '获取识别结果', link: '/v2/api/oral-examination/summary' },
+            { text: '生成识别报告', link: '/v2/api/oral-examination/report' },
+            { text: '获取识别报告', link: '/v2/api/oral-examination/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫排泄物病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/excrement/session-start' },
+            { text: '获取识别结果', link: '/v2/api/excrement/summary' },
+            { text: '生成识别报告', link: '/v2/api/excrement/report' },
+            { text: '获取识别报告', link: '/v2/api/excrement/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫呕吐物病症识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/vomit/session-start' },
+            { text: '获取识别结果', link: '/v2/api/vomit/summary' },
+            { text: '生成识别报告', link: '/v2/api/vomit/report' },
+            { text: '获取识别报告', link: '/v2/api/vomit/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫类病症诊断',
+          items: [
+            { text: '犬/猫类病症诊断', link: '/v2/api/pet-disease-diagnosis/index' },
+          ]
+        }
+      ]
+    },
+    {
+      text: '宠物健康AI',
+      collapsible: true,
+      items: [
+        {
+          text: '犬/猫类情绪识别',
+          items: [
+            { text: '开始会话流程', link: '/v2/api/pet-emotional-recognition/session-start' },
+            { text: '获取识别结果', link: '/v2/api/pet-emotional-recognition/summary' },
+            { text: '生成识别报告', link: '/v2/api/pet-emotional-recognition/report' },
+            { text: '获取识别报告', link: '/v2/api/pet-emotional-recognition/medical-record' },
+          ]
+        },
+        {
+          text: '犬/猫类进食进水识别',
+          items: [
+            { text: '进食进水识别', link: '/v2/api/video-analysis/feeder.md' },
+          ]
+        },
+        {
+          text: '犬/猫类行为识别',
+          items: [
+            { text: '犬/猫类行为识别', link: '/v2/api/pet-behavior-recognition/index' },
+          ]
+        },
+        {
+          text: '犬/猫类健康评估',
+          link: '/v2/api/health-check/index',
           items: [
             { text: '开始会话流程', link: '/v2/api/health-check/session-start' },
             { text: '获取问题集', link: '/v2/api/health-check/get-questions' },
@@ -299,16 +249,55 @@ export default function getV1Sidebar() {
             { text: '生成报告', link: '/v2/api/health-check/generate-report' },
             { text: '获取报告详情', link: '/v2/api/health-check/get-report' }
           ]
+        },
+        {
+          text: '宠物健康问答',
+          items: [
+            { text: '宠物健康问答', link: '/v2/api/pet-health-qa/index' },
+          ]
+        },
+        {
+          text: '声音情绪识别',
+          items: [
+            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
+          ]
         }
       ]
     },
     {
-      text: '视频分析',
+      text: '宠物娱乐AI',
+      collapsible: true,
+      items: [
+        {
+          text: '宠物表情包生成',
+          items: [
+            { text: '流程开始', link: '/v2/api/ai-meme/session-start' },
+            { text: '生成表情包', link: '/v2/api/ai-meme/ai-meme' },
+          ]
+        }
+      ]
+    },
+    {
+      text: '图片识别',
       collapsible: true,
       items: [
         {
           items: [
-            { text: '进食进水识别', link: '/v2/api/video-analysis/feeder.md' },
+            { text: '生成报告', link: '/v2/api/pic-result/index' },
+          ]
+        }
+      ]
+    },
+    {
+      text: '宠物品种识别',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '开始会话流程', link: '/v2/api/pet-identification/session-start' },
+            { text: '获取识别结果', link: '/v2/api/pet-identification/summary' },
+            { text: '生成识别报告', link: '/v2/api/pet-identification/report' },
+            { text: '获取识别报告', link: '/v2/api/pet-identification/medical-record' },
           ]
         }
       ]
