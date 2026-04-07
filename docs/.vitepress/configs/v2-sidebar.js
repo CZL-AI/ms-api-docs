@@ -137,6 +137,9 @@ export default function getV1Sidebar() {
           text: '多宠识别',
           items: [
             { text: '多宠识别', link: '/v2/api/multi-pet-recognition/index' },
+            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
+            { text: '声音识别分析（上传文件）', link: '/v2/api/voice/recg-analysis' },
+            { text: '声音识别分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url' },
           ]
         },
         {
@@ -254,6 +257,8 @@ export default function getV1Sidebar() {
           text: '宠物健康问答',
           items: [
             { text: '宠物健康问答', link: '/v2/api/pet-health-qa/index' },
+            { text: '进食进水识别', link: '/v2/api/video-analysis/feeder.md' },
+            { text: '视频行为分析', link: '/v2/api/video-analysis/behavior' },
           ]
         },
         {
