@@ -140,6 +140,19 @@ export default function getV1Sidebar() {
           ]
         },
         {
+          text: '声音情绪识别（旧）',
+          items: [
+            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
+          ]
+        },
+        {
+          text: '声音识别分析（新）',
+          items: [
+            { text: '声音识别分析（上传文件）', link: '/v2/api/voice/recg-analysis' },
+            { text: '声音识别分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url' },
+          ]
+        },
+        {
           text: '鸟类识别',
           items: [
             { text: '品种识别', link: '/v2/api/identifying_birds/index' },
@@ -239,6 +252,12 @@ export default function getV1Sidebar() {
           ]
         },
         {
+          text: '犬/猫类视频行为分析',
+          items: [
+            { text: '视频行为分析', link: '/v2/api/video-analysis/behavior' },
+          ]
+        },
+        {
           text: '犬/猫类健康评估',
           link: '/v2/api/health-check/index',
           items: [
@@ -256,25 +275,6 @@ export default function getV1Sidebar() {
             { text: '宠物健康问答', link: '/v2/api/pet-health-qa/index' },
           ]
         },
-        {
-          text: '犬/猫类视频行为分析',
-          items: [
-            { text: '视频行为分析', link: '/v2/api/video-analysis/behavior' },
-          ]
-        },
-        {
-          text: '声音情绪识别',
-          items: [
-            { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
-          ]
-        },
-        {
-          text: '声音识别分析',
-          items: [
-            { text: '声音识别分析（上传文件）', link: '/v2/api/voice/recg-analysis' },
-            { text: '声音识别分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url' },
-          ]
-        }
       ]
     },
     {
