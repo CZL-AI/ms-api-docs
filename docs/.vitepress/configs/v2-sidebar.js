@@ -246,12 +246,6 @@ export default function getV1Sidebar() {
           ]
         },
         {
-          text: '犬/猫类行为识别',
-          items: [
-            { text: '犬/猫类行为识别', link: '/v2/api/pet-behavior-recognition/index' },
-          ]
-        },
-        {
           text: '犬/猫类视频行为分析',
           items: [
             { text: '视频行为分析', link: '/v2/api/video-analysis/behavior' },
