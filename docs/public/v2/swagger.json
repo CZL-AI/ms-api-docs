@@ -976,6 +976,17 @@
     "/ai-conv/answer": {
       "post": {
         "operationId": "app.api.AiConvAPI.answer",
+        "parameters": [
+          {
+            "description": "\u662f\u5426\u4f7f\u7528SSE\u6d41\u5f0f\u4f20\u8f93(true|false)",
+            "in": "query",
+            "name": "is_sse",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
