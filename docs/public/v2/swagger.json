@@ -976,6 +976,17 @@
     "/ai-conv/answer": {
       "post": {
         "operationId": "app.api.AiConvAPI.answer",
+        "parameters": [
+          {
+            "description": "\u662f\u5426\u4f7f\u7528SSE\u6d41\u5f0f\u4f20\u8f93(true|false)",
+            "in": "query",
+            "name": "is_sse",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4365,7 +4376,14 @@
                   },
                   "module_type": {
                     "items": {
-                      "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                      "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b 19-\u5ba0\u7269\u6863\u6848\u5efa\u8bae",
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "sub_module_type": {
+                    "items": {
+                      "description": "\u6a21\u5757\u5b50\u7c7b\u578b\uff0cmodule_type=19 \u65f6 1-\u5582\u517b\u5efa\u8bae 2-\u517b\u6210\u5efa\u8bae",
                       "type": "integer"
                     },
                     "type": "array"
@@ -4420,6 +4438,63 @@
           }
         ],
         "summary": "\u83b7\u53d6\u533b\u7597\u62a5\u544a\u5217\u8868",
+        "tags": [
+          "medical-record"
+        ]
+      }
+    },
+    "/medical-session-list": {
+      "post": {
+        "operationId": "app.api.MedicalReportAPI.get_medical_session_list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "宠物档案id",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "page": {
+                    "default": 1,
+                    "description": "页码",
+                    "type": "integer"
+                  },
+                  "limit": {
+                    "default": 10,
+                    "description": "每页数量",
+                    "type": "integer"
+                  },
+                  "module_type": {
+                    "description": "默认查询智能问诊和知识问答",
+                    "items": {
+                      "description": "模块类型 1-智能问诊 4-知识问答",
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "成功获取历史会话列表"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "获取当前用户历史会话列表",
         "tags": [
           "medical-record"
         ]
@@ -4817,6 +4892,284 @@
           }
         ],
         "summary": "\u66f4\u65b0\u5ba0\u7269\u6863\u6848",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/feeding-advice": {
+      "post": {
+        "operationId": "app.api.PetProfileAdviceAPI.generate_feeding_advice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "宠物档案id",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "pet_profile_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "成功获取喂养建议"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "生成宠物档案喂养建议",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/growth-advice": {
+      "post": {
+        "operationId": "app.api.PetProfileAdviceAPI.generate_growth_advice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pet_profile_id": {
+                    "description": "宠物档案id",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "pet_profile_id"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "成功获取养成建议"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "生成宠物档案养成建议",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/advice-overview": {
+      "get": {
+        "operationId": "app.api.PetProfileAdviceAPI.get_advice_overview",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pet_profile_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "成功获取建议概览"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "获取宠物档案建议概览",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/advice-records": {
+      "get": {
+        "operationId": "app.api.PetProfileAdviceAPI.get_advice_records",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/pet_profile_id"
+          },
+          {
+            "description": "建议类型，可选值：feeding|feeding_advice|growth|growth_advice",
+            "in": "query",
+            "name": "advice_type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "页码",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "每页数量",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 10,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "成功获取建议历史列表"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "获取宠物档案建议历史列表",
+        "tags": [
+          "pets"
+        ]
+      }
+    },
+    "/pet-profile/advice-record": {
+      "get": {
+        "operationId": "app.api.PetProfileAdviceAPI.get_advice_record_detail",
+        "parameters": [
+          {
+            "description": "建议记录id",
+            "in": "query",
+            "name": "medical_record_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "成功获取建议历史详情"
+          }
+        },
+        "security": [
+          {
+            "jwt": [
+              "secret"
+            ]
+          }
+        ],
+        "summary": "获取宠物档案建议历史详情",
         "tags": [
           "pets"
         ]
@@ -5997,6 +6350,26 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "description": "页码，默认1",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "每页数量，默认20",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
             }
           }
         ],

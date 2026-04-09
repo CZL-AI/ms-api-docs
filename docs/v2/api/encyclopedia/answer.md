@@ -4,9 +4,18 @@
 ---
 开发者在获取 session_id 后，即可调用本接口向 AI 发起问答请求，获取流式回答内容。
 
+## 多语言支持
+---
+`2026-04-02` 起，本接口支持中英文双语服务切换。
+
+- 中文入口：`/api/v1.0/ai-b/...`
+- 英文入口：`/api/v1.0/ai-en/...`
+- 无需额外传 `lang` 参数，系统会根据请求入口自动识别语言，并切换到对应语言版本的问答服务与流式响应链路。
+
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
+**英文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-en/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
 
 > ⚠️ 注意：当 `is_sse=true` 时，接口使用标准的 SSE 事件类型返回；否则使用传统的 `$` 结尾格式返回。
 
@@ -93,6 +102,7 @@ AI生成的最后一个回答片段$
 3. **字符编码**：确保正确处理 UTF-8 编码的中文内容
 4. **超时设置**：设置合理的超时时间，避免长时间等待无响应
 5. **重试机制**：网络中断时应实现自动重连机制
+6. **语言一致性**：同一个会话请始终使用同一语言入口，例如中文使用 `/ai-b`，英文使用 `/ai-en`
 
 ## 接口调试：
 ---
