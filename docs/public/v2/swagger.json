@@ -4376,7 +4376,14 @@
                   },
                   "module_type": {
                     "items": {
-                      "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b",
+                      "description": "\u6a21\u5757\u7c7b\u578b 1-\u667a\u80fd\u95ee\u8bca 2-\u5065\u5eb7\u68c0\u6d4b 3-\u7528\u836f\u5206\u6790 4-\u77e5\u8bc6\u95ee\u7b54 5-\u56fe\u50cf\u8bc6\u522b 19-\u5ba0\u7269\u6863\u6848\u5efa\u8bae",
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "sub_module_type": {
+                    "items": {
+                      "description": "\u6a21\u5757\u5b50\u7c7b\u578b\uff0cmodule_type=19 \u65f6 1-\u5582\u517b\u5efa\u8bae 2-\u517b\u6210\u5efa\u8bae",
                       "type": "integer"
                     },
                     "type": "array"
@@ -5056,7 +5063,7 @@
             "$ref": "#/components/parameters/pet_profile_id"
           },
           {
-            "description": "建议类型，feeding|growth，可选",
+            "description": "建议类型，可选值：feeding|feeding_advice|growth|growth_advice",
             "in": "query",
             "name": "advice_type",
             "schema": {
