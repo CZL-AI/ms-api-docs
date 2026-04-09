@@ -45,6 +45,23 @@ export default function getV1Sidebar() {
       ]
     },
     {
+      text: '宠物档案建议',
+      link: '/v2/api/pet-profile-advice/index',
+      collapsible: true,
+      items: [
+        {
+          items: [
+            { text: '接口说明', link: '/v2/api/pet-profile-advice/index' },
+            { text: '生成喂养建议', link: '/v2/api/pet-profile-advice/feeding-advice' },
+            { text: '生成养成建议', link: '/v2/api/pet-profile-advice/growth-advice' },
+            { text: '获取建议概览', link: '/v2/api/pet-profile-advice/advice-overview' },
+            { text: '获取建议历史列表', link: '/v2/api/pet-profile-advice/advice-records' },
+            { text: '获取建议历史详情', link: '/v2/api/pet-profile-advice/advice-record' },
+          ]
+        }
+      ]
+    },
+    {
       text: '文件管理',
       collapsible: true,
       items: [

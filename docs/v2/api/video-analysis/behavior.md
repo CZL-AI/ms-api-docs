@@ -24,7 +24,7 @@ AI宠物视频行为分析服务能够对上传的宠物视频进行智能识别
    ```
 2. 调用本接口发起分析任务，获取 `report_id` 和 `is_pet_exist`
 3. 若 `is_pet_exist` 为 `0`，表示视频中未检测到猫狗，无需继续轮询
-4. 若 `is_pet_exist` 为 `1`，定期轮询医疗报告接口（`medical-record`），通过 `report_status` 判断报告是否生成完成
+4. 若 `is_pet_exist` 为 `1`，定期轮询[视频分析报告查询接口](./report.md)，通过 `report_status` 判断报告是否生成完成
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  

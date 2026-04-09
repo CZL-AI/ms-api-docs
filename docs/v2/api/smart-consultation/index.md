@@ -31,8 +31,12 @@
 - 发布生成报告任务（report接口）
 
 ### 6. 获取报告
-- 获取报告（medical-record接口）
-- 获取报告列表（medical-record-list接口）
+- 获取报告（[medical-record](./medical-record.md)接口）
+- 获取报告列表（[medical-record-list](./medical-record-list.md)接口）
+
+### 7. 会话恢复与历史查看
+- 获取聊天记录（[session-record](./get-history.md)接口）
+- 获取历史会话列表（[medical-session-list](./medical-session-list.md)接口）
 
 ## 模块结构
 
@@ -52,6 +56,9 @@
 ├── 判断是否需要传图
 │   ├── 是否需要上传图片
 │   └── 需要传图时的上传与处理
+├── 会话管理
+│   ├── 获取聊天记录
+│   └── 获取历史会话列表
 └── 报告生成与获取
     ├── 生成小结
     ├── 发布生成报告任务
