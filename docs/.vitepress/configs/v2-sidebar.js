@@ -140,6 +140,8 @@ export default function getV1Sidebar() {
         {
           text: '获取报告',
           items: [
+            { text: '获取聊天记录', link: '/v2/api/smart-consultation/get-history' },
+            { text: '获取历史会话列表', link: '/v2/api/smart-consultation/medical-session-list' },
             { text: '获取报告', link: '/v2/api/smart-consultation/medical-record' },
             { text: '获取报告列表', link: '/v2/api/smart-consultation/medical-record-list' }
           ]
