@@ -10,12 +10,13 @@
 
 - 中文入口：`/api/v1.0/ai-b/...`
 - 英文入口：`/api/v1.0/ai-en/...`
+- 英文联调/测试时，域名请切换为：`https://ms-ai-cn.chongzhiling.com`
 - 无需额外传 `lang` 参数，系统会根据请求入口自动识别语言，并切换到对应语言版本的问答服务与流式响应链路。
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
 **中文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
-**英文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-en/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
 
 > ⚠️ 注意：当 `is_sse=true` 时，接口使用标准的 SSE 事件类型返回；否则使用传统的 `$` 结尾格式返回。
 

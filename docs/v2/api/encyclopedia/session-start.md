@@ -10,9 +10,15 @@
 ---
 在调用养宠百科 API 前，需要先调用本接口获取 session_id。
 
+> 备注：
+> - 中文版使用：`https://ms-ai.chongzhiling.com/api/v1.0/ai-b/...`
+> - 英文版使用：`https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/...`
+> - 代码仓库 `ms-ai-b` 中已注册 `user-en.yaml`，该接口支持 `ai-en` 英文入口
+
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/session-record/session-start?token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/session-record/session-start?token=[ACCESS_TOKEN]`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/session-record/session-start?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 ```json

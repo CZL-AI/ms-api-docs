@@ -1,5 +1,13 @@
 # 智能问诊
 
+## 英文版备注
+
+根据 `ms-ai-b` 代码仓库中的 `ai-v2-en.yaml` 与接口实现，智能问诊部分接口支持英文入口。
+
+- 中文版域名与前缀：`https://ms-ai.chongzhiling.com/api/v2.0/ai-b/...`
+- 英文版域名与前缀：`https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/...`
+
+当前代码中已明确注册英文入口的能力包括：`session-record/session-start`、`session-record`、`medical-session-list`、`aidoc/keywords`、`aidoc/reason-info`、`aidoc/analysis`、`aidoc/related-question`、`aidoc/summary`、`aidoc/if-need-image`、`aidoc/if-continue-ask` 等。
 
 ## 接口调用流程
 
