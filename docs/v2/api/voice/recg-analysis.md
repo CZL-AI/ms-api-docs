@@ -13,7 +13,9 @@ AI宠物声音识别服务能够通过分析上传的宠物音频文件，对宠
 
 ## 接口调用前置步骤
 
-调用本接口前，需先调用 [session-start](../smart-consultation/session-start) 获取 `session_id`，传参时 `module_type` 固定为 **`13`**（声音识别模块）：
+调用本接口前，需先调用 [session-start](../smart-consultation/session-start) 获取 `session_id`，传参时 `module_type` 固定为 **`13`**（声音识别模块）。
+
+注意：**声音识别接口本身不需要传 `pet_profile_id`**，但前置的 `session-start` 是否需要传入，请以当前 `session-start` 文档和实际服务实现为准。当前示例如下：
 
 ```json
 {

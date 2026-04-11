@@ -14,7 +14,7 @@
 根据 `ms-ai-b` 代码仓库中的 OpenAPI 注册和接口实现，宠物档案建议接口同时支持英文入口：
 
 - 中文版域名与前缀：`https://ms-ai.chongzhiling.com/api/v2.0/ai-b/...`
-- 英文版域名与前缀：`https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/...`
+- 英文版域名与前缀：`https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/...`
 
 联调英文版时，请将域名切换到 `ms-ai-cn.chongzhiling.com`，并使用 `ai-en` 路径前缀。
 
