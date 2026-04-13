@@ -32,9 +32,20 @@ AI宠物声音识别服务能够通过分析上传的宠物音频文件，对宠
 
 | 参数 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| `voice` | `file` | 是 | 上传的音频文件（支持 wav、mp3 等常见格式） |
+| `voice` | `file` | 是 | 上传的音频文件，支持 `mp3`、`aac`、`wav`、`m4a` |
 | `session_id` | `string` | 是 | 会话ID，由 session-start 接口获取 |
 | `animal_type` | `integer` | 否 | 动物类型：`1`-猫，`2`-狗，默认 `1` |
+
+**curl 示例：**
+
+```bash
+curl -N --location 'https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis?token=[ACCESS_TOKEN]' \
+  --form 'session_id=[SESSION_ID]' \
+  --form 'animal_type=1' \
+  --form 'voice=@"/path/to/audio.mp3"'
+```
+
+> `session_id` 和 `animal_type` 建议放在 `multipart/form-data` 中；`-N` 用于关闭 curl 缓冲，便于实时查看流式返回。
 
 ## 返回结果
 
