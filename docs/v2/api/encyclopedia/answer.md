@@ -15,8 +15,16 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
-**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
-**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/ai-conv/answer?token=[ACCESS_TOKEN]&is_sse=true`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/ai-conv/answer?is_sse=true`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v1.0/ai-en/ai-conv/answer?is_sse=true`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+Accept: text/event-stream
+```
 
 > ⚠️ 注意：当 `is_sse=true` 时，接口使用标准的 SSE 事件类型返回；否则使用传统的 `$` 结尾格式返回。
 
@@ -32,7 +40,6 @@
 ### Query 参数
 | 名称    | 类型    | 必填 | 说明                                   |
 | ------- | ------- | ---- | -------------------------------------- |
-| token   | string  | 是   | 登录凭证，用于身份验证                 |
 | is_sse  | boolean | 否   | 是否使用 SSE 格式返回，默认 false      |
 
 ### Body 参数（`application/json`）

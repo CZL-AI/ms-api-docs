@@ -26,7 +26,14 @@ AI宠物声音识别服务能够通过分析上传的宠物音频文件，对宠
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Accept: text/event-stream
+```
 
 ## 请求参数：[multipart/form-data]
 
@@ -39,7 +46,8 @@ AI宠物声音识别服务能够通过分析上传的宠物音频文件，对宠
 **curl 示例：**
 
 ```bash
-curl -N --location 'https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis?token=[ACCESS_TOKEN]' \
+curl -N --location 'https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis' \
+  -H 'Authorization: Bearer [ACCESS_TOKEN]' \
   --form 'session_id=[SESSION_ID]' \
   --form 'animal_type=1' \
   --form 'voice=@"/path/to/audio.mp3"'
@@ -74,5 +82,11 @@ data: [DONE]
 
 | HTTP 状态码 | 说明 |
 | --- | --- |
-| `400` | 缺少必要参数（`voice` 或 `session_id`） |
+| `400` | 缺少必要参数，或请求格式错误 |
 | `401` | 未授权，token 无效或已过期 |
+
+## 补充说明
+
+- 上传版应始终使用 `multipart/form-data`
+- 代码中保留了对查询参数的兼容读取，但当前建议把 `session_id` 和 `animal_type` 都放在 form-data 中
+- 当 `voice` 缺失时，实际错误可能先由 OpenAPI 校验器返回 required-property 消息

@@ -28,7 +28,14 @@ AI宠物视频行为分析服务能够对上传的宠物视频进行智能识别
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-video-recg/gen-report?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-video-recg/gen-report`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+```
 
 ## 请求参数：[application/json]
 
@@ -42,7 +49,7 @@ AI宠物视频行为分析服务能够对上传的宠物视频进行智能识别
 | 参数 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
 | `session_id` | `string` | 是 | 会话ID，由 session-start 接口获取 |
-| `video_url` | `string` | 是 | 视频文件的可访问 URL（建议使用 OSS 链接） |
+| `video_url` | `string` | 是 | 视频文件的可访问 URL，当前要求为可访问的标准 MP4 文件 |
 
 ## 返回结果
 
@@ -82,3 +89,12 @@ AI宠物视频行为分析服务能够对上传的宠物视频进行智能识别
 | --- | --- |
 | `400` | 参数错误或对应的 session_id 不存在医疗记录 |
 | `401` | 未授权，token 无效或已过期 |
+
+## 重要说明
+
+`2026-04-13` 起，服务端会在真正提交分析任务前做视频预校验：
+
+- `video_url` 必须是 `http/https`
+- 文件扩展名必须是 `.mp4`
+- 服务端会尝试读取文件头并校验标准 MP4 `ftyp`
+- 链接不可访问、伪 MP4、非标准 MP4 都会直接返回 `400`

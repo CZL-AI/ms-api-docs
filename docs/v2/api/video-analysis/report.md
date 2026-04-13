@@ -11,7 +11,13 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
 
 ## 请求参数
 ### Query 参数
@@ -22,7 +28,8 @@
 
 ## 请求示例
 ```bash
-curl -X GET 'https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?report_id=1024&token=[ACCESS_TOKEN]'
+curl -X GET 'https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record?report_id=1024' \
+  -H 'Authorization: Bearer [ACCESS_TOKEN]'
 ```
 
 ## 返回结果

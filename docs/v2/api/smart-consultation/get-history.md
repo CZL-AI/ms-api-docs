@@ -13,7 +13,13 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/session-record?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/session-record`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
 
 ## 请求参数
 ### Query 参数
@@ -27,12 +33,12 @@
 
 ### 1. 兼容模式
 ```bash
-GET /api/v2.0/ai-b/session-record?token=xxx&session_id=7cc8c7e0-266f-4fb5-8bf9-cac62905a23d
+GET /api/v2.0/ai-b/session-record?session_id=7cc8c7e0-266f-4fb5-8bf9-cac62905a23d
 ```
 
 ### 2. 分页模式
 ```bash
-GET /api/v2.0/ai-b/session-record?token=xxx&session_id=7cc8c7e0-266f-4fb5-8bf9-cac62905a23d&page=1&limit=20
+GET /api/v2.0/ai-b/session-record?session_id=7cc8c7e0-266f-4fb5-8bf9-cac62905a23d&page=1&limit=20
 ```
 
 ## 返回结果

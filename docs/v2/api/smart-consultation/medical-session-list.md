@@ -13,7 +13,14 @@
 
 ## 调用接口
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-session-list?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-session-list`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+```
 
 ## 请求参数
 ### Body 参数（`application/json`）
