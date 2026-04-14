@@ -1,4 +1,4 @@
-# AI宠物声音识别分析（上传文件）
+# AI宠物声音识别分析（上传文件，流式）
 
 ## 产品介绍
 ---
@@ -88,5 +88,28 @@ data: [DONE]
 ## 补充说明
 
 - 上传版应始终使用 `multipart/form-data`
-- 代码中保留了对查询参数的兼容读取，但当前建议把 `session_id` 和 `animal_type` 都放在 form-data 中
-- 当 `voice` 缺失时，实际错误可能先由 OpenAPI 校验器返回 required-property 消息
+- `session_id` 和 `animal_type` 当前应放在 form-data 中，不再建议放 query
+- 当 `voice` 缺失时，实际错误通常会先由 OpenAPI 校验器返回 `"'voice' is a required property"`
+- 如果误用 `application/json` 调用，当前实现可能在 Connexion 校验阶段触发 `500`
+
+## 相关接口
+
+- 无会话流式上传：[`analysis-no-session`](./recg-analysis-no-session.md)
+- 会话型 URL 流式分析：[`analysis-by-url`](./recg-analysis-by-url.md)
+- 会话型上传 JSON 分析：[`analysis-json`](./recg-analysis-json.md)
+- 无会话上传 JSON 分析：[`analysis-json-no-session`](./recg-analysis-json-no-session.md)
+- 会话型 URL JSON 分析：[`analysis-by-url-json`](./recg-analysis-by-url-json.md)
+
+## 接口调试
+---
+<script setup>
+import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
+</script>
+
+<ClientOnly>
+  <SwaggerUI
+    type="post"
+    path="/ai-voice-recg/analysis"
+    version="v2"
+  />
+</ClientOnly>

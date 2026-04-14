@@ -7,19 +7,27 @@
 接口是**通用报告列表接口**，不是智能问诊专属接口。当前常见的 `module_type` 包括：
 
 - `1`：智能问诊
+- `12`：视频行为分析
 - `5`：图片识别
 - `19`：宠物档案建议
 
 ## 调用接口
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record-list?token=[ACCESS_TOKEN]`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record-list`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+```
 
 ## 请求参数
 ### Body 参数（`application/json`）
 | 名称 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
 | `limit` | `int` | 是 | 每页数量 |
-| `module_type` | `array[int]` | 否 | 模块类型列表，例如 `[1]`、`[5]`、`[19]` |
+| `module_type` | `array[int]` | 否 | 模块类型列表，例如 `[1]`、`[12]`、`[19]` |
 | `sub_module_type` | `array[int]` | 否 | 子模块类型列表。`module_type=19` 时，`1`-喂养建议，`2`-养成建议 |
 | `page` | `int` | 是 | 页码 |
 | `pet_profile_id` | `array[int]` | 否 | 宠物档案 ID 列表，例如 `[123, 456]` |
@@ -111,7 +119,7 @@
 | `created_at` | `string` | 报告创建时间，ISO 8601 格式 |
 | `id` | `number` | 报告 ID |
 | `is_paid` | `number` | 是否已支付，`0` 表示未支付，`1` 表示已支付 |
-| `module_type` | `number` | 模块类型，例如 `1`-智能问诊、`5`-图片识别、`19`-宠物档案建议 |
+| `module_type` | `number` | 模块类型，例如 `1`-智能问诊、`12`-视频行为分析、`5`-图片识别、`19`-宠物档案建议 |
 | `pet_info` | `object` | 宠物信息对象。部分模块可能为空对象 `{}` |
 | `pet_profile_id` | `number` | 宠物档案 ID |
 | `report_info` | `object` | 报告摘要信息对象 |
@@ -132,7 +140,7 @@
 ## 使用说明
 1. 该接口返回的是**报告列表摘要**，适合报告中心或历史记录页，不等同于完整报告内容。
 2. `report_info.title` 和 `report_info.content` 的语义会随 `module_type` 变化：
-   智能问诊通常返回问诊主题和摘要；宠物档案建议通常返回建议标题和建议摘要。
+   智能问诊通常返回问诊主题和摘要；视频分析通常返回行为标题和分析摘要；宠物档案建议通常返回建议标题和建议摘要。
 3. 如需查看单条完整报告内容，可继续调用 [`/medical-record`](./medical-record.md)。
 4. 宠物档案建议模块也提供了更明确的专用接口：
    列表推荐使用 [`/pet-profile/advice-records`](../pet-profile-advice/advice-records.md)，详情推荐使用 [`/pet-profile/advice-record`](../pet-profile-advice/advice-record.md)。

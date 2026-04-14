@@ -9,6 +9,12 @@
 
 这组接口采用独立的外部接口设计，不与原有宠物档案 CRUD 接口混用。
 
+所有接口均通过请求头传递登录态：
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
+
 ## 英文版备注
 ---
 根据 `ms-ai-b` 代码仓库中的 OpenAPI 注册和接口实现，宠物档案建议接口同时支持英文入口：
@@ -17,6 +23,10 @@
 - 英文版域名与前缀：`https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/...`
 
 联调英文版时，请将域名切换到 `ms-ai-cn.chongzhiling.com`，并使用 `ai-en` 路径前缀。
+
+> 说明：
+> - 中文和英文建议记录按语言隔离保存
+> - 同一个 `pet_profile_id` 下，中英文入口各自查询各自语言的数据
 
 ## 接口调用流程
 ---

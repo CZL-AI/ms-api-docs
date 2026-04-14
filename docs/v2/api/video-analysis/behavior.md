@@ -98,3 +98,27 @@ Content-Type: application/json
 - 文件扩展名必须是 `.mp4`
 - 服务端会尝试读取文件头并校验标准 MP4 `ftyp`
 - 链接不可访问、伪 MP4、非标准 MP4 都会直接返回 `400`
+
+## 历史接口说明
+
+旧版任务接口 [`post-task`](./post-task.md) 和旧版状态接口 [`get-status`](./get-status.md) 仍保留说明页，仅供存量接入方排查历史调用使用。
+
+新接入请统一使用当前 v2 流程：
+
+1. `session-start`
+2. `ai-video-recg/gen-report`
+3. `medical-record`
+
+## 接口调试
+---
+<script setup>
+import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
+</script>
+
+<ClientOnly>
+  <SwaggerUI
+    type="post"
+    path="/ai-video-recg/gen-report"
+    version="v2"
+  />
+</ClientOnly>

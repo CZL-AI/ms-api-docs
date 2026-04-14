@@ -167,8 +167,12 @@ export default function getV1Sidebar() {
         {
           text: '声音识别分析（新）',
           items: [
-            { text: '声音识别分析（上传文件）', link: '/v2/api/voice/recg-analysis' },
-            { text: '声音识别分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url' },
+            { text: '流式分析（上传文件）', link: '/v2/api/voice/recg-analysis' },
+            { text: '流式分析（上传文件，无会话）', link: '/v2/api/voice/recg-analysis-no-session' },
+            { text: '流式分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url' },
+            { text: 'JSON分析（上传文件）', link: '/v2/api/voice/recg-analysis-json' },
+            { text: 'JSON分析（上传文件，无会话）', link: '/v2/api/voice/recg-analysis-json-no-session' },
+            { text: 'JSON分析（通过URL）', link: '/v2/api/voice/recg-analysis-by-url-json' },
           ]
         },
         {
@@ -267,7 +271,8 @@ export default function getV1Sidebar() {
         {
           text: '犬/猫类视频行为分析',
           items: [
-            { text: '视频行为分析', link: '/v2/api/video-analysis/behavior' },
+            { text: '发起视频分析', link: '/v2/api/video-analysis/behavior' },
+            { text: '获取视频分析报告', link: '/v2/api/video-analysis/report' },
           ]
         },
         {

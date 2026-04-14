@@ -1,4 +1,4 @@
-# AI宠物声音识别分析（通过URL）
+# AI宠物声音识别分析（通过URL，流式）
 
 ## 产品介绍
 ---
@@ -93,4 +93,26 @@ data: [DONE]
 
 - URL 版应始终使用 `application/json`
 - `animal_type` 默认值为 `1`
-- 当 `voice_url` 缺失时，实际错误可能先由 OpenAPI 校验器返回 required-property 消息
+- 当 `voice_url` 缺失时，实际错误通常会先由 OpenAPI 校验器返回 `"'voice_url' is a required property"`
+
+## 相关接口
+
+- 会话型上传流式分析：[`analysis`](./recg-analysis.md)
+- 无会话上传流式分析：[`analysis-no-session`](./recg-analysis-no-session.md)
+- 会话型上传 JSON 分析：[`analysis-json`](./recg-analysis-json.md)
+- 无会话上传 JSON 分析：[`analysis-json-no-session`](./recg-analysis-json-no-session.md)
+- 会话型 URL JSON 分析：[`analysis-by-url-json`](./recg-analysis-by-url-json.md)
+
+## 接口调试
+---
+<script setup>
+import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
+</script>
+
+<ClientOnly>
+  <SwaggerUI
+    type="post"
+    path="/ai-voice-recg/analysis-by-url"
+    version="v2"
+  />
+</ClientOnly>

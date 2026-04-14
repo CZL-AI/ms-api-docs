@@ -6,7 +6,15 @@
 
 ## 调用接口
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/growth-advice?token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/growth-advice`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/pet-profile/growth-advice`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+```
 
 ## 请求参数
 ### Body 参数（`application/json`）
@@ -39,6 +47,12 @@
 | `content.tabs[].items` | `array<string>` | 当前分栏下的建议列表 |
 | `message` | `string` | 返回信息 |
 | `success` | `boolean` | 是否成功 |
+
+## 补充说明
+
+- 接口返回语言由入口决定：`ai-b` 返回中文，`ai-en` 返回英文
+- 生成成功后会创建新的 `session_id` 与 `medical_record_id`
+- 详情回看建议使用 [`advice-record`](./advice-record.md)
 
 ## 代码示例
 **请求示例：**

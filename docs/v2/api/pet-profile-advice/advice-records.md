@@ -6,7 +6,14 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-records?pet_profile_id=[PET_PROFILE_ID]&advice_type=[ADVICE_TYPE]&page=1&limit=10&token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-records?pet_profile_id=[PET_PROFILE_ID]&advice_type=[ADVICE_TYPE]&page=1&limit=10`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/pet-profile/advice-records?pet_profile_id=[PET_PROFILE_ID]&advice_type=[ADVICE_TYPE]&page=1&limit=10`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
 
 ## 请求参数
 ### Query 参数
@@ -39,6 +46,11 @@
 | `pagination.has_prev` | `boolean` | 是否有上一页 |
 | `message` | `string` | 返回信息 |
 | `success` | `boolean` | 是否成功 |
+
+## 补充说明
+
+- `advice_type` 支持兼容值：`feeding`、`feeding_advice`、`growth`、`growth_advice`
+- 接口会按当前入口语言过滤记录，中文入口不会返回英文建议，英文入口也不会返回中文建议
 
 ## 代码示例
 **请求示例：**

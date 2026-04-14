@@ -6,7 +6,14 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-overview?pet_profile_id=[PET_PROFILE_ID]&token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-overview?pet_profile_id=[PET_PROFILE_ID]`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/pet-profile/advice-overview?pet_profile_id=[PET_PROFILE_ID]`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
 
 ## 请求参数
 ### Query 参数
@@ -38,6 +45,11 @@
 | `growth_advice.has_data` | `boolean` | 是否已有数据 |
 | `message` | `string` | 返回信息 |
 | `success` | `boolean` | 是否成功 |
+
+## 补充说明
+
+- 接口只返回当前入口语言对应的数据
+- 如果某一类建议从未生成过，对应对象会返回 `has_data=false`
 
 ## 代码示例
 **请求示例：**

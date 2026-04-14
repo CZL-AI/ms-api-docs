@@ -6,7 +6,14 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-record?medical_record_id=[MEDICAL_RECORD_ID]&token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/advice-record?medical_record_id=[MEDICAL_RECORD_ID]`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/pet-profile/advice-record?medical_record_id=[MEDICAL_RECORD_ID]`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+```
 
 ## 请求参数
 ### Query 参数
@@ -29,6 +36,11 @@
 | `content` | `object` | 建议完整内容 |
 | `message` | `string` | 返回信息 |
 | `success` | `boolean` | 是否成功 |
+
+## 补充说明
+
+- 详情接口会校验记录语言与当前入口是否一致
+- 如果中文记录用英文入口查询，或英文记录用中文入口查询，服务端会返回语言不匹配错误
 
 ## 代码示例
 **请求示例：**

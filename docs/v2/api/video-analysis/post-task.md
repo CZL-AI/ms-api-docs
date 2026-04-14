@@ -1,45 +1,30 @@
-# 发送任务
+# 历史接口说明：发送任务（旧版视频行为分析）
 ---
-提交任务，对宠物视频进行智能分析，通过多维度分析宠物视频，提供专业行为与健康评估。
-采用路径追踪、窗口自注意力机制，优化算法确保高效分析。适用于宠物主人、兽医及研究机构，助力理解宠物需求、改善人宠互动、支持健康研究。
 
-## 调用接口
-**请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/video_recognition?token=[TOKEN]`
+本文档对应旧版视频分析任务接口：
 
-## **参数列表：**[application/json]
-| 参数            | 类型   | 含义                                               |
-| --------------- | ------ | -------------------------------------------------- |
-| video_url     | string | 分析视频URL |
+- `POST /api/v1.0/ai-b/recognition/video_recognition`
 
+该接口使用 `task_id / task_uuid` 轮询模式，已不是当前推荐接入方式。
 
-## **返回结果：**
-```json
-{
-    "data": {
-        "task_id": "f6bcfc8c-09f2-4199-96fd-42fe87ec1a11"
-    },
-    "message": "Get successfully.",
-    "success": true
-}
-```
-## **返回参数说明：**
-| 参数     | 类型   | 含义                          |
-| -------- | ------ | ----------------------------- |
-| success      | boolean | 是否成功                   |
-| message  | string | 返回信息                      |
-| data.task  | string | 任务ID                      |
+## 当前推荐流程
 
-## 接口调试
----
-<script setup>
-import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
-</script>
+新接入请改用 v2 接口链路：
 
-<ClientOnly>
-  <SwaggerUI 
-    type="post"
-    tag="recognition"
-    path="/recognition/video_recognition" 
-  />
-</ClientOnly>
+1. 调用 [`session-start`](../smart-consultation/session-start.md) 获取 `session_id`
+2. 调用 [`发起视频分析`](./behavior.md) 提交 `video_url`
+3. 调用 [`获取视频分析报告`](./report.md) 根据 `report_id` 查询结果
+
+## 迁移说明
+
+| 历史能力 | 当前能力 |
+| --- | --- |
+| `task_id` / `task_uuid` | `report_id` |
+| `/recognition/video_recognition` | `/ai-video-recg/gen-report` |
+| `/recognition/task_status` | `/medical-record` |
+| query `token` | `Authorization: Bearer [ACCESS_TOKEN]` |
+
+## 说明
+
+- 本页仅供存量接入方比对历史调用
+- 新项目不建议继续接入旧版视频任务接口

@@ -6,7 +6,15 @@
 
 ## 调用接口
 **请求方式：** `POST（HTTPS）`
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/feeding-advice?token=[ACCESS_TOKEN]`
+**中文请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/pet-profile/feeding-advice`
+**英文请求地址：** `https://ms-ai-cn.chongzhiling.com/api/v2.0/ai-en/pet-profile/feeding-advice`
+
+**请求头：**
+
+```http
+Authorization: Bearer [ACCESS_TOKEN]
+Content-Type: application/json
+```
 
 ## 请求参数
 ### Body 参数（`application/json`）
@@ -43,6 +51,12 @@
 | `content.recommend_basicinfo.feed_recommend` | `string` | 喂食推荐 |
 | `message` | `string` | 返回信息 |
 | `success` | `boolean` | 是否成功 |
+
+## 补充说明
+
+- 接口返回语言由入口决定：`ai-b` 返回中文，`ai-en` 返回英文
+- 生成成功后会创建新的 `session_id` 与 `medical_record_id`
+- 如需读取最近一条摘要，建议调用 [`advice-overview`](./advice-overview.md)
 
 ## 代码示例
 **请求示例：**
