@@ -22,7 +22,7 @@ AI鸟类识别服务是一款基于人工智能技术的专业鸟类识别工具
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds_v3`
 
 ## 请求参数：
 ```json
@@ -91,7 +91,7 @@ import SwaggerUI from '../../../../src/components/SwaggerUI.vue'
   <SwaggerUI 
     tag="recognition"
     type="post"
-    path="/recognition/identifying_birds" 
+    path="/recognition/identifying_birds_v3" 
   />
 </ClientOnly>
 

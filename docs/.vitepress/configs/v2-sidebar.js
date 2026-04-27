@@ -153,12 +153,6 @@ export default function getV1Sidebar() {
       collapsible: true,
       items: [
         {
-          text: '多宠识别',
-          items: [
-            { text: '多宠识别', link: '/v2/api/multi-pet-recognition/index' },
-          ]
-        },
-        {
           text: '声音情绪识别（旧）',
           items: [
             { text: '声音情绪识别', link: '/v2/api/voice/emotion.md' },
