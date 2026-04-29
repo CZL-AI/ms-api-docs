@@ -11,7 +11,7 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`  
-**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds_v3`
+**请求地址：** `https://ms-ai.chongzhiling.com/api/v1.0/ai-b/recognition/identifying_birds_v3?token=[ACCESS_TOKEN]`
 
 ## 请求参数：
 ```json
