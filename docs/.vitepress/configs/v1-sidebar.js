@@ -177,6 +177,7 @@ export default function getV1Sidebar() {
           items: [
             { text: '流程开始', link: '/v1/api/ai-meme/session-start' },
             { text: '生成表情包', link: '/v1/api/ai-meme/ai-meme' },
+            { text: '获取表情包', link: '/v1/api/ai-meme/get-generate' },
           ]
         }
       ]
