@@ -25,8 +25,11 @@ AI宠物声音识别服务能够通过分析上传的宠物音频文件，对宠
 ```
 
 ## 调用接口：
-**请求方式：** `POST（HTTPS）`  
+**请求方式：** `POST（HTTPS）`
+
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis`
+
+**英文版请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-en/ai-voice-recg/analysis`
 
 **请求头：**
 

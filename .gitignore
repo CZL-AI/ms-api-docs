@@ -25,3 +25,7 @@ yarn-error.log*
 .history/*
 .history/
 .claude/
+
+# Nested local repositories
+ms-api-docs/
+ms-async-b/

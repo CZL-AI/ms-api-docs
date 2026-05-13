@@ -23,7 +23,10 @@
 
 ## 调用接口：
 **请求方式：** `POST（HTTPS）`
+
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-voice-recg/analysis-json`
+
+**英文版请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-en/ai-voice-recg/analysis-json`
 
 **请求头：**
 
