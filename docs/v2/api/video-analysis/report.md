@@ -11,7 +11,10 @@
 
 ## 调用接口
 **请求方式：** `GET（HTTPS）`
+
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/medical-record`
+
+**英文版请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-en/medical-record`
 
 **请求头：**
 

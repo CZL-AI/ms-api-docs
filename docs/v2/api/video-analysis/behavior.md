@@ -27,8 +27,11 @@ AI宠物视频行为分析服务能够对上传的宠物视频进行智能识别
 4. 若 `is_pet_exist` 为 `1`，定期轮询[视频分析报告查询接口](./report.md)，通过 `report_status` 判断报告是否生成完成
 
 ## 调用接口：
-**请求方式：** `POST（HTTPS）`  
+**请求方式：** `POST（HTTPS）`
+
 **请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-b/ai-video-recg/gen-report`
+
+**英文版请求地址：** `https://ms-ai.chongzhiling.com/api/v2.0/ai-en/ai-video-recg/gen-report`
 
 **请求头：**
 
