@@ -10,7 +10,6 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import SwaggerUIBundle from 'swagger-ui-dist/swagger-ui-bundle'
 import 'swagger-ui-dist/swagger-ui.css'
 
 const props = defineProps({
@@ -32,9 +31,10 @@ const error = ref(null)
 
 onMounted(async () => {
     try {
+        const swaggerModule = await import('swagger-ui-dist/swagger-ui-bundle')
+        const SwaggerUIBundle = swaggerModule.default || swaggerModule
         const response = await fetch(`/${props.version}/swagger.json`)
         const swaggerConfig = await response.json()
-        console.log(swaggerConfig)
 
         if (!swaggerConfig.paths?.[props.path]) {
             throw new Error(`Path ${props.path} not found`)
